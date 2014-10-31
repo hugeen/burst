@@ -16,8 +16,6 @@ function extend() {
 module.exports = function(object) {
 
     Object.defineProperty(object, "extend", {
-        enumerable: false,
-        writable: true,
         value: extend
     });
 
