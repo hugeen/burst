@@ -13,8 +13,6 @@ function clone() {
 module.exports = function(object) {
 
     Object.defineProperty(object, "clone", {
-        enumerable: false,
-        writable: true,
         value: clone
     });
 
