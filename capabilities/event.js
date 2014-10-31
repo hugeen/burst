@@ -8,6 +8,7 @@ module.exports = function(object) {
 
     var events = {};
 
+
     Object.defineProperty(object, "on", {
         value: function(identifier, fnc) {
             events[identifier] = events[identifier] || [];
@@ -16,6 +17,7 @@ module.exports = function(object) {
             return object;
         }
     });
+
 
     Object.defineProperty(object, "removeListener", {
         value: function(identifier, fnc) {
@@ -26,6 +28,7 @@ module.exports = function(object) {
             return object;
         }
     });
+
 
     Object.defineProperty(object, "emit", {
         value: function(identifier, fnc) {
@@ -38,6 +41,7 @@ module.exports = function(object) {
             return object;
         }
     });
+
 
     return object;
 
