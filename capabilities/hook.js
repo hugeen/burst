@@ -1,13 +1,15 @@
 module.exports = function(object) {
 
-    Object.defineProperty(object, "hooks", {
-        value: {}
-    });
+    var hooks = {};
 
-    Object.defineProperty(object, "hook", {
-        value: function(name, settings) {
-            object.hooks[name] = settings ? [settings] : ["after", "before"];
+
+    Object.defineProperty(object, 'hook', {
+        value: function(name, restrict) {
+            hooks[name] = restrict ? [restrict] : ['after', 'before'];
         }
     });
+
+
+    return object;
 
 };
