@@ -3,71 +3,81 @@
 Low level JavaScript Library to build your own Framework.
 
 
----
-
 ## Use it with Browserify and NodeJS
 
+```
 $ npm install watchify -g
 $ watchify main.js -o static/bundle.js -v --debug
+```
 
-
----
 
 ## Core concepts and Phylosophy
-
 * Convention over configuration.
-
 * Performances are fine but not at the cost of other important concepts, such as readability.
 
 
----
+## Capabilities
 
-## Features
+```javascript
+var myObject = {};
+require('./capabilities/def.js')(myObject);
+```
 
 ### Event
 
 #### object.on(eventName, listener)
 
+```javascript
 function resize (size) {
     viewport.size = size;
 };
 
 viewport.on('resize', resize);
+```
 
 #### object.emit(eventName)
 
+```javascript
 viewport.emit('resize', { width: 100, height: 100 });
+```
 
 #### object.removeEventListener(eventName, listener)
 
+```javascript
 viewport.removeEventListener('resize', resize);
-
+```
 
 ### Tag
 
 #### collection.tag(tagName, object)
 
+```javascript
 collection.tag('enemies', orc);
 collection.enemies => [orc]
+```
 
 #### collection.untag(tagName, object)
 
+```javascript
 collection.untag('enemies', orc);
 collection.enemies; => []
-
+```
 
 ### Def
 
 #### object.def(methodName, method)
 
+```javascript
 object.def('attack', function(enemy) {
     enemy.life -= 10
 });
 
 object.attack(enemy);
+```
 
 #### object.hook(methodName)
 
+```javascript
 object.hook('attack');
 
 object.on('before attack', function(enemy) {
@@ -79,7 +89,7 @@ object.on('after attack', function(enemy) {
         enemy.kill();
     }
 });
-
+```
 
 ### Model
 
@@ -92,6 +102,7 @@ object.on('after attack', function(enemy) {
 
 #### Model.create(args);
 
+```javascript
 function User(params) {
     this.name = params.name;
 }
@@ -103,10 +114,11 @@ User.on('before create', function(params) {
 var john = User.create({
     this.name = 'John'
 });
-
+```
 
 #### Usages
 
+```javascript
 // Can use def and hook on prototype
 
 User.prototype.hook('setName', 'before');
@@ -127,3 +139,4 @@ john.name; => John Doe
 User.tag('admin', john);
 
 User.admin; => [john]
+```
