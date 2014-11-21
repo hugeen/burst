@@ -1,21 +1,27 @@
+var eventCapabilities = require('./event.js');
+var defCapabilities = require('./def.js');
+var tagCapabilities = require('./tag.js');
+
 var slice = Array.prototype.slice;
 
 
-var requiredCapabilities = [
-    require('./event.js'),
-    require('./def.js'),
-    require('./tag.js')
-];
+function modelCapabilities (Model) {
 
+    addCapabilities.call(Model, [
+        eventCapabilities,
+        defCapabilities,
+        tagCapabilities
+    ]);
 
-function modelCapabilities(Model) {
-
-    addCapabilities.call(Model, requiredCapabilities);
+    addCapabilities.call(Model.prototype, [
+        eventCapabilities,
+        defCapabilities
+    ]);
 
 
     Model.hook('create');
 
-    Model.def('create', function() {
+    Model.def('create', function () {
         var instance = Object.create(Model.prototype);
         Model.apply(instance, slice.call(arguments));
 

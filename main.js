@@ -4,8 +4,9 @@ function User(params) {
     this.name = params.name;
 }
 
-User.on('before create', function(params) {
-    params.name = 'Pierre';
+User.prototype.hook('bitch');
+User.prototype.def('bitch', function() {
+    console.log(this, 'bitch');
 });
 
 var params = {
@@ -13,5 +14,18 @@ var params = {
 };
 
 var u = User.create(params);
+var v = User.create(params);
 
-console.log(u);
+v.on('hello', function() {
+    console.log('hello', this);
+});
+
+
+u.emit('hello');
+v.emit('hello');
+
+
+v.on('before bitch', function() {
+    console.log('before bitch', this);
+});
+v.bitch();

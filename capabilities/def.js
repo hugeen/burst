@@ -20,9 +20,9 @@ function defCapabilities (object) {
 
             settings.value = function() {
 
-                object.triggerHook('before', name, slice.call(arguments));
+                this.triggerHook('before', name, slice.call(arguments));
                 var value = args.fnc.apply(this, arguments);
-                object.triggerHook('after', name, slice.call(arguments));
+                this.triggerHook('after', name, slice.call(arguments));
 
                 return value;
 

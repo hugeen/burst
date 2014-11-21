@@ -7,18 +7,12 @@ function eventCapabilities (object) {
     }
 
 
-    var listeners = {};
-
-
-    Object.defineProperty(object, 'listeners', {
-        value: listeners
-    });
-
-
     Object.defineProperty(object, 'on', {
         value: function(identifier, fnc) {
-            listeners[identifier] = listeners[identifier] || [];
-            listeners[identifier].push(fnc);
+            findOrCreateListeners.call(this);
+
+            this.listeners[identifier] = this.listeners[identifier] || [];
+            this.listeners[identifier].push(fnc);
 
             return this;
         }
@@ -27,8 +21,10 @@ function eventCapabilities (object) {
 
     Object.defineProperty(object, 'removeListener', {
         value: function(identifier, fnc) {
-            if (identifier in listeners === true) {
-                listeners[identifier].splice(listeners[identifier].indexOf(fnc), 1);
+            findOrCreateListeners.call(this);
+
+            if (identifier in this.listeners) {
+                this.listeners[identifier].splice(this.listeners[identifier].indexOf(fnc), 1);
             }
 
             return this;
@@ -38,9 +34,11 @@ function eventCapabilities (object) {
 
     Object.defineProperty(object, 'emit', {
         value: function(identifier, fnc) {
-            if (identifier in listeners === true) {
-                for (var i = 0; i < listeners[identifier].length; i++) {
-                    listeners[identifier][i].apply(object, slice.call(arguments, 1));
+            findOrCreateListeners.call(this);
+
+            if (identifier in this.listeners) {
+                for (var i = 0; i < this.listeners[identifier].length; i++) {
+                    this.listeners[identifier][i].apply(this, slice.call(arguments, 1));
                 }
             }
 
@@ -52,5 +50,15 @@ function eventCapabilities (object) {
     return object;
 
 }
+
+
+function findOrCreateListeners() {
+    if (!('listeners' in this)) {
+        Object.defineProperty(this, 'listeners', {
+            value: {}
+        });
+    }
+}
+
 
 module.exports = eventCapabilities;
