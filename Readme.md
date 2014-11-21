@@ -12,6 +12,7 @@ $ watchify main.js -o static/bundle.js -v --debug
 
 
 ## Core concepts and Phylosophy
+
 * Convention over configuration.
 * Performances are fine but not at the cost of other important concepts, such as readability.
 
@@ -95,10 +96,10 @@ object.on('after attack', function(enemy) {
 
 #### Capabilities
 
-* Event
-* Def
-* Hook
-* Tag
+* [Event](#event)
+* [Def](#def)
+* [Hook](#hook)
+* [Tag](#tag)
 
 #### Model.create(args);
 
@@ -131,12 +132,10 @@ john.on('before setName', function(params) {
 })
 
 john.setName('John');
-
 john.name; => John Doe
 
+
 // Can use tags
-
 User.tag('admin', john);
-
 User.admin; => [john]
 ```
