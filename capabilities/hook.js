@@ -9,8 +9,10 @@ function hookCapabilities(object) {
         }
     });
 
+
     Object.defineProperty(object, 'triggerHook', {
         value: function(moment, name, args) {
+
             if (name in hooks) {
                 if (hooks[name].indexOf(moment) !== -1) {
                     this.emit.apply(this, [moment + ' ' + name].concat(args));
@@ -19,7 +21,6 @@ function hookCapabilities(object) {
 
         }
     });
-
 
 
     return object;

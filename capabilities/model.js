@@ -3,7 +3,6 @@ var slice = Array.prototype.slice;
 
 var requiredCapabilities = [
     require('./event.js'),
-    require('./hook.js'),
     require('./def.js'),
     require('./tag.js')
 ];
@@ -11,17 +10,17 @@ var requiredCapabilities = [
 
 function modelCapabilities(Model) {
 
-    addCapabilities.call(this, requiredCapabilities);
+    addCapabilities.call(Model, requiredCapabilities);
 
 
     Model.hook('create');
 
-    Model.create = function() {
-        var instance = Object.create(this);
-        this.constructor.call(instance, slice.call(arguments));
+    Model.def('create', function() {
+        var instance = Object.create(Model.prototype);
+        Model.apply(instance, slice.call(arguments));
 
         return instance;
-    };
+    });
 
 
     return Model;

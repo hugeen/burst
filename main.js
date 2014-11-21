@@ -1,23 +1,17 @@
-require('./capabilities/extend.js')(Object.prototype);
-require('./capabilities/clone.js')(Object.prototype);
+require('./capabilities/model.js')(User);
 
+function User(params) {
+    this.name = params.name;
+}
 
-var M = {};
-require('./capabilities/event.js')(M);
-require('./capabilities/def.js')(M);
-
-M.hook('hello');
-
-M.def('hello', 'enumerable', function() {
-    console.log('world');
+User.on('before create', function(params) {
+    params.name = 'Pierre';
 });
 
-M.on('before hello', function() {
-    console.log('before', arguments);
-});
+var params = {
+    name: 'Cyrille'
+};
 
-M.on('after hello', function() {
-    console.log('after', arguments);
-});
+var u = User.create(params);
 
-M.hello();
+console.log(u);
