@@ -1,4 +1,4 @@
-function tagCapabilities(object) {
+function tagCapabilities (object) {
 
     var tags = {};
 
@@ -6,10 +6,23 @@ function tagCapabilities(object) {
     Object.defineProperty(object, 'tag', {
         value: function (name, entity) {
 
-            createTag(tags);
-            referenceTag(name, entity);
+            var tag = findOrCreateTag(tags);
+            referenceTagName(name, entity);
 
-            tags[name].push(entity);
+            tag.push(entity);
+
+            return this;
+        }
+    });
+
+
+    Object.defineProperty(object, 'untag', {
+        value: function (name, entity) {
+
+            if (name in tags) {
+                tags[name].splice(tags[name].indexOf(entity), 1);
+                entity.taggedIn.splice(entity.taggedIn.indexOf(name), 1);
+            }
 
             return this;
         }
@@ -21,18 +34,20 @@ function tagCapabilities(object) {
 }
 
 
-function createTag (tags) {
+function createTag(tags) {
 
-    if (typeof tags[name] === 'undefined') {
+    if (name in tags) {
         tags[name] = [];
     }
+
+    return tags[name];
 
 }
 
 
-function referenceTag (name, entity) {
+function referenceTagName(name, entity) {
 
-    if (typeof entity.taggedIn === 'undefined') {
+    if (!('taggedIn' in entity)) {
         Object.defineProperty(entity, 'taggedIn', {
             value: []
         });

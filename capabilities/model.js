@@ -1,19 +1,17 @@
 var slice = Array.prototype.slice;
 
 
-function addCapabilities (Model) {
-    Model.forward([
-        require('./event.js'),
-        require('./hook.js'),
-        require('./def.js'),
-        require('./tag.js')
-    ]);
-}
+var requiredCapabilities = [
+    require('./event.js'),
+    require('./hook.js'),
+    require('./def.js'),
+    require('./tag.js')
+];
 
 
-function modelCapabilities (Model) {
+function modelCapabilities(Model) {
 
-    addCapabilities(Model);
+    addCapabilities.call(this, requiredCapabilities);
 
 
     Model.hook('create');
@@ -31,5 +29,11 @@ function modelCapabilities (Model) {
 }
 
 
-module.exports = modelCapabilities;
+function addCapabilities(destinations) {
+    for (var i in destinations) {
+        destinations[i](this);
+    }
+}
 
+
+module.exports = modelCapabilities;

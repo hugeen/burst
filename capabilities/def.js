@@ -1,5 +1,7 @@
 var hookCapabilities = require('./hook.js');
 var slice = Array.prototype.slice;
+
+
 var customizableAttrs = ['writable', 'configurable', 'enumerable'];
 
 
@@ -18,9 +20,9 @@ function defCapabilities (object) {
 
             settings.value = function() {
 
-                triggerHook.call(this, 'before', name, slice.call(arguments));
+                object.triggerHook('before', name, slice.call(arguments));
                 var value = args.fnc.apply(this, arguments);
-                triggerHook.call(this, 'after', name, slice.call(arguments));
+                object.triggerHook('after', name, slice.call(arguments));
 
                 return value;
 
@@ -40,25 +42,14 @@ function defCapabilities (object) {
 }
 
 
-function triggerHook(moment, name, args) {
-
-    var hooks = object.hooks[name] || [];
-
-    if (hooks.indexOf(moment) !== -1) {
-        this.emit.apply(this, [moment + name].concat(args));
-    }
-
-}
-
-
 function formatArguments () {
 
-    var rawArgs = slice.call(arguments);
+    var args = slice.call(arguments);
 
     var settings = {};
 
-    if (typeof rawArgs[2] !== 'undefined') {
-        settings = rawArgs[1].split(' ');
+    if (typeof args[2] !== 'undefined') {
+        settings = args[1].split(' ');
 
         for (var i = 0; i < settings.length; i++) {
             if (customizableAttrs.indexOf(settings[i]) !== -1) {
@@ -69,8 +60,8 @@ function formatArguments () {
 
 
     return {
-        name: rawArgs[0],
-        fnc: rawArgs[2] || rawArgs[1],
+        name: args[0],
+        fnc: args[2] || args[1],
         settings: settings
     };
 
