@@ -13,28 +13,40 @@ function defCapabilities (object) {
 
             var args = formatArguments.apply(this, arguments);
             var settings = args.settings;
-            var hooks = object.hooks[args.name] || [];
+            var name = args.name;
+
 
             settings.value = function() {
-                if (hooks.indexOf('before') !== -1) {
-                    this.emit.apply(this, ['before ' + args.name].concat(slice.call(arguments)));
-                }
 
+                triggerHook.call(this, 'before', name, slice.call(arguments));
                 var value = args.fnc.apply(this, arguments);
-
-                if (hooks.indexOf('after') !== -1) {
-                    object.emit.apply(this, ['after ' + args.name].concat(slice.call(arguments)));
-                }
+                triggerHook.call(this, 'after', name, slice.call(arguments));
 
                 return value;
+
             };
 
-            Object.defineProperty(this, args.name, def);
+
+            Object.defineProperty(this, name, settings);
+
+            return this;
 
         }
     });
 
+
     return object;
+
+}
+
+
+function triggerHook(moment, name, args) {
+
+    var hooks = object.hooks[name] || [];
+
+    if (hooks.indexOf(moment) !== -1) {
+        this.emit.apply(this, [moment + name].concat(args));
+    }
 
 }
 
@@ -42,7 +54,6 @@ function defCapabilities (object) {
 function formatArguments () {
 
     var rawArgs = slice.call(arguments);
-
 
     var settings = {};
 
@@ -62,6 +73,7 @@ function formatArguments () {
         fnc: rawArgs[2] || rawArgs[1],
         settings: settings
     };
+
 }
 
 
