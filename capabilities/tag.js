@@ -6,7 +6,7 @@ function tagCapabilities (object) {
     Object.defineProperty(object, 'tag', {
         value: function (name, entity) {
 
-            var tag = findOrCreateTag(tags);
+            var tag = findOrCreateTag.call(this, tags, name);
             referenceTagName(name, entity);
 
             tag.push(entity);
@@ -34,10 +34,13 @@ function tagCapabilities (object) {
 }
 
 
-function createTag(tags) {
+function findOrCreateTag (tags, name) {
 
-    if (name in tags) {
+    if (!(name in tags)) {
         tags[name] = [];
+        Object.defineProperty(this, name, {
+            value: tags[name]
+        });
     }
 
     return tags[name];
@@ -45,7 +48,7 @@ function createTag(tags) {
 }
 
 
-function referenceTagName(name, entity) {
+function referenceTagName (name, entity) {
 
     if (!('taggedIn' in entity)) {
         Object.defineProperty(entity, 'taggedIn', {
