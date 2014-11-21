@@ -19,10 +19,20 @@ $ watchify main.js -o static/bundle.js -v --debug
 
 ## Capabilities
 
+You can use capabilities this way.
+
 ```javascript
 var myObject = {};
 require('./capabilities/def.js')(myObject);
 ```
+
+### Summary
+
+* [Event](#event)
+* [Def](#def)
+* [Hook](#hook)
+* [Tag](#tag)
+* [Model](#model)
 
 ### Event
 
