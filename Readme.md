@@ -122,7 +122,6 @@ john.setName('John');
 
 john.name; => John Doe
 
-
 // Can use tags
 
 User.tag('admin', john);
