@@ -1,6 +1,7 @@
 var slice = Array.prototype.slice;
 
-function extend() {
+
+function extend()  {
 
     var args = slice.call(arguments);
 

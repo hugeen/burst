@@ -1,39 +1,48 @@
 var slice = Array.prototype.slice;
 var hookCapabilities = require('./hook.js');
-var customAttrs = ['writable', 'configurable', 'enumerable'];
+
+
+var customizableAttrs = ['writable', 'configurable', 'enumerable'];
 
 function formatArguments() {
+
     var rawArgs = slice.call(arguments);
-    var args = {
-        name: rawArgs[0],
-        settings: {},
-        fnc: rawArgs[2] || rawArgs[1]
-    };
+
+
+    var settings = {};
 
     if (typeof rawArgs[2] !== 'undefined') {
-        var settings = rawArgs[1].split(' ');
+        settings = rawArgs[1].split(' ');
+
         for (var i = 0; i < settings.length; i++) {
-            if (customAttrs.indexOf(settings[i]) !== -1) {
-                args.settings[settings[i]] = true;
+            if (customizableAttrs.indexOf(settings[i]) !== -1) {
+                settings[settings[i]] = true;
             }
         }
     }
 
-    return args;
+
+    return {
+        name: rawArgs[0],
+        fnc: rawArgs[2] || rawArgs[1],
+        settings: settings
+    };
 }
+
 
 module.exports = function(object) {
 
     hookCapabilities(object);
 
+
     Object.defineProperty(object, 'def', {
         value: function() {
 
-            var args = formatArguments.apply(object, arguments);
-            var def = args.settings;
+            var args = formatArguments.apply(this, arguments);
+            var settings = args.settings;
             var hooks = object.hooks[args.name] || [];
 
-            def.value = function() {
+            settings.value = function() {
                 if (hooks.indexOf('before') !== -1) {
                     this.emit.apply(this, ['before ' + args.name].concat(slice.call(arguments)));
                 }
