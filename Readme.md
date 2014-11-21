@@ -129,7 +129,7 @@ User.prototype.def('setName', function(params) {
 
 john.on('before setName', function(params) {
     params.name = params.name + ' Doe';
-})
+});
 
 john.setName('John');
 john.name; => John Doe
