@@ -54,7 +54,6 @@ function eventCapabilities (object) {
 
 function findOrCreateListeners() {
     if (!('listeners' in this)) {
-        console.log('hello');
         Object.defineProperty(this, 'listeners', {
             value: {}
         });

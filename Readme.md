@@ -3,7 +3,11 @@
 Low level JavaScript Library to build your own Framework.
 
 
-## Use it with Browserify and NodeJS
+# Compatibility
+
+* [Object.defineProperty](http://kangax.github.io/compat-table/es5/#Object.defineProperty)
+
+## Use it with Browserify or NodeJS
 
 ```
 $ npm install watchify -g
@@ -28,11 +32,11 @@ require('./capabilities/def.js')(myObject);
 
 ### Summary
 
-* [Event](#event)
-* [Def](#def)
-* [Hook](#hook)
-* [Tag](#tag)
-* [Model](#model)
+* [Event](#event) - A Minimalist Publish/Subscribe Lib
+* [Def](#def) - New way to define methods
+* [Hook](#hook) - Trigger an event before and after a method is called
+* [Tag](#tag) - To sort collections by tag
+* [Model](#model) - Gluing
 
 ### Event
 
