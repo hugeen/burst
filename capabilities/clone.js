@@ -1,4 +1,14 @@
-function clone() {
+function cloneCapabilities (object) {
+
+    Object.defineProperty(object, 'clone', {
+        value: clone
+    });
+
+    return object;
+}
+
+
+function clone () {
 
     var newObject = {};
     for (var key in this) {
@@ -9,11 +19,4 @@ function clone() {
 }
 
 
-module.exports = function cloneCapabilities(object) {
-
-    Object.defineProperty(object, 'clone', {
-        value: clone
-    });
-
-    return object;
-};
+module.exports = cloneCapabilities;

@@ -1,4 +1,4 @@
-module.exports = function(object) {
+function hookCapabilities(object) {
 
     var hooks = {};
 
@@ -12,4 +12,7 @@ module.exports = function(object) {
 
     return object;
 
-};
+}
+
+
+module.exports = hookCapabilities;

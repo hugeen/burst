@@ -1,7 +1,18 @@
 var slice = Array.prototype.slice;
 
 
-function extend()  {
+module.exports = function(object) {
+
+    Object.defineProperty(object, 'extend', {
+        value: extend
+    });
+
+    return object;
+
+};
+
+
+function extend ()  {
 
     var args = slice.call(arguments);
 
@@ -15,14 +26,5 @@ function extend()  {
     }
 
     return this;
+
 }
-
-
-module.exports = function(object) {
-
-    Object.defineProperty(object, 'extend', {
-        value: extend
-    });
-
-    return object;
-};

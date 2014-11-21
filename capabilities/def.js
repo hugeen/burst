@@ -1,42 +1,15 @@
-var slice = Array.prototype.slice;
 var hookCapabilities = require('./hook.js');
-
-
+var slice = Array.prototype.slice;
 var customizableAttrs = ['writable', 'configurable', 'enumerable'];
 
-function formatArguments() {
 
-    var rawArgs = slice.call(arguments);
-
-
-    var settings = {};
-
-    if (typeof rawArgs[2] !== 'undefined') {
-        settings = rawArgs[1].split(' ');
-
-        for (var i = 0; i < settings.length; i++) {
-            if (customizableAttrs.indexOf(settings[i]) !== -1) {
-                settings[settings[i]] = true;
-            }
-        }
-    }
-
-
-    return {
-        name: rawArgs[0],
-        fnc: rawArgs[2] || rawArgs[1],
-        settings: settings
-    };
-}
-
-
-module.exports = function(object) {
+function defCapabilities (object) {
 
     hookCapabilities(object);
 
 
     Object.defineProperty(object, 'def', {
-        value: function() {
+        value: function () {
 
             var args = formatArguments.apply(this, arguments);
             var settings = args.settings;
@@ -63,4 +36,33 @@ module.exports = function(object) {
 
     return object;
 
-};
+}
+
+
+function formatArguments () {
+
+    var rawArgs = slice.call(arguments);
+
+
+    var settings = {};
+
+    if (typeof rawArgs[2] !== 'undefined') {
+        settings = rawArgs[1].split(' ');
+
+        for (var i = 0; i < settings.length; i++) {
+            if (customizableAttrs.indexOf(settings[i]) !== -1) {
+                settings[settings[i]] = true;
+            }
+        }
+    }
+
+
+    return {
+        name: rawArgs[0],
+        fnc: rawArgs[2] || rawArgs[1],
+        settings: settings
+    };
+}
+
+
+module.exports = defCapabilities;

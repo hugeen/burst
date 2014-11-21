@@ -1,7 +1,7 @@
 var slice = Array.prototype.slice;
 
 
-function addCapabilities(Model) {
+function addCapabilities (Model) {
     Model.forward([
         require('./event.js'),
         require('./hook.js'),
@@ -11,7 +11,7 @@ function addCapabilities(Model) {
 }
 
 
-module.exports = function(Model) {
+function modelCapabilities (Model) {
 
     addCapabilities(Model);
 
@@ -28,5 +28,8 @@ module.exports = function(Model) {
 
     return Model;
 
-};
+}
+
+
+module.exports = modelCapabilities;
 

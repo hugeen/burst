@@ -1,4 +1,4 @@
-module.exports = function(object) {
+function tagCapabilities(object) {
 
     var tags = {};
 
@@ -18,7 +18,7 @@ module.exports = function(object) {
 
     return object;
 
-};
+}
 
 
 function createTag (tags) {
@@ -43,3 +43,6 @@ function referenceTag (name, entity) {
     }
 
 }
+
+
+module.exports = tagCapabilities;

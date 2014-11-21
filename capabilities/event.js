@@ -1,6 +1,6 @@
 var slice = Array.prototype.slice;
 
-module.exports = function(object) {
+function eventCapabilities (object) {
 
     if (typeof object.on !== 'undefined') {
         return object;
@@ -11,12 +11,7 @@ module.exports = function(object) {
 
 
     Object.defineProperty(object, 'listeners', {
-        value: function(identifier, fnc) {
-            listeners[identifier] = listeners[identifier] || [];
-            listeners[identifier].push(fnc);
-
-            return this;
-        }
+        value: listeners
     });
 
 
@@ -56,4 +51,6 @@ module.exports = function(object) {
 
     return object;
 
-};
+}
+
+module.exports = eventCapabilities;
