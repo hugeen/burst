@@ -1,6 +1,6 @@
 var slice = Array.prototype.slice;
 
-require('../core/model.js')(Path);
+require('../core/model')(Path);
 
 
 function Path () {

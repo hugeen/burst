@@ -1,6 +1,6 @@
 var slice = Array.prototype.slice;
 
-require('../core/model.js')(Point);
+require('../core/model')(Point);
 
 
 function Point (x, y, controlPoints) {

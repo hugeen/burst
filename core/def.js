@@ -1,4 +1,4 @@
-var hookCapabilities = require('./hook.js');
+var hookCapabilities = require('./hook');
 var slice = Array.prototype.slice;
 
 

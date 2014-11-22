@@ -1,7 +1,7 @@
-var $ = require('./draw/dom.js');
-var Canvas = require('./draw/canvas.js');
-var Path = require('./draw/path.js');
-var Point = require('./draw/point.js');
+var $ = require('./draw/dom');
+var Canvas = require('./draw/canvas');
+var Path = require('./draw/path');
+var Point = require('./draw/point');
 
 var path = Path.create();
 
