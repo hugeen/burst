@@ -1,4 +1,5 @@
 require('../core/model')(Canvas);
+require('./canvas/debug_draw_path')(Canvas);
 require('./canvas/draw_path')(Canvas);
 
 
