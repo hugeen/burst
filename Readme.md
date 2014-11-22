@@ -4,8 +4,8 @@ Low level JavaScript Library to build your own Framework.
 
 
 # Compatibility
+* IE 9+, Firefox 6+, Safari 5+, Chrome 6+, Opera 12+
 
-* [Object.defineProperty](http://kangax.github.io/compat-table/es5/#Object.defineProperty)
 
 ## Use it with Browserify or NodeJS
 
