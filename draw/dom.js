@@ -8,8 +8,8 @@ function $ (arg) {
 
     var value;
 
-    if (/^f/.test(typeof arg)) {
-        if (/c/.test(document.readyState)) {
+    if (typeof arg === 'function') {
+        if (document.readyState === 'complete') {
             value = arg();
         } else {
             value = $(document).on('DOMContentLoaded', arg);
