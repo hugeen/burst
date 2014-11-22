@@ -1,12 +1,15 @@
 require('../core/model.js')(Canvas);
 
-
-function Canvas (element) {
-    this.context = element.getContext('2d');
+function Canvas (el) {
+    this.context = el.getContext('2d');
+    this.el = el;
 }
 
-
 (function (proto) {
+
+    proto.def('clear', function () {
+        this.context.clearRect(0, 0, this.el.width, this.el.height);
+    });
 
     proto.def('drawPath', function (path) {
 
