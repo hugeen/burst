@@ -1,13 +1,18 @@
 require('../core/model.js')(Path);
 
-function Path() {
+
+function Path () {
     this.segments = [];
 }
 
 
-Path.prototype.def('add', function(point) {
-    this.segments.push(point);
-});
+(function (proto) {
+
+    proto.def('add', function (point) {
+        this.segments.push(point);
+    });
+
+})(Path.prototype);
 
 
 module.exports = Path;
