@@ -1,6 +1,6 @@
-var eventCapabilities = require('./event.js');
-var defCapabilities = require('./def.js');
-var tagCapabilities = require('./tag.js');
+var eventCapabilities = require('./event');
+var defCapabilities = require('./def');
+var tagCapabilities = require('./tag');
 
 var slice = Array.prototype.slice;
 
