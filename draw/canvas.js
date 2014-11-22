@@ -1,14 +1,14 @@
 require('../core/model.js')(Canvas);
 
 
-function Canvas(element) {
+function Canvas (element) {
     this.context = element.getContext('2d');
 }
 
 
-(function(proto) {
+(function (proto) {
 
-    proto.def('drawPath', function(path) {
+    proto.def('drawPath', function (path) {
 
         this.context.beginPath();
 
@@ -30,15 +30,15 @@ function Canvas(element) {
 })(Canvas.prototype);
 
 
-function getDrawingArgs(operation) {
-    console.log(operation, this)
+function getDrawingArgs (operation) {
+
     var point = this;
 
     var operations = {
-        moveTo: function() {
+        moveTo: function () {
             return [point.x, point.y];
         },
-        bezierCurveTo: function() {
+        bezierCurveTo: function () {
             return [
                 point.controlPoints[0].x,
                 point.controlPoints[0].y,
@@ -48,7 +48,7 @@ function getDrawingArgs(operation) {
                 point.y
             ];
         },
-        quadraticCurveTo: function() {
+        quadraticCurveTo: function () {
             return [
                 point.controlPoints[0].x,
                 point.controlPoints[0].y,
@@ -64,7 +64,7 @@ function getDrawingArgs(operation) {
 }
 
 
-function selectDrawingOperation(point, index) {
+function selectDrawingOperation (point, index) {
     var operation = 'moveTo';
 
     if (index !== 0) {

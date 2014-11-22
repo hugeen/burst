@@ -34,7 +34,7 @@ path.add(
 );
 
 
-$(function() {
+$(function () {
     var canvas = Canvas.create($('canvas')[0]);
     canvas.drawPath(path);
 });
