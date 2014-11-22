@@ -24,7 +24,7 @@ function Canvas (el) {
             this.context[operation].apply(this.context, drawingArgs);
         }
 
-        this.context.fill();
+        this.context.stroke();
 
         return this;
 
