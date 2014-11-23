@@ -1,22 +1,22 @@
-function drawArcCapabilities (Canvas) {
+function drawArc (arc) {
 
-    (function (proto) {
+    this.context.beginPath();
 
-        proto.def('drawArc', function (arc) {
+    this.context.arc(arc.x, arc.y, arc.radius, arc.startAngle, arc.endAngle, arc.anticlockwise);
 
-            this.context.beginPath();
+    this.context.stroke();
 
-            this.context.arc(arc.x, arc.y, arc.radius, arc.startAngle, arc.endAngle, arc.anticlockwise);
-
-            this.context.stroke();
-
-            return this;
-
-        });
-
-    })(Canvas.prototype);
+    return this;
 
 }
 
 
-module.exports = drawArcCapabilities;
+module.exports = function (Canvas) {
+
+    (function (proto) {
+
+        proto.def('drawArc', drawArc);
+
+    })(Canvas.prototype);
+
+};

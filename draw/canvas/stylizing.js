@@ -1,4 +1,4 @@
-function stylizingCapabilities (Canvas) {
+module.exports = function (Canvas) {
 
     (function (proto) {
 
@@ -6,6 +6,4 @@ function stylizingCapabilities (Canvas) {
 
     })(Canvas.prototype);
 
-}
-
-module.exports = stylizingCapabilities;
+};

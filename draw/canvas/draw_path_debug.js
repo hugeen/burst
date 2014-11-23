@@ -1,19 +1,19 @@
 var slice = Array.prototype.slice;
 
 
-function debugDrawPathCapabilities (Canvas) {
+function debugDrawPath (path) {
+    console.log('drawPath', path);
+}
+
+
+module.exports = function (Canvas) {
 
     (function (proto) {
 
         proto.hook('drawPath', 'after');
 
-        proto.on('after drawPath', function(path) {
-            console.log('drawPath', path);
-        });
+        proto.on('after drawPath', debugDrawPath);
 
     })(Canvas.prototype);
 
-}
-
-
-module.exports = debugDrawPathCapabilities;
+};

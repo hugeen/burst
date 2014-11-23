@@ -1,27 +1,19 @@
-function drawPathCapabilities (Canvas) {
+function drawPath (path) {
 
-    (function (proto) {
+    this.context.beginPath();
 
-        proto.def('drawPath', function (path) {
+    for (var i = 0; i < path.segments.length; i++) {
+        point = path.segments[i];
 
-            this.context.beginPath();
+        var operation = selectDrawingOperation(point, i);
+        var drawingArgs = getDrawingArgs.call(point, operation);
 
-            for (var i = 0; i < path.segments.length; i++) {
-                point = path.segments[i];
+        this.context[operation].apply(this.context, drawingArgs);
+    }
 
-                var operation = selectDrawingOperation(point, i);
-                var drawingArgs = getDrawingArgs.call(point, operation);
+    this.context.stroke();
 
-                this.context[operation].apply(this.context, drawingArgs);
-            }
-
-            this.context.stroke();
-
-            return this;
-
-        });
-
-    })(Canvas.prototype);
+    return this;
 
 }
 
@@ -80,4 +72,12 @@ function selectDrawingOperation (point, index) {
 }
 
 
-module.exports = drawPathCapabilities;
+module.exports = function (Canvas) {
+
+    (function (proto) {
+
+        proto.def('drawPath', drawPath);
+
+    })(Canvas.prototype);
+
+};

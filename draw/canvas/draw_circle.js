@@ -1,21 +1,22 @@
 var Arc = require('../arc');
 
-function drawCircleCapabilities (Canvas) {
 
-    (function (proto) {
+function drawCircle (circle) {
 
-        proto.def('drawCircle', function (circle) {
+    var arc = new Arc(circle.x, circle.y, circle.radius, [0, 360]);
+    this.drawArc(arc);
 
-            var arc = new Arc(circle.x, circle.y, circle.radius, [0, 360]);
-            this.drawArc(arc);
-
-            return this;
-
-        });
-
-    })(Canvas.prototype);
+    return this;
 
 }
 
 
-module.exports = drawCircleCapabilities;
+module.exports = function (Canvas) {
+
+    (function (proto) {
+
+        proto.def('drawCircle', drawCircle);
+
+    })(Canvas.prototype);
+
+};
