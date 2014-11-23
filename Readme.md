@@ -209,14 +209,14 @@ path.add(
 // Point with 1 control point for Quadratic curve (x, y, [[cp1x, cp1y]])
 Point.create(50, 25, [
     [75, 37]
-]),
+]);
 
 
 // Point with 2 control points for Bezier curve (x, y, [[cp1x, cp1y], [cp2x, cp2y]])
 Point.create(50, 25, [
     [75, 37],
     [70, 25]
-]),
+]);
 
 
 // Example - Drawing a heart with bezier curves
