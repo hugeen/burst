@@ -10,6 +10,9 @@ function defCapabilities (object) {
     hookCapabilities(object);
 
 
+    var methods = {};
+
+
     Object.defineProperty(object, 'def', {
         value: function () {
 
@@ -30,9 +33,21 @@ function defCapabilities (object) {
 
 
             Object.defineProperty(this, name, settings);
+            methods[name] = args.fnc;
+
 
             return this;
 
+        }
+    });
+
+
+    Object.defineProperty(object, 'silentCall', {
+        value: function() {
+            var args = slice.call(arguments);
+            var name = args.shift();
+
+            methods[name].apply(this, args);
         }
     });
 

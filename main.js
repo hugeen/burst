@@ -39,5 +39,6 @@ var circle = Circle.create(20, 20, 10);
 $(function () {
     var canvas = Canvas.create($('canvas')[0]);
     canvas.draw(path);
-    canvas.draw(circle);
+    // canvas.draw(circle);
+    canvas.silentCall('draw', circle);
 });
