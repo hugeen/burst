@@ -2,9 +2,11 @@ var slice = Array.prototype.slice;
 
 
 function drawDebugFnc(moment) {
+
     return function() {
         console.log.apply(null, [moment + ' draw'].concat(slice.call(arguments)));
     };
+
 }
 
 
