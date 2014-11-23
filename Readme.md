@@ -124,8 +124,8 @@ object.on('after attack', function(enemy) {
 #### object.logHook(methodName)
 
 ```javascript
-// - logEvent('before ' + eventName)
-// - logEvent('after ' + eventName)
+// - logEvent('before attack')
+// - logEvent('after atack')
 object.logHook('attack');
 ```
 
