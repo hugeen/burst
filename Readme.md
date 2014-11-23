@@ -2,6 +2,11 @@
 
 Low level JavaScript Library to build your own Framework.
 
+## Global Summary
+
+* [Core Capabilities](#core-capabilities)
+* [DOM Library](#dom-library)
+* [Canvas Drawing](#canvas-drawing)
 
 # Compatibility
 * IE 9+, Firefox 6+, Safari 5+, Chrome 6+, Opera 12+
@@ -178,6 +183,14 @@ $(function() {}):
 ```
 
 ## Canvas Drawing
+
+### Summary
+
+* [Create a canvas](#create-a-canvas)
+* [Draw a path](#draw-a-path)
+* [Draw an arc](#draw-an-arc)
+* [Draw a circle](#draw-a-circle)
+* [Render on canvas](#render-on-canvas)
 
 ### Create a canvas
 
