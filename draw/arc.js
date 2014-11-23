@@ -4,6 +4,8 @@ require('../core/model')(Arc);
 
 
 function Arc (x, y, radius, angles, antiClockwise) {
+    this.type = 'Arc';
+
     this.x = x;
     this.y = y;
     this.radius = radius;

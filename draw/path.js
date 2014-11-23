@@ -4,6 +4,7 @@ require('../core/model')(Path);
 
 
 function Path () {
+    this.type = 'Path';
     this.segments = [];
 }
 

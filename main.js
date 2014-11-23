@@ -38,6 +38,6 @@ var circle = Circle.create(20, 20, 10);
 
 $(function () {
     var canvas = Canvas.create($('canvas')[0]);
-    canvas.drawPath(path);
-    canvas.drawCircle(circle);
+    canvas.draw(path);
+    canvas.draw(circle);
 });

@@ -4,6 +4,7 @@ require('../core/model')(Point);
 
 
 function Point (x, y, controlPoints) {
+
     this.x = x;
     this.y = y;
     this.controlPoints = [];

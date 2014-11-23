@@ -12,11 +12,21 @@ function Canvas (el) {
 }
 
 
+function clear () {
+    this.context.clearRect(0, 0, this.el.width, this.el.height);
+}
+
+
+function draw (entity) {
+    this['draw' + entity.type](entity);
+}
+
+
 (function (proto) {
 
-    proto.def('clear', function () {
-        this.context.clearRect(0, 0, this.el.width, this.el.height);
-    });
+    proto.def('clear', clear);
+
+    proto.def('draw', draw);
 
 })(Canvas.prototype);
 
