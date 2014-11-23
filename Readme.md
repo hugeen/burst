@@ -21,7 +21,7 @@ $ watchify main.js -o static/bundle.js -v --debug
 * Performances are fine but not at the cost of other important concepts, such as readability.
 
 
-## Capabilities
+## Core Capabilities
 
 You can use capabilities this way.
 
@@ -152,4 +152,52 @@ john.name; => John Doe
 // Can use tags
 User.tag('admin', john);
 User.admin; => [john]
+```
+
+
+## DOM Library
+
+A tiny jQuery-like Library
+
+```javascript
+// Selector
+$('div'); => [div, div, div]
+$(document) => [document]
+
+// Add Event Listener
+function onClick (e) {
+    e.preventDefault();
+}
+$('a').on('click', onClick);
+
+// Remove Event Listener
+$('a').removeListner('click', onClick);
+
+// DOM Ready
+$(function() {}):
+```
+
+## Canvas Drawing
+
+### Create a canvas
+
+```javascript
+var canvas = Canvas.create($('canvas')[0]);
+```
+
+### Draw a path
+
+```javascript
+
+// Create a Path
+var path = Path.create();
+
+// Add segments
+path.add(
+    Point.create(10, 10), // Starting point (x, y)
+    Point.create(10, 100), // First segment (lineTo)
+    Point.create(100, 100), // Second segment
+    ...
+);
+
 ```
