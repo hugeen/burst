@@ -67,6 +67,13 @@ viewport.emit('resize', { width: 100, height: 100 });
 viewport.removeEventListener('resize', resize);
 ```
 
+#### object.logEvent(eventName)
+
+```javascript
+// console.log this event with arguments
+viewport.logEvent('resize');
+```
+
 ### Tag
 
 #### collection.tag(tagName, object)
@@ -110,6 +117,16 @@ object.on('after attack', function(enemy) {
     }
 });
 ```
+
+
+#### object.logHook(methodName)
+
+```javascript
+// - logEvent('before ' + eventName)
+// - logEvent('after ' + eventName)
+object.logHook('attack');
+```
+
 
 #### object.silentCall(methodName, *args)
 
