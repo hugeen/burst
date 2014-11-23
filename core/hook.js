@@ -1,6 +1,3 @@
-var slice = Array.prototype.slice;
-
-
 function hookCapabilities(object) {
 
     var hooks = {};

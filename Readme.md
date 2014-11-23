@@ -111,6 +111,14 @@ object.on('after attack', function(enemy) {
 });
 ```
 
+#### object.silentCall(methodName, *args)
+
+```javascript
+// Ignore hooks
+object.silentCall('attack', enemy);
+```
+
+
 ### Model
 
 #### Capabilities
