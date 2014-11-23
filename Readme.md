@@ -102,6 +102,8 @@ object.def('attack', function(enemy) {
 object.attack(enemy);
 ```
 
+### Hook
+
 #### object.hook(methodName)
 
 ```javascript
