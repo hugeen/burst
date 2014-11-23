@@ -231,3 +231,32 @@ path.add(
 );
 
 ```
+
+### Draw an arc
+
+```javascript
+
+// x, y, radius, [startAngle, endAngle], antiClockwise
+var arc = Arc.create(20, 20, 10, [0, 90], false);
+
+```
+
+### Draw a circle
+
+```javascript
+
+// x, y, radius
+var circle = Circle.create(20, 20, 10);
+
+```
+
+
+### Render on canvas
+
+```javascript
+
+canvas.draw(path);
+canvas.draw(arc);
+canvas.draw(circle);
+
+```
