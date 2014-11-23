@@ -206,7 +206,7 @@ path.add(
 
 ```javascript
 
-// Point with 1 control points for Quadratic curve (x, y, [[cp1x, cp1y]])
+// Point with 1 control point for Quadratic curve (x, y, [[cp1x, cp1y]])
 Point.create(50, 25, [
     [75, 37]
 ]),
