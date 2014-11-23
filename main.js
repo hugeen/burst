@@ -2,7 +2,7 @@ var $ = require('./draw/dom');
 var Canvas = require('./draw/canvas');
 var Path = require('./draw/path');
 var Point = require('./draw/point');
-var Arc = require('./draw/arc');
+var Circle = require('./draw/circle');
 
 var path = Path.create();
 
@@ -34,10 +34,10 @@ path.add(
     ])
 );
 
-var arc = Arc.create(20, 20, 10, [0, 360], false);
+var circle = Circle.create(20, 20, 10);
 
 $(function () {
     var canvas = Canvas.create($('canvas')[0]);
     canvas.drawPath(path);
-    canvas.drawArc(arc);
+    canvas.drawCircle(circle);
 });
