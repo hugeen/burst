@@ -23,6 +23,18 @@ function hookCapabilities(object) {
     });
 
 
+    Object.defineProperty(object, 'logHook', {
+        value: function(name) {
+
+            this.hook(name);
+            var moments = hooks[name];
+            for (var i = 0; i < moments.length; i ++) {
+                this.logEvent(moments[i] + ' ' + name);
+            }
+
+        }
+    });
+
     return object;
 
 }

@@ -1,5 +1,4 @@
 require('../core/model')(Canvas);
-require('./canvas/draw_debug')(Canvas);
 require('./canvas/draw_path')(Canvas);
 require('./canvas/draw_arc')(Canvas);
 require('./canvas/draw_circle')(Canvas);
@@ -24,8 +23,10 @@ function draw (entity) {
 
 (function (proto) {
 
-    proto.def('clear', clear);
+    proto.hook('draw');
+    proto.logHook('draw');
 
+    proto.def('clear', clear);
     proto.def('draw', draw);
 
 })(Canvas.prototype);
