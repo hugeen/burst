@@ -1,18 +1,22 @@
 var slice = Array.prototype.slice;
 
 
-function drawDebug (entity) {
-    console.log('draw', entity);
+function drawDebugFnc(moment) {
+    return function() {
+        console.log.apply(null, [moment + ' draw'].concat(slice.call(arguments)));
+    };
 }
 
 
-module.exports = function (Canvas) {
+module.exports = function(Canvas) {
 
-    (function (proto) {
+    (function(proto) {
 
-        proto.hook('draw', 'after');
+        proto.hook('draw');
 
-        proto.on('after draw', drawDebug);
+        proto.on('after draw', drawDebugFnc('before'));
+
+        proto.on('after draw', drawDebugFnc('after'));
 
     })(Canvas.prototype);
 
