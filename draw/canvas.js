@@ -1,6 +1,7 @@
 require('../core/model')(Canvas);
-require('./canvas/path_drawing')(Canvas);
-require('./canvas/path_drawing_debug')(Canvas);
+require('./canvas/draw_path')(Canvas);
+require('./canvas/draw_path_debug')(Canvas);
+require('./canvas/draw_arc')(Canvas);
 require('./canvas/stylizing')(Canvas);
 
 
