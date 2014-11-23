@@ -53,22 +53,8 @@ function getDrawingArgs (operation) {
 
 
 function selectDrawingOperation (point, index) {
-    var operation = 'moveTo';
 
-    if (index !== 0) {
-        switch (point.controlPoints.length) {
-            case 0:
-                operation = 'lineTo';
-                break;
-            case 1:
-                operation = 'quadraticCurveTo';
-                break;
-            case 2:
-                operation = 'bezierCurveTo';
-                break;
-        }
-    }
-    return operation;
+    return !index ? 'moveTo' : ['lineTo', 'quadraticCurveTo', 'bezierCurveTo'][point.controlPoints.length];
 }
 
 
