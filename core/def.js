@@ -33,7 +33,7 @@ function def () {
     var args = formatArguments.apply(this, arguments);
     var settings = args.settings;
     var name = args.name;
-
+    console.log('def', args);
 
     settings.value = function() {
 

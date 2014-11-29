@@ -11,7 +11,7 @@ module.exports = function (object) {
         untag: untag
     };
 
-    for (var name in methods) {
+    for (var name in properties) {
         Object.defineProperty(object, name, {
             value: properties[name]
         });

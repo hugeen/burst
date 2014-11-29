@@ -1,4 +1,35 @@
 var defCapabilities = require('./def.js');
+var eventCapabilities = require('./event.js');
+
+
+module.exports = function(object) {
+
+    if ('hook' in object) {
+        return object;
+    }
+
+    defCapabilities(object);
+    eventCapabilities(object);
+
+    var properties = {
+        hooks: {},
+        hook: hook,
+        before: before,
+        after: after,
+        triggerHook: triggerHook,
+        logHook: logHook
+    };
+
+    for (var name in properties) {
+        Object.defineProperty(object, name, {
+            value: properties[name]
+        });
+    }
+
+
+    return object;
+
+};
 
 
 function hook (name, restrict) {
@@ -7,18 +38,20 @@ function hook (name, restrict) {
 
 
 function before (methodName, fnc) {
-    this.on('before' + methodName, fnc);
+    prepareHook.call(this, methodName, 'before');
+    this.on('before ' + methodName, fnc);
 }
 
 
 function after (methodName, fnc) {
-    this.on('after' + methodName, fnc);
+    prepareHook.call(this, methodName, 'after');
+    this.on('after ' + methodName, fnc);
 }
 
 
 function triggerHook (moment, name, args) {
-    if (name in hooks) {
-        if (hooks[name].indexOf(moment) !== -1) {
+    if (name in this.hooks) {
+        if (this.hooks[name].indexOf(moment) !== -1) {
             this.emit.apply(this, [moment + ' ' + name].concat(args));
         }
     }
@@ -40,32 +73,3 @@ function prepareHook (methodName, moment) {
         this.hook(methodName);
     }
 }
-
-
-module.exports = function(object) {
-
-    if ('hook' in object) {
-        return object;
-    }
-
-    defCapabilities(object);
-
-
-    var properties = {
-        hooks: {},
-        hook: hook,
-        triggerHook: triggerHook,
-        logHook: logHook,
-        prepareHook: prepareHook
-    };
-
-    for (var name in methods) {
-        Object.defineProperty(object, name, {
-            value: properties[name]
-        });
-    }
-
-
-    return object;
-
-};
