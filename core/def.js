@@ -1,59 +1,64 @@
-var hookCapabilities = require('./hook');
 var slice = Array.prototype.slice;
-
 
 var customizableAttrs = ['writable', 'configurable', 'enumerable'];
 
 
-function defCapabilities (object) {
+module.exports = function (object) {
 
-    hookCapabilities(object);
-
-
-    var methods = {};
-
-
-    Object.defineProperty(object, 'def', {
-        value: function () {
-
-            var args = formatArguments.apply(this, arguments);
-            var settings = args.settings;
-            var name = args.name;
+    if ('def' in object) {
+        return object;
+    }
 
 
-            settings.value = function() {
+    var properties = {
+        methods: {},
+        def: def,
+        silentCall: silentCall
+    };
 
-                this.triggerHook('before', name, slice.call(arguments));
-                var value = args.fnc.apply(this, arguments);
-                this.triggerHook('after', name, slice.call(arguments));
-
-                return value;
-
-            };
-
-
-            Object.defineProperty(this, name, settings);
-            methods[name] = args.fnc;
-
-
-            return this;
-
-        }
-    });
-
-
-    Object.defineProperty(object, 'silentCall', {
-        value: function() {
-            var args = slice.call(arguments);
-            var name = args.shift();
-
-            methods[name].apply(this, args);
-        }
-    });
+    for (var name in properties) {
+        Object.defineProperty(object, name, {
+            value: properties[name]
+        });
+    }
 
 
     return object;
 
+};
+
+
+function def () {
+
+    var args = formatArguments.apply(this, arguments);
+    var settings = args.settings;
+    var name = args.name;
+
+
+    settings.value = function() {
+
+        this.triggerHook('before', name, slice.call(arguments));
+        var value = args.fnc.apply(this, arguments);
+        this.triggerHook('after', name, slice.call(arguments));
+
+        return value;
+
+    };
+
+
+    Object.defineProperty(this, name, settings);
+    this.methods[name] = args.fnc;
+
+
+    return this;
+}
+
+
+function silentCall () {
+    var args = slice.call(arguments);
+    var name = args.shift();
+
+    this.methods[name].apply(this, args);
 }
 
 
@@ -81,6 +86,3 @@ function formatArguments () {
     };
 
 }
-
-
-module.exports = defCapabilities;

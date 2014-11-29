@@ -1,49 +1,59 @@
-function tagCapabilities (object) {
+module.exports = function (object) {
 
-    var tags = {};
-
-
-    Object.defineProperty(object, 'tag', {
-        value: function (name, entity) {
-
-            var tag = findOrCreateTag.call(this, tags, name);
-            referenceTagName(name, entity);
-
-            tag.push(entity);
-
-            return this;
-        }
-    });
+    if ('tag' in object) {
+        return object;
+    }
 
 
-    Object.defineProperty(object, 'untag', {
-        value: function (name, entity) {
+    var properties = {
+        tags: {},
+        tag: addTag,
+        untag: untag
+    };
 
-            if (name in tags) {
-                tags[name].splice(tags[name].indexOf(entity), 1);
-                entity.taggedIn.splice(entity.taggedIn.indexOf(name), 1);
-            }
-
-            return this;
-        }
-    });
+    for (var name in methods) {
+        Object.defineProperty(object, name, {
+            value: properties[name]
+        });
+    }
 
 
     return object;
 
+};
+
+function addTag (name, entity) {
+
+    var tag = findOrCreateTag.call(this, name);
+    referenceTagName(name, entity);
+
+    tag.push(entity);
+
+    return this;
 }
 
 
-function findOrCreateTag (tags, name) {
+function untag (name, entity) {
 
-    if (!(name in tags)) {
-        tags[name] = [];
+    if (name in this.tags) {
+        this.tags[name].splice(this.tags[name].indexOf(entity), 1);
+        entity.taggedIn.splice(entity.taggedIn.indexOf(name), 1);
+    }
+
+    return this;
+}
+
+
+function findOrCreateTag (name) {
+
+    if (!(name in this.tags)) {
+        this.tags[name] = [];
         Object.defineProperty(this, name, {
-            value: tags[name]
+            value: this.tags[name]
         });
     }
 
-    return tags[name];
+    return this.tags[name];
 
 }
 
@@ -61,6 +71,3 @@ function referenceTagName (name, entity) {
     }
 
 }
-
-
-module.exports = tagCapabilities;

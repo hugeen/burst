@@ -1,6 +1,32 @@
 var slice = Array.prototype.slice;
 
 
+module.exports = function (object) {
+
+    if ('on' in object) {
+        return object;
+    }
+
+
+    var properties = {
+        on: on,
+        emit: emit,
+        removeListener: removeListener,
+        logEvent: logEvent
+    };
+
+    for (var name in properties) {
+        Object.defineProperty(object, name, {
+            value: properties[name]
+        });
+    }
+
+
+    return object;
+
+};
+
+
 function on (identifier, fnc) {
     findOrCreateListeners.call(this);
 
@@ -42,35 +68,10 @@ function logEvent (eventName) {
 }
 
 
-function findOrCreateListeners() {
+function findOrCreateListeners () {
     if (!('listeners' in this)) {
         Object.defineProperty(this, 'listeners', {
             value: {}
         });
     }
 }
-
-
-function def (name, fnc) {
-    Object.defineProperty(this, name, {
-        value: fnc
-    });
-}
-
-
-module.exports = function (object) {
-
-    if ('on' in object) {
-        return object;
-    }
-
-
-    def.call(object, 'on', on);
-    def.call(object, 'emit', emit);
-    def.call(object, 'removeListener', removeListener);
-    def.call(object, 'logEvent', logEvent);
-
-
-    return object;
-
-};

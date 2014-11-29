@@ -1,11 +1,11 @@
+var slice = Array.prototype.slice;
+
 var eventCapabilities = require('./event');
 var defCapabilities = require('./def');
 var tagCapabilities = require('./tag');
 
-var slice = Array.prototype.slice;
 
-
-function modelCapabilities (Model) {
+module.exports = function(Model) {
 
     addCapabilities.call(Model, [
         eventCapabilities,
@@ -19,19 +19,17 @@ function modelCapabilities (Model) {
     ]);
 
 
-    Model.hook('create');
-
-    Model.def('create', function () {
+    Model.create = function () {
         var instance = Object.create(Model.prototype);
         Model.apply(instance, slice.call(arguments));
 
         return instance;
-    });
+    };
 
 
     return Model;
 
-}
+};
 
 
 function addCapabilities(destinations) {
@@ -39,6 +37,3 @@ function addCapabilities(destinations) {
         destinations[i](this);
     }
 }
-
-
-module.exports = modelCapabilities;
