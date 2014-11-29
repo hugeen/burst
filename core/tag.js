@@ -7,7 +7,7 @@ module.exports = function (object) {
 
     var properties = {
         tags: {},
-        tag: addTag,
+        tag: addToTag,
         untag: untag
     };
 
@@ -22,7 +22,8 @@ module.exports = function (object) {
 
 };
 
-function addTag (name, entity) {
+
+function addToTag (name, entity) {
 
     var tag = findOrCreateTag.call(this, name);
     referenceTagName(name, entity);
