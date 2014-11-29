@@ -3,6 +3,7 @@ var slice = Array.prototype.slice;
 var customizableAttrs = ['writable', 'configurable', 'enumerable'];
 
 
+// Coupled hook.js
 module.exports = function (object) {
 
     if ('def' in object) {
