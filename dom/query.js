@@ -15,15 +15,14 @@ function $ (arg) {
             value = $(document).on('DOMContentLoaded', arg);
         }
     } else {
-        value = new QuerySelector(arg);
+        value = new Query(arg);
     }
 
     return value;
-
 }
 
 
-function QuerySelector (arg) {
+function Query (arg) {
 
     var value;
 
@@ -34,37 +33,33 @@ function QuerySelector (arg) {
     }
 
     push.apply(this, value);
-
 }
 
 
-(function (proto) {
-
-    proto.length = 0;
-
-    proto.splice = splice;
+Query.prototype.length = 0;
 
 
-    proto.on = function (name, fnc) {
-        return this.each(function (el) {
-            el.addEventListener(name, fnc);
-        });
-    };
+Query.prototype.splice = splice;
 
 
-    proto.removeListener = function (name, fnc) {
-        return this.each(function (el) {
-            el.removeEventListener(name, fnc);
-        });
-    };
+Query.prototype.on = function (name, fnc) {
+    return this.each(function (el) {
+        el.addEventListener(name, fnc);
+    });
+};
 
 
-    proto.each = function (iterator, value) {
-        forEach.call(this, iterator, value);
-        return this;
-    };
+Query.prototype.removeListener = function (name, fnc) {
+    return this.each(function (el) {
+        el.removeEventListener(name, fnc);
+    });
+};
 
-})(QuerySelector.prototype);
+
+Query.prototype.each = function (iterator, value) {
+    forEach.call(this, iterator, value);
+    return this;
+};
 
 
 module.exports = $;
