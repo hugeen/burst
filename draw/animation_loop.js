@@ -17,6 +17,7 @@ AnimationLoop.prototype.stop = function () {
 
 
 AnimationLoop.prototype.resume = function () {
+    this.lastTime = 0;
     this.running = true;
     this.loop();
 };
@@ -27,7 +28,9 @@ AnimationLoop.prototype.loop = function () {
 
     this.raf = requestAnimationFrame(function (time) {
         if (self.running) {
-            self.callback(time);
+            var deltaTime = Math.min(0.5, (time - self.lastTime) * 0.001);
+            self.lastTime = time;
+            self.callback(deltaTime);
             self.loop();
         }
     });

@@ -1,6 +1,7 @@
 require('./canvas/draw_path')(Canvas);
 require('./canvas/draw_arc')(Canvas);
 require('./canvas/draw_circle')(Canvas);
+require('./canvas/animate')(Canvas);
 
 
 function Canvas (el) {
