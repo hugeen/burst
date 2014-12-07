@@ -1,6 +1,3 @@
-var Arc = require('../../geometry/arc');
-
-
 module.exports = function (Canvas) {
 
     Canvas.prototype.drawCircle = drawCircle;
@@ -8,6 +5,8 @@ module.exports = function (Canvas) {
     return Canvas;
 };
 
+
+var Arc = require('../../geometry/arc');
 
 function drawCircle (circle) {
 

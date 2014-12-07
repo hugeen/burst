@@ -1,27 +1,15 @@
-var slice = Array.prototype.slice;
-
-
-function Path (segments) {
+function Path (points) {
     this.type = 'Path';
-    this.points = segments || [];
+    this.points = points || [];
 }
 
 
-Path.prototype.addPoint = function () {
-    var points = slice.call(arguments);
-
-    for (var i = 0; i < points.length; i++) {
-        this.points.push(points[i]);
+Path.prototype.clone = function () {
+    var points = [];
+    for (var i = 0; i < this.points.length; i++) {
+        points.push(this.points[i].clone());
     }
-};
-
-
-Path.prototype.removePoint = function () {
-    var points = slice.call(arguments);
-
-    for (var i = 0; i < points.length; i++) {
-        this.points.push(points[i]);
-    }
+    return new Path(points);
 };
 
 

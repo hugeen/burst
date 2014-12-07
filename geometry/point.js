@@ -1,19 +1,24 @@
-var slice = Array.prototype.slice;
-
-
 function Point (x, y, controlPoints) {
     this.x = x;
     this.y = y;
 
-    this.controlPoints = [];
-    this.addControlPoints(controlPoints || []);
+    this.controlPoints = controlPoints || [];
 }
 
 
-Point.prototype.addControlPoints = function (cpts) {
-    for (var i = 0; i < cpts.length; i++) {
-        this.controlPoints[i] = new Point(cpts[i].x, cpts[i].y);
+Point.prototype.clone = function () {
+    var controlPoints = [];
+    for (var i = 0; i < this.controlPoints.length; i++) {
+        controlPoints.push(this.controlPoints[i].clone());
     }
+
+    return new Point(this.x, this.y, controlPoints);
+};
+
+
+Point.prototype.translate = function (x, y) {
+    this.x += x;
+    this.y += y;
 };
 
 
