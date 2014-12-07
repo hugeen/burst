@@ -43,19 +43,24 @@ function getDrawingArgs (operation) {
             return [point.x, point.y];
         },
         bezierCurveTo: function () {
+            var cp1 = point.controlPoints[0];
+            var cp2 = point.controlPoints[1];
+
             return [
-                point.controlPoints[0].x,
-                point.controlPoints[0].y,
-                point.controlPoints[1].x,
-                point.controlPoints[1].y,
+                point.x + cp1.x,
+                point.y + cp1.y,
+                point.x + cp2.x,
+                point.y + cp2.y,
                 point.x,
                 point.y
             ];
         },
         quadraticCurveTo: function () {
+            var cp = point.controlPoints[0];
+
             return [
-                point.controlPoints[0].x,
-                point.controlPoints[0].y,
+                point.x + cp.x,
+                point.y + cp.y,
                 point.x,
                 point.y
             ];
