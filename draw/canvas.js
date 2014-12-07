@@ -1,4 +1,3 @@
-require('../core/model')(Canvas);
 require('./canvas/draw_path')(Canvas);
 require('./canvas/draw_arc')(Canvas);
 require('./canvas/draw_circle')(Canvas);
@@ -11,25 +10,14 @@ function Canvas (el) {
 }
 
 
-function clear () {
+Canvas.prototype.clear = function () {
     this.context.clearRect(0, 0, this.el.width, this.el.height);
-}
+};
 
 
-function draw (entity) {
+Canvas.prototype.draw = function (entity) {
     this['draw' + entity.type](entity);
-}
-
-
-(function (proto) {
-
-    proto.hook('draw');
-    proto.logHook('draw');
-
-    proto.def('clear', clear);
-    proto.def('draw', draw);
-
-})(Canvas.prototype);
+};
 
 
 module.exports = Canvas;

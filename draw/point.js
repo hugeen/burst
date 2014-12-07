@@ -1,29 +1,20 @@
 var slice = Array.prototype.slice;
 
-require('../core/model')(Point);
-
 
 function Point (x, y, controlPoints) {
-
     this.x = x;
     this.y = y;
-    this.controlPoints = [];
 
+    this.controlPoints = [];
     this.addControlPoints(controlPoints || []);
 }
 
 
-(function (proto) {
-
-    proto.def('addControlPoints', function (controlPoints) {
-
-        for (var i = 0; i < controlPoints.length; i++) {
-            this.controlPoints[i] = Point.create.apply(Point, controlPoints[i]);
-        }
-
-    });
-
-})(Point.prototype);
+Point.prototype.addControlPoints = function (cpts) {
+    for (var i = 0; i < cpts.length; i++) {
+        this.controlPoints[i] = new Point(cpts[i].x, cpts[i].y);
+    }
+};
 
 
 module.exports = Point;

@@ -1,3 +1,11 @@
+module.exports = function (Canvas) {
+
+    Canvas.prototype.drawPath = drawPath;
+
+    return Canvas;
+};
+
+
 function drawPath (path) {
 
     this.context.beginPath();
@@ -15,6 +23,14 @@ function drawPath (path) {
 
     return this;
 
+}
+
+
+function selectDrawingOperation (point, index) {
+
+    var operations = ['lineTo', 'quadraticCurveTo', 'bezierCurveTo'];
+
+    return !index ? 'moveTo' : operations[point.controlPoints.length];
 }
 
 
@@ -50,22 +66,3 @@ function getDrawingArgs (operation) {
 
     return operations[operation]();
 }
-
-
-function selectDrawingOperation (point, index) {
-
-    var operations = ['lineTo', 'quadraticCurveTo', 'bezierCurveTo'];
-
-    return !index ? 'moveTo' : operations[point.controlPoints.length];
-}
-
-
-module.exports = function (Canvas) {
-
-    (function (proto) {
-
-        proto.def('drawPath', drawPath);
-
-    })(Canvas.prototype);
-
-};

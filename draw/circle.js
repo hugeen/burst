@@ -1,7 +1,5 @@
 var slice = Array.prototype.slice;
 
-require('../core/model')(Circle);
-
 
 function Circle (x, y, radius) {
     this.type = 'Circle';

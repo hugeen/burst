@@ -1,9 +1,6 @@
-require('../core/model')(Style);
-
-
 function Style () {
 
 }
 
 
-module.exports = Point;
+module.exports = Style;

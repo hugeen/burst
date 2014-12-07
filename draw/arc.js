@@ -1,7 +1,5 @@
 var slice = Array.prototype.slice;
 
-require('../core/model')(Arc);
-
 
 function Arc (x, y, radius, angles, antiClockwise) {
     this.type = 'Arc';
