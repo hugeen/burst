@@ -1,4 +1,4 @@
-var Arc = require('../arc');
+var Arc = require('../../geometry/arc');
 
 
 module.exports = function (Canvas) {
