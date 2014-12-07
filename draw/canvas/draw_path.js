@@ -10,8 +10,8 @@ function drawPath (path) {
 
     this.context.beginPath();
 
-    for (var i = 0; i < path.segments.length; i++) {
-        point = path.segments[i];
+    for (var i = 0; i < path.points.length; i++) {
+        point = path.points[i];
 
         var operation = selectDrawingOperation(point, i);
         var drawingArgs = getDrawingArgs.call(point, operation);

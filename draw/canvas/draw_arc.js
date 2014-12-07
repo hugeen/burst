@@ -2,6 +2,7 @@ module.exports = function (Canvas) {
 
     Canvas.prototype.drawArc = drawArc;
 
+    return Canvas;
 };
 
 

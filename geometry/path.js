@@ -1,17 +1,26 @@
 var slice = Array.prototype.slice;
 
 
-function Path () {
+function Path (segments) {
     this.type = 'Path';
-    this.segments = [];
+    this.points = segments || [];
 }
 
 
-Path.prototype.add = function () {
+Path.prototype.addPoint = function () {
     var points = slice.call(arguments);
 
     for (var i = 0; i < points.length; i++) {
-        this.segments.push(points[i]);
+        this.points.push(points[i]);
+    }
+};
+
+
+Path.prototype.removePoint = function () {
+    var points = slice.call(arguments);
+
+    for (var i = 0; i < points.length; i++) {
+        this.points.push(points[i]);
     }
 };
 

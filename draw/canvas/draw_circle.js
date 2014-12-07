@@ -5,6 +5,7 @@ module.exports = function (Canvas) {
 
     Canvas.prototype.drawCircle = drawCircle;
 
+    return Canvas;
 };
 
 

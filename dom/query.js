@@ -1,7 +1,4 @@
 var arrayProto = Array.prototype;
-var splice = arrayProto.splice;
-var push = arrayProto.push;
-var forEach = arrayProto.forEach;
 
 
 function $ (arg) {
@@ -32,14 +29,14 @@ function Query (arg) {
         value = '' + arg === arg ? document.querySelectorAll(arg) : undefined;
     }
 
-    push.apply(this, value);
+    arrayProto.push.apply(this, value);
 }
 
 
 Query.prototype.length = 0;
 
 
-Query.prototype.splice = splice;
+Query.prototype.splice = arrayProto.splice;
 
 
 Query.prototype.on = function (name, fnc) {
@@ -57,7 +54,7 @@ Query.prototype.removeListener = function (name, fnc) {
 
 
 Query.prototype.each = function (iterator, value) {
-    forEach.call(this, iterator, value);
+    arrayProto.forEach.call(this, iterator, value);
     return this;
 };
 

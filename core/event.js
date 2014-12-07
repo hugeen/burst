@@ -11,8 +11,7 @@ module.exports = function (object) {
     var properties = {
         on: on,
         emit: emit,
-        removeListener: removeListener,
-        logEvent: logEvent
+        removeListener: removeListener
     };
 
     for (var name in properties) {
@@ -58,13 +57,6 @@ function emit (identifier, fnc) {
     }
 
     return this;
-}
-
-
-function logEvent (eventName) {
-    this.on(eventName, function() {
-        console.log.apply(null, [eventName].concat(slice.call(arguments)));
-    });
 }
 
 
