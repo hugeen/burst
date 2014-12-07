@@ -1,9 +1,12 @@
 var eventCapabilities = require('../core/event');
+var easingFunctions = require('./easing');
 var AnimationLoop = require('../draw/animation_loop');
+
 
 function Tween (params) {
     eventCapabilities(this);
 
+    this.easing = params.easing || 'linear';
     this.boundObject = params.bind || null;
     this.setupProperties(params.from, params.to);
     this.setupLoop(params.duration);
@@ -32,7 +35,7 @@ Tween.prototype.setupLoop = function (duration) {
         if (this.lastTime >= self.duration) {
             this.stop();
         } else {
-            self.progress = Math.min(1, this.lastTime / self.duration);
+            self.progress = Math.min(1, easingFunctions[self.easing](this.lastTime / self.duration));
             self.update();
         }
     });
