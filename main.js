@@ -3,6 +3,7 @@ var Canvas = require('./draw/canvas');
 var AnimationLoop = require('./draw/animation_loop');
 var Point = require('./geometry/point');
 var Path = require('./geometry/path');
+var Tween = require('./tween/tween');
 
 
 var path1 = new Path([
@@ -17,6 +18,24 @@ path2.points[1].translate(100, 0);
 
 $(function () {
     var canvas = new Canvas($('canvas')[0]);
-    canvas.draw(path1);
-    canvas.draw(path2);
+
+    this.tween = new Tween({
+        from: {
+            x: path1.points[0].x,
+            y: path1.points[0].y
+        },
+        to: {
+            x: path2.points[0].x,
+            y: path2.points[0].y
+        },
+        duration: 2000,
+        bind: path1.points[0]
+    });
+
+    this.animLoop = new AnimationLoop(function (deltaTime) {
+        canvas.clear();
+        canvas.draw(path1);
+        canvas.draw(path2);
+    });
+
 });
