@@ -7,23 +7,35 @@ function Tween (params) {
     eventCapabilities(this);
 
     this.easing = params.easing || 'linear';
-    this.boundObject = params.bind || null;
+
     this.setupProperties(params.from, params.to);
     this.setupLoop(params.duration);
 }
 
 
 Tween.prototype.setupProperties = function (from, to) {
-    this.props = [];
-
-    for (var key in from) {
-        this.props.push({
-            key: key,
-            diff: to[key] - from[key],
-            value: from[key]
-        });
-    }
+    this.raw = from.slice(0);
+    this.props = setupArray([], from, to);
 };
+
+
+function setupArray (array, from, to) {
+    for (var i = 0; i < from.length; i++) {
+        var prop;
+
+        if (from[i] instanceof Array) {
+            prop = setupArray([], from[i], to[i]);
+        } else {
+            prop = {
+                diff: to[i] - from[i],
+                value: from[i]
+            };
+        }
+        array.push(prop);
+    }
+
+    return array;
+}
 
 
 Tween.prototype.setupLoop = function (duration) {
@@ -43,15 +55,20 @@ Tween.prototype.setupLoop = function (duration) {
 
 
 Tween.prototype.update = function () {
-    for (var i = 0; i < this.props.length; i++) {
-        var prop = this.props[i];
-        prop.value = prop.diff * this.progress;
+    this.emit('update', handleProperties(this.raw, this.props, this.progress));
+};
 
-        if (this.boundObject) {
-            this.boundObject[prop.key] = prop.value;
+
+function handleProperties (raw, props, progress) {
+    for (var i = 0; i < props.length; i++) {
+        if (props[i] instanceof Array) {
+            handleProperties(raw[i], props[i], progress);
+        } else {
+            raw[i] = props[i].value = props[i].diff * progress;
         }
     }
-};
+    return raw;
+}
 
 
 module.exports = Tween;

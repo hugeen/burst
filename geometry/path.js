@@ -9,6 +9,7 @@ Path.prototype.clone = function () {
     for (var i = 0; i < this.points.length; i++) {
         points.push(this.points[i].clone());
     }
+
     return new Path(points);
 };
 
