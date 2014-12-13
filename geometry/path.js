@@ -1,16 +1,16 @@
-function Path (points) {
+function Path (segments) {
     this.type = 'Path';
-    this.points = points || [];
+    this.segments = segments || [];
 }
 
 
 Path.prototype.clone = function () {
-    var points = [];
-    for (var i = 0; i < this.points.length; i++) {
-        points.push(this.points[i].clone());
+    var segments = [];
+    for (var i = 0; i < this.segments.length; i++) {
+        segments.push(this.segments[i].clone());
     }
 
-    return new Path(points);
+    return new Path(segments);
 };
 
 

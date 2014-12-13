@@ -1,7 +1,7 @@
 var slice = Array.prototype.slice;
 
 
-function Arc (x, y, radius, angles, antiClockwise) {
+function Arc (x, y, radius, angles, clockwise) {
     this.type = 'Arc';
 
     this.x = x;
@@ -9,7 +9,7 @@ function Arc (x, y, radius, angles, antiClockwise) {
     this.radius = radius;
     this.startAngle = angles[0];
     this.endAngle = angles[1];
-    this.antiClockwise = antiClockwise || false;
+    this.clockwise = clockwise || true;
 }
 
 

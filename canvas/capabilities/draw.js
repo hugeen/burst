@@ -17,6 +17,7 @@ module.exports = function (Canvas) {
 
 
 function addDrawCapabilities (Canvas) {
+
     for (var i = 0; i < drawCapabilities.length; i++) {
         drawCapabilities[i](Canvas);
     }
@@ -24,12 +25,16 @@ function addDrawCapabilities (Canvas) {
 
 
 function clear () {
+
     this.context.clearRect(0, 0, this.el.width, this.el.height);
+
     return this;
 }
 
 
 function draw (entity) {
+
     this['draw' + entity.type](entity);
+
     return this;
 }
