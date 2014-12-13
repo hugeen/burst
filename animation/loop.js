@@ -1,12 +1,15 @@
 require('../dom/polyfills/animation')(window);
 
 
-function AnimationLoop (callback, autostart) {
-    this.callback = callback;
+module.exports = function (callback, bind) {
+    return new AnimationLoop(callback, bind);
+};
 
-    if (autostart || true) {
-        this.resume();
-    }
+
+function AnimationLoop (callback, bind) {
+    this.callback = callback;
+    this.bind = bind || this;
+    this.resume();
 }
 
 
@@ -19,22 +22,18 @@ AnimationLoop.prototype.stop = function () {
 AnimationLoop.prototype.resume = function () {
     this.lastTime = 0;
     this.running = true;
-    this.loop();
+    enterFrame(this);
 };
 
 
-AnimationLoop.prototype.loop = function () {
-    var self = this;
+function enterFrame(handler) {
+    handler.raf = requestAnimationFrame(function (time) {
+        if (handler.running) {
+            var deltaTime = Math.min(0.5, (time - handler.lastTime) * 0.001);
+            handler.lastTime = time;
 
-    this.raf = requestAnimationFrame(function (time) {
-        if (self.running) {
-            var deltaTime = Math.min(0.5, (time - self.lastTime) * 0.001);
-            self.lastTime = time;
-            self.callback(deltaTime);
-            self.loop();
+            handler.callback.call(handler.bind, handler, deltaTime);
+            enterFrame(handler);
         }
     });
-};
-
-
-module.exports = AnimationLoop;
+}
