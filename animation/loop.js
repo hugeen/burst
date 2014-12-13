@@ -29,7 +29,7 @@ AnimationLoop.prototype.resume = function () {
 function enterFrame(handler) {
     handler.raf = requestAnimationFrame(function (time) {
         if (handler.running) {
-            var deltaTime = Math.min(0.5, (time - handler.lastTime) * 0.001);
+            var deltaTime = Math.min(time - handler.lastTime);
             handler.lastTime = time;
 
             handler.callback.call(handler.bind, handler, deltaTime);
