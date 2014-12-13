@@ -13,5 +13,4 @@ function drawArc (arc) {
     this.context.stroke();
 
     return this;
-
 }

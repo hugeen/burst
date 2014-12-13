@@ -19,5 +19,4 @@ function drawPath (path) {
     this.context.stroke();
 
     return this;
-
 }
