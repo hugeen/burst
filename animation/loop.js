@@ -34,6 +34,8 @@ function enterFrame(handler) {
 
             handler.callback.call(handler.bind, handler, deltaTime);
             enterFrame(handler);
+        } else {
+            handler.stop();
         }
     });
 }
