@@ -1,14 +1,17 @@
-var slice = Array.prototype.slice;
+require('../dom/polyfills/http_request')(window);
 var eventCapabilities = require('../core/event');
 
-require('../dom/polyfills/http_request')(window);
+
+eventCapabilities(HttpRequest);
+require('./settings')(HttpRequest);
+require('./events')(HttpRequest);
 
 
 function HttpRequest (settings) {
     eventCapabilities(this);
 
-    defineXhr(this);
-    defineSettings(this, settings);
+    this.xhr = new XMLHttpRequest();
+    HttpRequest.emit(HttpRequest, 'new', settings);
 
     this.open();
 }
@@ -23,35 +26,6 @@ HttpRequest.prototype.send = function () {
     this.xhr.send();
     this.emit('sent');
 };
-
-
-HttpRequest.prototype.proxifyEvent = function (identifier, proxyIdentifier) {
-    var proxy = eventProxy(this, proxyIdentifier || identifier);
-    this.xhr.addEventListener(identifier, proxy, false);
-};
-
-
-function defineXHR (handler) {
-    handler.xhr = new XMLHttpRequest();
-    handler.proxifyEvent('progress');
-    handler.proxifyEvent('load', 'completed');
-    handler.proxifyEvent('error', 'failure');
-    handler.proxifyEvent('aborted');
-}
-
-
-function eventProxy (handler, identifier) {
-    return function () {
-        handler.emit.apply(identifier, slice.call(arguments));
-    };
-}
-
-
-function defineSettings (handler, settings) {
-    for (var key in settings) {
-        handler[key] = settings[key];
-    }
-}
 
 
 module.exports = HttpRequest;
