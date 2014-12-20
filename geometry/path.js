@@ -1,7 +1,9 @@
 function Path (segments) {
-    this.type = 'Path';
     this.segments = segments || [];
 }
+
+
+Path.prototype.type = 'Path';
 
 
 Path.prototype.clone = function () {
