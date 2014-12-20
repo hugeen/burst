@@ -21,7 +21,9 @@ function tryActiveX (version, failure) {
     try {
         httpRequest = new ActiveXObject(version);
     } catch (e) {
-        httpRequest = failure();
+        if (typeof failure !== 'undefined') {
+            httpRequest = failure();
+        }
     }
 
     return httpRequest;
