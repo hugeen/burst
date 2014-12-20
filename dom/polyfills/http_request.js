@@ -1,14 +1,14 @@
 function httpRequestCapabilities(window) {
 
     if (!window.XMLHttpRequest && window.ActiveXObject) {
-        window.XMLHttpRequest = HttpRequest;
+        window.XMLHttpRequest = ActiveXRequest;
     }
 
     return window;
 }
 
 
-function HttpRequest() {
+function ActiveXRequest() {
     return tryActiveX('Msxml2.XMLHTTP', function () {
         tryActiveX('Microsoft.XMLHTTP');
     });
