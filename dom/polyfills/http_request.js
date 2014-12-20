@@ -15,14 +15,14 @@ function HttpRequest() {
 }
 
 
-function tryActiveX (version, failure) {
+function tryActiveX (version, onFailure) {
     var httpRequest = null;
 
     try {
         httpRequest = new ActiveXObject(version);
     } catch (e) {
-        if (typeof failure !== 'undefined') {
-            httpRequest = failure();
+        if (typeof onFailure === 'function') {
+            httpRequest = onFailure();
         }
     }
 
