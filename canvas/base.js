@@ -2,6 +2,7 @@ require('./draw')(Canvas);
 require('./draw/path')(Canvas);
 require('./draw/arc')(Canvas);
 require('./draw/circle')(Canvas);
+require('./style')(Canvas);
 require('./animate')(Canvas);
 
 
