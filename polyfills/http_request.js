@@ -1,11 +1,11 @@
-function httpRequestCapabilities(window) {
+module.exports = function httpRequestCapabilities(window) {
 
     if (!window.XMLHttpRequest && window.ActiveXObject) {
         window.XMLHttpRequest = ActiveXRequest;
     }
 
     return window;
-}
+};
 
 
 function ActiveXRequest() {
@@ -28,6 +28,3 @@ function tryActiveX (version, onFailure) {
 
     return httpRequest;
 }
-
-
-module.exports = httpRequestCapabilities;

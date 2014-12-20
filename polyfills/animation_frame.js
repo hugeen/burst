@@ -1,4 +1,4 @@
-function animationCapabilities (window) {
+module.exports = function (window) {
 
     var lastTime = 0;
     var vendors = ['ms', 'moz', 'webkit', 'o'];
@@ -36,7 +36,4 @@ function animationCapabilities (window) {
 
 
     return window;
-}
-
-
-module.exports = animationCapabilities;
+};
