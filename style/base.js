@@ -14,9 +14,9 @@ function Style (attrs) {
 }
 
 
-Style.prototype.use = function (canvas) {
+Style.prototype.use = function (object) {
     for (var key in this.attrs) {
-        canvas.context[key] = this.attrs[key];
+        object[key] = this.attrs[key];
     }
 };
 
@@ -26,4 +26,4 @@ function isPermit (key) {
 }
 
 
-module.exports = Canvas;
+module.exports = Style;
