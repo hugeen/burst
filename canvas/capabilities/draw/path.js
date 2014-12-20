@@ -7,7 +7,6 @@ module.exports = function (Canvas) {
 
 
 function drawPath (path) {
-
     this.context.beginPath();
 
     for (var i = 0; i < path.points.length; i++) {
@@ -17,6 +16,4 @@ function drawPath (path) {
     }
 
     this.context.stroke();
-
-    return this;
 }

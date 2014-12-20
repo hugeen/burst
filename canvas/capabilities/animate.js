@@ -11,11 +11,8 @@ module.exports = function (Canvas) {
 
 
 function animate (callback) {
-
     animLoop(function () {
         this.clear();
         callback.call(this, slice.call(arguments));
     }, this);
-
-    return this;
 }
