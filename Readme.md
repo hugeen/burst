@@ -20,9 +20,9 @@ Low to High level JavaScript Libraries.
 * IE 9+, Firefox 6+, Safari 5+, Chrome 6+, Opera 12+
 
 
-## Documentation
+# Documentation
 
-### DOM Library
+## DOM Library
 
 A tiny jQuery-like Library
 
