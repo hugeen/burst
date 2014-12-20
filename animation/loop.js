@@ -15,7 +15,7 @@ function AnimationLoop (callback, bind) {
 
 AnimationLoop.prototype.stop = function () {
     this.running = false;
-    cancelAnimationFrame(this.raf);
+    cancelAnimationFrame(this.id);
 };
 
 
@@ -27,7 +27,7 @@ AnimationLoop.prototype.resume = function () {
 
 
 function enterFrame(handler) {
-    handler.raf = requestAnimationFrame(function (time) {
+    handler.id = requestAnimationFrame(function (time) {
         if (handler.running) {
             var deltaTime = Math.min(time - handler.lastTime);
             handler.lastTime = time;
