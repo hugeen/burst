@@ -24,7 +24,6 @@ HttpRequest.prototype.open = function () {
 
 HttpRequest.prototype.send = function () {
     this.xhr.send();
-    this.emit('sent');
 };
 
 
