@@ -1,35 +1,8 @@
 var arrayProto = Array.prototype;
 
 
-function $ (arg) {
-
-    var value;
-
-    if (typeof arg === 'function') {
-        if (document.readyState === 'complete') {
-            value = arg();
-        } else {
-            value = $(document).on('DOMContentLoaded', arg);
-        }
-    } else {
-        value = new Query(arg);
-    }
-
-    return value;
-}
-
-
 function Query (arg) {
-
-    var value;
-
-    if (arg && arg.nodeType) {
-        value = [arg];
-    } else {
-        value = '' + arg === arg ? document.querySelectorAll(arg) : undefined;
-    }
-
-    arrayProto.push.apply(this, value);
+    arrayProto.push.apply(this, isElement(arg) ? [arg] : fetchElements(arg));
 }
 
 
@@ -59,4 +32,26 @@ Query.prototype.each = function (iterator, value) {
 };
 
 
-module.exports = $;
+function isElement (arg) {
+    return arg && arg.nodeType;
+}
+
+
+function isSelector (arg) {
+    return '' + arg === arg;
+}
+
+
+function fetchElements (selector) {
+    return isSelector(selector) ? document.querySelectorAll(selector) : undefined;
+}
+
+
+function domReady (callback) {
+    return document.readyState === 'complete' ? callback() : $(document).on('DOMContentLoaded', callback);
+}
+
+
+module.exports = function $ (arg) {
+    return typeof arg === 'function' ? domReady(arg) : new Query(arg);
+};
