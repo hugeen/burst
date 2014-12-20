@@ -1,4 +1,4 @@
-require('../dom/polyfills/animation')(window);
+require('../polyfills/animation')(window);
 
 
 module.exports = function (callback, bind) {

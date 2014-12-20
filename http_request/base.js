@@ -1,4 +1,4 @@
-require('../dom/polyfills/http_request')(window);
+require('../polyfills/http_request')(window);
 var eventCapabilities = require('../core/event');
 
 
