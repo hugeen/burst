@@ -8,17 +8,12 @@ module.exports = function (object) {
     }
 
 
-    var properties = {
+    defineCapabilities.call(this, {
+        listeners: {},
         on: on,
         emit: emit,
         removeListener: removeListener
-    };
-
-    for (var name in properties) {
-        Object.defineProperty(object, name, {
-            value: properties[name]
-        });
-    }
+    });
 
 
     return object;
@@ -26,44 +21,34 @@ module.exports = function (object) {
 };
 
 
-function on (identifier, fnc) {
-    findOrCreateListeners.call(this);
+function defineCapabilities (capabilities) {
+    for (var name in capabilities) {
+        Object.defineProperty(this, name, {
+            value: capabilities[name]
+        });
+    }
+}
 
+
+function on (identifier, fnc) {
     this.listeners[identifier] = this.listeners[identifier] || [];
     this.listeners[identifier].push(fnc);
-
-    return this;
 }
 
 
 function removeListener (identifier, fnc) {
-    findOrCreateListeners.call(this);
-
     if (identifier in this.listeners) {
-        this.listeners[identifier].splice(this.listeners[identifier].indexOf(fnc), 1);
+        var listener = this.listeners[identifier];
+        listener.splice(listeners.indexOf(fnc), 1);
     }
-
-    return this;
 }
 
 
 function emit (identifier, fnc) {
-    findOrCreateListeners.call(this);
-
     if (identifier in this.listeners) {
         for (var i = 0; i < this.listeners[identifier].length; i++) {
-            this.listeners[identifier][i].apply(this, slice.call(arguments, 1));
+            var listener = this.listeners[identifier];
+            listener[i].apply(this, slice.call(arguments, 1));
         }
-    }
-
-    return this;
-}
-
-
-function findOrCreateListeners () {
-    if (!('listeners' in this)) {
-        Object.defineProperty(this, 'listeners', {
-            value: {}
-        });
     }
 }
