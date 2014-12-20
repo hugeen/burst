@@ -1,6 +1,5 @@
 var slice = Array.prototype.slice;
 
-
 module.exports = function (object) {
 
     if ('on' in object) {

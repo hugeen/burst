@@ -1,6 +1,5 @@
 var arrayProto = Array.prototype;
 
-
 module.exports = function (DomQuery) {
 
     DomQuery.prototype.length = 0;

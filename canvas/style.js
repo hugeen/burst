@@ -1,10 +1,3 @@
-var styleAttrs = [
-    'fillStyle', 'strokeStyle',
-    'linearGradiant', 'radialGradiant',
-    'lineWidth', 'lineCap', 'lineJoin', 'mitterLimit'
-];
-
-
 module.exports = function (Canvas) {
 
     Canvas.prototype.useStyle = useStyle;
@@ -12,6 +5,12 @@ module.exports = function (Canvas) {
     return Canvas;
 };
 
+
+var styleAttrs = [
+    'fillStyle', 'strokeStyle',
+    'linearGradiant', 'radialGradiant',
+    'lineWidth', 'lineCap', 'lineJoin', 'mitterLimit'
+];
 
 function useStyle (style) {
     style.use(this.context, styleAttrs);

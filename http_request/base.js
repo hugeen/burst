@@ -1,9 +1,9 @@
 var eventCapabilities = require('../core/event');
 
+
 eventCapabilities(HttpRequest);
 require('./settings')(HttpRequest);
 require('./events')(HttpRequest);
-
 
 function HttpRequest (settings) {
     eventCapabilities(this);
