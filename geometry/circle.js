@@ -10,4 +10,9 @@ function Circle (x, y, radius) {
 }
 
 
+Circle.prototype.clone = function () {
+    return new Circle(this.x, this.y, this.radius);
+};
+
+
 module.exports = Circle;
