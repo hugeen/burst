@@ -13,14 +13,14 @@ Query.prototype.splice = arrayProto.splice;
 
 
 Query.prototype.on = function (name, fnc) {
-    return this.each(function (el) {
+    this.each(function (el) {
         el.addEventListener(name, fnc);
     });
 };
 
 
 Query.prototype.removeListener = function (name, fnc) {
-    return this.each(function (el) {
+    this.each(function (el) {
         el.removeEventListener(name, fnc);
     });
 };
@@ -28,7 +28,6 @@ Query.prototype.removeListener = function (name, fnc) {
 
 Query.prototype.each = function (iterator, value) {
     arrayProto.forEach.call(this, iterator, value);
-    return this;
 };
 
 
@@ -47,8 +46,8 @@ function fetchElements (selector) {
 }
 
 
-function domReady (callback) {
-    return document.readyState === 'complete' ? callback() : $(document).on('DOMContentLoaded', callback);
+function onDomReady (fnc) {
+    return document.readyState === 'complete' ? fnc() : $(document).on('DOMContentLoaded', fnc);
 }
 
 
