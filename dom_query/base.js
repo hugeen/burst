@@ -1,32 +1,32 @@
 var arrayProto = Array.prototype;
 
 
-function Query (arg) {
+function DomQuery (arg) {
     arrayProto.push.apply(this, isElement(arg) ? [arg] : fetchElements(arg));
 }
 
 
-Query.prototype.length = 0;
+DomQuery.prototype.length = 0;
 
 
-Query.prototype.splice = arrayProto.splice;
+DomQuery.prototype.splice = arrayProto.splice;
 
 
-Query.prototype.on = function (name, fnc) {
+DomQuery.prototype.on = function (name, fnc) {
     this.each(function (el) {
         el.addEventListener(name, fnc);
     });
 };
 
 
-Query.prototype.removeListener = function (name, fnc) {
+DomQuery.prototype.removeListener = function (name, fnc) {
     this.each(function (el) {
         el.removeEventListener(name, fnc);
     });
 };
 
 
-Query.prototype.each = function (iterator, value) {
+DomQuery.prototype.each = function (iterator, value) {
     arrayProto.forEach.call(this, iterator, value);
 };
 
@@ -52,5 +52,5 @@ function onDomReady (fnc) {
 
 
 module.exports = function $ (arg) {
-    return typeof arg === 'function' ? domReady(arg) : new Query(arg);
+    return typeof arg === 'function' ? domReady(arg) : new DomQuery(arg);
 };
