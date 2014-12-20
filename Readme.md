@@ -1,14 +1,21 @@
 # Burst
 
-Low level JavaScript Library to build your own Framework.
+Low to High level JavaScript Libraries.
+
+* Minimalist.
+* Scalable.
+* Hackable.
+* Readable.
+* Developer-Friendly.
+* Convention over configuration.
 
 ## Global Summary
 
-* [Core Capabilities](#core-capabilities)
 * [DOM Library](#dom-library)
 * [Canvas Drawing](#canvas-drawing)
 
 # Compatibility
+
 * IE 9+, Firefox 6+, Safari 5+, Chrome 6+, Opera 12+
 
 
@@ -20,13 +27,9 @@ $ watchify main.js -o static/bundle.js -v --debug
 ```
 
 
-## Core concepts and Phylosophy
+## Documentation
 
-* Convention over configuration.
-* Performances are fine but not at the cost of other important concepts, such as readability.
-
-
-## DOM Library
+### DOM Library
 
 A tiny jQuery-like Library
 
