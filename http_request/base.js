@@ -9,7 +9,7 @@ function HttpRequest (settings) {
     eventCapabilities(this);
 
     this.xhr = new XMLHttpRequest();
-    HttpRequest.emit(HttpRequest, 'new', settings);
+    HttpRequest.emit('new', settings);
 
     this.open();
 }
