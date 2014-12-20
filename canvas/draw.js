@@ -1,7 +1,5 @@
 module.exports = function (Canvas) {
 
-    addDrawCapabilities(Canvas);
-
     Canvas.prototype.clear = clear;
     Canvas.prototype.draw = draw;
 
