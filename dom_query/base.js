@@ -1,56 +1,25 @@
 var arrayProto = Array.prototype;
 
 
-function DomQuery (arg) {
-    arrayProto.push.apply(this, isElement(arg) ? [arg] : fetchElements(arg));
+// Argument (a) can be element or selector
+function DomQuery (a) {
+    arrayProto.push.apply(this, isElement(a) ? [a] : getElements(a));
 }
 
 
-DomQuery.prototype.length = 0;
-
-
-DomQuery.prototype.splice = arrayProto.splice;
-
-
-DomQuery.prototype.on = function (name, fnc) {
-    this.each(function (el) {
-        el.addEventListener(name, fnc);
-    });
-};
-
-
-DomQuery.prototype.removeListener = function (name, fnc) {
-    this.each(function (el) {
-        el.removeEventListener(name, fnc);
-    });
-};
-
-
-DomQuery.prototype.each = function (iterator, value) {
-    arrayProto.forEach.call(this, iterator, value);
-};
-
-
-function isElement (arg) {
-    return arg && arg.nodeType;
-}
-
-
-function isSelector (arg) {
-    return '' + arg === arg;
-}
-
-
-function fetchElements (selector) {
+function getElements (selector) {
     return isSelector(selector) ? document.querySelectorAll(selector) : undefined;
 }
 
 
-function onDomReady (fnc) {
-    return document.readyState === 'complete' ? fnc() : $(document).on('DOMContentLoaded', fnc);
+function isElement (element) {
+    return element && element.nodeType;
 }
 
 
-module.exports = function $ (arg) {
-    return typeof arg === 'function' ? domReady(arg) : new DomQuery(arg);
-};
+function isSelector (selector) {
+    return '' + selector === selector;
+}
+
+
+module.exports = DomQuery;
