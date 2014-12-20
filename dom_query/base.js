@@ -1,7 +1,6 @@
 var arrayProto = Array.prototype;
 
 
-// Argument (a) can be element or selector
 function DomQuery (a) {
     arrayProto.push.apply(this, isElement(a) ? [a] : getElements(a));
 }

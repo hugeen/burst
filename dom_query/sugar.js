@@ -1,9 +1,8 @@
 var DomQuery = require('./base');
 
 
-// Argument (a) can be element, selector or domReady function
 module.exports = function $ (a) {
-    return typeof a === 'function' ? domReady(a) : new DomQuery(a);
+    return typeof a === 'function' ? onDomReady(a) : new DomQuery(a);
 };
 
 
