@@ -1,4 +1,4 @@
-module.exports = function httpRequestCapabilities(window) {
+module.exports = function (window) {
 
     if (!window.XMLHttpRequest && window.ActiveXObject) {
         window.XMLHttpRequest = ActiveXRequest;
