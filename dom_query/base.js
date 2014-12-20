@@ -1,5 +1,8 @@
 var arrayProto = Array.prototype;
 
+require('./collection')(DomQuery);
+require('./events')(DomQuery);
+
 
 function DomQuery (a) {
     arrayProto.push.apply(this, isElement(a) ? [a] : getElements(a));
