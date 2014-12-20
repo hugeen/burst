@@ -11,8 +11,8 @@ Low to High level JavaScript Libraries.
 
 ## Global Summary
 
+* [Compatibility](#compatibility)
 * [DOM Library](#dom-library)
-* [Canvas Drawing](#canvas-drawing)
 
 
 # Compatibility
