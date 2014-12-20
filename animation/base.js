@@ -1,6 +1,3 @@
-require('../polyfills/animation')(window);
-
-
 module.exports = function (callback, bind) {
     return new AnimationLoop(callback, bind);
 };
