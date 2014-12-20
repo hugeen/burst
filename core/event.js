@@ -7,26 +7,21 @@ module.exports = function (object) {
         return object;
     }
 
+    defineListeners(object);
 
-    defineCapabilities.call(this, {
-        listeners: {},
-        on: on,
-        emit: emit,
-        removeListener: removeListener
-    });
-
+    object.on = on;
+    object.emit = emit;
+    object.removeListener = removeListener;
 
     return object;
 
 };
 
 
-function defineCapabilities (capabilities) {
-    for (var name in capabilities) {
-        Object.defineProperty(this, name, {
-            value: capabilities[name]
-        });
-    }
+function defineListeners (object) {
+    Object.defineProperty(object, name, {
+        value: {}
+    });
 }
 
 
