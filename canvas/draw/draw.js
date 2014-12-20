@@ -1,10 +1,3 @@
-var drawCapabilities = [
-    require('./draw/path'),
-    require('./draw/arc'),
-    require('./draw/circle')
-];
-
-
 module.exports = function (Canvas) {
 
     addDrawCapabilities(Canvas);
@@ -14,14 +7,6 @@ module.exports = function (Canvas) {
 
     return Canvas;
 };
-
-
-function addDrawCapabilities (Canvas) {
-
-    for (var i = 0; i < drawCapabilities.length; i++) {
-        drawCapabilities[i](Canvas);
-    }
-}
 
 
 function clear () {

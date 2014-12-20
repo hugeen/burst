@@ -1,5 +1,8 @@
-require('./capabilities/draw')(Canvas);
-require('./capabilities/animate')(Canvas);
+require('./draw')(Canvas);
+require('./draw/path')(Canvas);
+require('./draw/arc')(Canvas);
+require('./draw/circle')(Canvas);
+require('./animate')(Canvas);
 
 
 function Canvas (el) {
