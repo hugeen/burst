@@ -1,10 +1,10 @@
-module.exports = function (window) {
+module.exports = function (object) {
 
-    if (!window.XMLHttpRequest && window.ActiveXObject) {
-        window.XMLHttpRequest = ActiveXRequest;
+    if (!object.XMLHttpRequest && object.ActiveXObject) {
+        object.XMLHttpRequest = ActiveXRequest;
     }
 
-    return window;
+    return object;
 };
 
 
