@@ -1,11 +1,11 @@
 var arrayProto = Array.prototype;
 
 
-require('./collection')(DomQuery);
 require('./events')(DomQuery);
+require('../core/array')(DomQuery.prototype);
 
 function DomQuery (a) {
-    arrayProto.push.apply(this, isElement(a) ? [a] : getElements(a));
+    this.push(isElement(a) ? [a] : getElements(a));
 }
 
 
