@@ -1,6 +1,5 @@
 function Curve (handles) {
     this.handles = handles;
-    this.type = (handles.length > 1 ? 'Bezier' : 'Quadratic') + this.type;
 }
 
 
