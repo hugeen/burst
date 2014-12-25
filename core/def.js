@@ -1,6 +1,8 @@
 module.exports = function(object) {
 
-    def.call(this, 'def', {value: def});
+    if (!('def' in object)) {
+        def.call(this, 'def', {value: def});
+    }
 
     return object;
 };
