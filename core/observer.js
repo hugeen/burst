@@ -26,7 +26,7 @@ function defineObservedProperties (object) {
 
 
 function subscribe (property) {
-    if (!(property in this.observedProperties) || !this.observedProperties[property]) {
+    if (!(property in this.observedProperties)) {
         this.observedProperties[property] = true;
 
         Object.defineProperty(this, property, {
@@ -39,7 +39,7 @@ function subscribe (property) {
 }
 
 function unsubscribe (property) {
-    this.observedProperties[property] = false;
+    delete this.observedProperties[property];
 
     Object.defineProperty(this, property, {
         set: function (newValue) {
