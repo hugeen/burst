@@ -7,6 +7,7 @@ module.exports = function (object) {
         return object;
     }
 
+    eventCapabilities(object);
     defineObservedProperties(object);
 
     object.subscribe = subscribe;
