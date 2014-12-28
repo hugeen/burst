@@ -4,6 +4,7 @@ module.exports = function (object) {
 
     object.length = 0;
     object.splice = arrayProto.splice;
+    object.remove = remove;
     object.each = each;
     object.push = push;
 
@@ -18,4 +19,13 @@ function each (iterator, value) {
 
 function push () {
     arrayProto.push.apply(this, arrayProto.slice.call(arguments));
+}
+
+
+function remove (thing) {
+    var index = this.indexOf(thing);
+
+    if (index !== -1) {
+        this.splice(index, 1);
+    }
 }
