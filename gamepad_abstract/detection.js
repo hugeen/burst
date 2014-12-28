@@ -9,6 +9,6 @@ module.exports = function (GamepadAbstract) {
         GamepadAbstract.emit('gamepad disconnected', e.gamepad);
     });
 
-    return Gamepad;
+    return GamepadAbstract;
 
 };
