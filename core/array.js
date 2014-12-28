@@ -2,6 +2,10 @@ var arrayProto = Array.prototype;
 
 module.exports = function (object) {
 
+    if ('length' in object && 'splice' in object) {
+        return object;
+    }
+
     object.length = 0;
     object.splice = arrayProto.splice;
     object.remove = remove;
