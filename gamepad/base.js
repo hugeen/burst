@@ -1,4 +1,4 @@
-function Gamepad(original) {
+function Gamepad (original) {
     this.original = original;
 }
 
