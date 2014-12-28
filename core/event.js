@@ -33,7 +33,7 @@ function on (identifier, fnc) {
 function removeListener (identifier, fnc) {
     if (identifier in this.listeners) {
         var listener = this.listeners[identifier];
-        listener.splice(listeners.indexOf(fnc), 1);
+        listener.splice(listener.indexOf(fnc), 1);
     }
 }
 
