@@ -8,7 +8,6 @@ Low to High level JavaScript Libraries.
 * Readable.
 * Developer-Friendly.
 * Convention over configuration.
-* No Magic Tricks.
 
 ## Global Summary
 
