@@ -6,7 +6,6 @@ collectionCapabilities(KeyboardAbstract);
 
 function KeyboardAbstract () {
     eventCapabilities(this);
-
 }
 
 
