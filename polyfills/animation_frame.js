@@ -14,16 +14,14 @@ module.exports = function (object) {
 
     if (!object.requestAnimationFrame) {
         object.requestAnimationFrame = function(fnc, element) {
-            var currTime = new Date().getTime();
-            var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+            var currentTime = new Date().getTime();
+            var timeToCall = Math.max(0, 16 - (currentTime - lastTime));
 
-            var id = object.setTimeout(function() {
-                fnc(currTime + timeToCall);
+            lastTime = currentTime + timeToCall;
+
+            return object.setTimeout(function() {
+                fnc(currentTime + timeToCall);
             }, timeToCall);
-
-            lastTime = currTime + timeToCall;
-
-            return id;
         };
     }
 
