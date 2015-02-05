@@ -1,6 +1,5 @@
 var Arc = require('../../geometry/arc');
 
-
 module.exports = function (Canvas) {
 
     Canvas.prototype.drawCircle = drawCircle;
