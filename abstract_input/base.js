@@ -1,3 +1,5 @@
-function AbstractInput () {
-
+export default class AbstractInput {
+	constructor () {
+		console.log(this);
+	}
 }

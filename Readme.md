@@ -1,46 +1,17 @@
-# Burst
+## LoopGIFs
 
-Low to High level JavaScript Libraries.
+[![JavaScript in 2015 video](https://img.youtube.com/vi/iukBMY4apvI/hqdefault.jpg)](https://www.youtube.com/watch?v=iukBMY4apvI)
 
-* Minimalist.
-* Scalable.
-* Hackable.
-* Readable.
-* Developer-Friendly.
-* Convention over configuration.
+[From the video, JavaScript in 2015](https://www.youtube.com/watch?v=iukBMY4apvI)
 
-## Global Summary
+To get this example running, check out this repository, and:
 
-* [Compatibility](#compatibility)
-* [DOM Library](#dom-library)
-
-
-# Compatibility
-
-* IE 9+, Firefox 6+, Safari 5+, Chrome 6+, Opera 12+
-
-
-# Documentation
-
-## DOM Library
-
-A tiny jQuery-like Library
-
-```javascript
-// Selector
-$('div'); => [div, div, div]
-$(document) => [document]
-
-// Add Event Listener
-function onClick (e) {
-    e.preventDefault();
-}
-$('a').on('click', onClick);
-
-// Remove Event Listener
-$('a').removeListner('click', onClick);
-
-// DOM Ready
-$(function() {}):
+```sh
+npm install -g jspm live-server
+jspm install
+live-server
 ```
 
+To run in production mode, run `jspm bundle-sfx --minify lib/main` then switch the DEV and PROD scripts on index.html
+
+Happy new year!
