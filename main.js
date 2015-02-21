@@ -1,5 +1,5 @@
-import eventAbilities from 'core/event';
-import dirtyAbilities from 'core/dirty';
+import eventAbilities from 'glowing_core/event';
+import dirtyAbilities from 'glowing_core/dirty';
 
 var object = {
 	hello: "world"
@@ -13,7 +13,6 @@ object.observable('hello');
 object.on('hello changed', function (change) {
 	console.log(this.hello, change.oldValue);
 });
-
 
 object.hello = "yo";
 setTimeout(function() {
