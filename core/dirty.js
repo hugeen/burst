@@ -1,3 +1,5 @@
+import eventAbilities from 'core/event';
+
 export default dirtyAbilities;
 
 
@@ -7,8 +9,9 @@ function dirtyAbilities (object) {
         return object;
     }
 
+    eventAbilities(object);
     defineObservableAttrs(object);
-    Object.observe(object, initObserver);
+    Object.observe(object, observe.bind(object));
 
     object.observable = observable;
     object.notifyChange = notifyChange;
@@ -21,15 +24,8 @@ function dirtyAbilities (object) {
 function defineObservableAttrs (object) {
     Object.defineProperty(object, 'observableAttrs', {
         value: [],
-        configurable: false,
-        enumerable: false
+        writable: true
     });
-}
-
-
-function initObserver (changes) {
-    let filteredChanges = filterChanges(changes, this.observableAttrs);
-    filteredChanges.forEach(this.notifiyChange);
 }
 
 
@@ -40,11 +36,17 @@ function filterChanges (changes, attrs) {
 }
 
 
-function notifiyChange (change) {
-	this.emit(`${change.name} changed`, change);
+function observe (changes) {
+    let filteredChanges = filterChanges(changes, this.observableAttrs);
+    filteredChanges.forEach(notifyChange.bind(this));
 }
 
 
 function observable (...attrs) {
-	observableAttrs.concat(attrs);
+	this.observableAttrs = this.observableAttrs.concat(attrs);
+}
+
+
+function notifyChange (change) {
+    this.emit(`${change.name} changed`, change);
 }
