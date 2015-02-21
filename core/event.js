@@ -1,6 +1,7 @@
-var slice = Array.prototype.slice;
+export default eventAbilities;
 
-export default function (object) {
+
+function eventAbilities (object) {
 
     if ('on' in object) {
         return object;
@@ -14,12 +15,14 @@ export default function (object) {
 
     return object;
 
-};
+}
 
 
 function defineListeners (object) {
     Object.defineProperty(object, 'listeners', {
-        value: {}
+        value: {},
+        configurable: false,
+        enumerable: false
     });
 }
 
@@ -30,19 +33,19 @@ function on (identifier, fnc) {
 }
 
 
-function removeListener (identifier, fnc) {
-    if (identifier in this.listeners) {
-        var listener = this.listeners[identifier];
-        listener.splice(listener.indexOf(fnc), 1);
-    }
-}
-
-
 function emit (identifier, fnc) {
     if (identifier in this.listeners) {
         for (var i = 0; i < this.listeners[identifier].length; i++) {
             var listener = this.listeners[identifier];
-            listener[i].apply(this, slice.call(arguments, 1));
+            listener[i].apply(this, [].slice.call(arguments, 1));
         }
+    }
+}
+
+
+function removeListener (identifier, fnc) {
+    if (identifier in this.listeners) {
+        var listener = this.listeners[identifier];
+        listener.splice(listener.indexOf(fnc), 1);
     }
 }
