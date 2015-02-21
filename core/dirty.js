@@ -8,9 +8,10 @@ function dirtyAbilities (object) {
     }
 
     defineObservableAttrs(object);
-    initObserver(object);
+    Object.observe(object, initObserver);
 
     object.observable = observable;
+    object.notifyChange = notifyChange;
 
     return object;
 
@@ -26,20 +27,24 @@ function defineObservableAttrs (object) {
 }
 
 
-function initObserver (rawChanges) {
-	let attrs = this.observableAttrs;
+function initObserver (changes) {
+    let filteredChanges = filterChanges(changes, this.observableAttrs);
+    filteredChanges.forEach(this.notifiyChange);
+}
 
-    let changes = rawChanges.filter(function (change) {
+
+function filterChanges (changes, attrs) {
+	return changes.filter(function (change) {
 		return attrs.indexOf(change.name) !== -1;
 	});
+}
 
-    changes.forEach(function(change, i){
-    	this.emit(`${change.name} changed`, change);
-  	}.bind(this));
+
+function notifiyChange (change) {
+	this.emit(`${change.name} changed`, change);
 }
 
 
 function observable (...attrs) {
 	observableAttrs.concat(attrs);
 }
-
