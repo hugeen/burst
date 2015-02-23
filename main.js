@@ -22,8 +22,14 @@ var $hello = new DomQuery('.hello');
 
 $hello.on('click', function () {
 	object.hello += 1;
+}).on('click', function () {
+	object.hello += 1;
 });
 // console.log($hello[0][0]);
-console.log($hello.last());
+// console.log($hello.last());
 
+var $body = new DomQuery('body');
+// console.log($body);
+
+console.log($body.find('div, div').find('span'));
 export default {};
