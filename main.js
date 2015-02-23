@@ -24,6 +24,6 @@ $hello.on('click', function () {
 	object.hello += 1;
 });
 // console.log($hello[0][0]);
-
+console.log($hello.last());
 
 export default {};

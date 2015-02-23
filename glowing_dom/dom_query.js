@@ -1,7 +1,12 @@
 export default class DomQuery extends Array {
 
-	constructor (selector) {
-		this.push.apply(this, document.querySelectorAll(selector));
+	constructor (selector, parent) {
+
+		this.push.apply(this, (function () {
+			var isElement = selector && selector.nodeType;
+			return isElement ? [selector] : (parent || document).querySelectorAll(selector);
+		})());
+
 	}
 
 	on (name, fnc) {
@@ -12,4 +17,13 @@ export default class DomQuery extends Array {
 		this.forEach(el => el.removeEventListener(name, fnc));
 	}
 
+	first () {
+		return new DomQuery(this[0]);
+	}
+
+	last () {
+		return new DomQuery(this[this.length - 1]);
+	}
+
 }
+
