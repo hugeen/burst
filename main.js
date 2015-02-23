@@ -15,16 +15,15 @@ object.on('hello changed', function (change) {
 	console.log(this.hello, change.oldValue);
 });
 
-object.hello = "yo";
-setTimeout(function() {
-	object.hello = "1234";
-}, 1);
+object.hello = 1;
+
 
 var $hello = new DomQuery('.hello');
 
 $hello.on('click', function () {
-	console.log('bitch');
+	object.hello += 1;
 });
 // console.log($hello[0][0]);
+
 
 export default {};

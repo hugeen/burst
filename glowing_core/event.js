@@ -20,9 +20,7 @@ function eventAbilities (object) {
 
 function defineListeners (object) {
     Object.defineProperty(object, 'listeners', {
-        value: {},
-        configurable: false,
-        enumerable: false
+        value: {}
     });
 }
 
@@ -33,11 +31,10 @@ function on (identifier, fnc) {
 }
 
 
-function emit (identifier, fnc) {
+function emit (identifier, ...args) {
     if (identifier in this.listeners) {
-        for (var i = 0; i < this.listeners[identifier].length; i++) {
-            var listener = this.listeners[identifier];
-            listener[i].apply(this, [].slice.call(arguments, 1));
+        for (var listener of this.listeners[identifier]) {
+            listener.apply(this, args);
         }
     }
 }

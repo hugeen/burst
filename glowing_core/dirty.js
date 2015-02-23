@@ -30,9 +30,7 @@ function defineObservableAttrs (object) {
 
 
 function filterChanges (changes, attrs) {
-	return changes.filter(function (change) {
-		return attrs.indexOf(change.name) !== -1;
-	});
+    return changes.filter(c => attrs.indexOf(c.name) !== -1);
 }
 
 
