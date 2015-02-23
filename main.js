@@ -1,5 +1,6 @@
 import eventAbilities from 'glowing_core/event';
 import dirtyAbilities from 'glowing_core/dirty';
+import DomQuery from 'glowing_dom/dom_query';
 
 var object = {
 	hello: "world"
@@ -18,5 +19,6 @@ object.hello = "yo";
 setTimeout(function() {
 	object.hello = "1234";
 }, 1);
+console.log(new DomQuery('body'));
 
 export default {};
