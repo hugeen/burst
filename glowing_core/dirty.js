@@ -37,7 +37,7 @@ function filterChanges (changes, attrs) {
 
 
 function observe (changes) {
-    let filteredChanges = filterChanges(changes, this.observableAttrs);
+    var filteredChanges = filterChanges(changes, this.observableAttrs);
     filteredChanges.forEach(notifyChange.bind(this));
 }
 

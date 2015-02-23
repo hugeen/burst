@@ -19,6 +19,12 @@ object.hello = "yo";
 setTimeout(function() {
 	object.hello = "1234";
 }, 1);
-console.log(new DomQuery('body'));
+
+var $hello = new DomQuery('.hello');
+
+$hello.on('click', function () {
+	console.log('bitch');
+});
+// console.log($hello[0][0]);
 
 export default {};
