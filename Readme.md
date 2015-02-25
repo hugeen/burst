@@ -59,6 +59,19 @@ object.on('hello changed', function (change) {
 object.hello = 2;
 ```
 
+### DOM - jQuery Like Utility
+
+```javascript
+import $ from 'glowing_dom/sugar';
+
+$('div');
+$('body').find('div');
+
+$('a').on('click', function (e) {
+	e.preventDefault();
+});
+```
+
 ## Development notes
 
 Thanks to [JSPM](http://jspm.io/), it's now possible to use ES6.
