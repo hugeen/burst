@@ -19,7 +19,7 @@ My will is to provide a framework and conventions that will allow developers to 
 
 #### Event (Publish / Subscribe)
 
-```
+```javascript
 import eventAbilities from 'glowing_core/event';
 
 // Provite event abilities to your object
@@ -33,7 +33,7 @@ object.on('event name', function () {
 
 // Trigger event
 object.emit('event name');
-``
+```
 
 ## Development notes
 
