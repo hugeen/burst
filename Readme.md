@@ -35,6 +35,30 @@ object.on('event name', function () {
 object.emit('event name');
 ```
 
+#### Dirty Tracking
+
+```javascript
+import dirtyAbilities from 'glowing_core/dirty';
+
+// Provite dirty tracking abilities to your object
+var object = {
+	hello: 1
+};
+dirtyAbilities(object);
+
+// You can now set a property as observable
+dirty.observable('hello');
+
+// Subscribe to the property changed event
+object.on('hello changed', function (change) {
+	// You can access to the old value on change
+	console.log(this.hello, change.oldValue);
+});
+
+// This will trigger the 'hello changed' event
+object.hello = 2;
+```
+
 ## Development notes
 
 Thanks to [JSPM](http://jspm.io/), it's now possible to use ES6.
