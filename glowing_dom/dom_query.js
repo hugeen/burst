@@ -1,7 +1,8 @@
 export default class DomQuery extends Array {
 
 	constructor (selector, parent) {
-		this.push.apply(this, DomQuery.isElement(selector) ? [selector] : DomQuery.getElements(selector, parent));
+		var elements = DomQuery.isElement(selector) ? [selector] : DomQuery.getElements(selector, parent);
+		this.push.apply(this, elements);
 	}
 
 	on (name, fnc) {

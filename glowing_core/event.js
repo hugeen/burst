@@ -8,10 +8,7 @@ function eventAbilities (object) {
     }
 
     defineListeners(object);
-
-    object.on = on;
-    object.emit = emit;
-    object.removeListener = removeListener;
+    Object.assign(object, {on, emit, removeListener});
 
     return object;
 
