@@ -1,6 +1,7 @@
 import eventAbilities from 'glowing_core/event';
 import dirtyAbilities from 'glowing_core/dirty';
 import $ from 'glowing_dom/sugar';
+import loop from 'glowing_loop/sugar';
 
 var object = {
 	hello: "world"
@@ -32,4 +33,9 @@ var $body = $('body');
 // console.log($body);
 
 console.log($body.find('div, div').find('span'));
+
+loop(function (a) {
+	console.log(a);
+});
+
 export default {};
