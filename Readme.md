@@ -131,3 +131,15 @@ import HttpRequest from 'glowing_transports/http_request';
 
 var http = new HttpRequest({ method: 'get' });
 ```
+
+### Renderers
+
+#### Canvas
+
+```javascript
+import Canvas from 'glowing_renderers/canvas';
+
+var canvas = new Canvas(element);
+canvas.clear();
+canvas.drawPath(path);
+```
