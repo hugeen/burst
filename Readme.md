@@ -127,7 +127,7 @@ animLoop(function (deltaTime, handler) {
 #### HttpRequest
 
 ```javascript
-import HttpRequest from 'glowing_http/http_request';
+import HttpRequest from 'glowing_transports/http_request';
 
 var http = new HttpRequest({ method: 'get' });
 ```
