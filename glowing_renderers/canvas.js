@@ -16,7 +16,16 @@ export default class Canvas {
 	}
 
 	drawPath (path) {
-		console.log(path);
+		this.context.beginPath();
+
+		var first = true;
+		for (var point of path) {
+			var operation = first ? 'moveTo' : 'lineTo';
+			this.context[operation](point.x, point.y);
+			first = false;
+		}
+
+    	this.context.stroke();
 	}
 
 }
