@@ -80,7 +80,7 @@ object.hello = 2;
 
 ### DOM
 
-#### DomQuery - jQuery Like Utility
+#### DomQuery - jQuery Like
 
 ```javascript
 import $ from 'glowing_dom/dom_query';
@@ -93,7 +93,7 @@ $('a').on('click', function (e) {
 });
 ```
 
-#### Keyboard util
+#### Keyboard
 
 ```javascript
 import keyboard from 'glowing_dom/keyboard';
@@ -110,7 +110,7 @@ keyboard.on('key released', function() {});
 
 ### Animation
 
-#### requestAnimationFrame short-hand
+#### requestAnimationFrame
 
 ```javascript
 import animLoop from 'glowing_loop/animation_loop';
