@@ -139,8 +139,13 @@ var http = new HttpRequest({ method: 'get' });
 ```javascript
 import Canvas from 'glowing_renderers/canvas';
 
+// New canvas
 var canvas = new Canvas(element);
+
+// Clear canvas
 canvas.clear();
+
+// Draw a path
 canvas.drawPath(path);
 ```
 
