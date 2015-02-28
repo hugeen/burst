@@ -17,7 +17,7 @@ My will is to provide a framework and conventions that will allow developers to 
 
 ### Core
 
-#### Event (Publish / Subscribe)
+#### Event Abilities
 
 ```javascript
 // Event Abilities
@@ -52,10 +52,9 @@ removeEventProxy(object2, 'event name', proxy);
 // Advanced event proxy
 // Forward and rename click event from document to object 1
 addEventProxy([document, 'addEventListener'], object1, 'click', 'page clicked');
-
 ```
 
-#### Dirty Tracking
+#### Dirty Tracking Abilities
 
 ```javascript
 import dirtyAbilities from 'glowing_core/dirty_abilities';
@@ -111,7 +110,7 @@ keyboard.on('key released', function() {});
 
 ### Animation
 
-#### requestAnimationFrame util
+#### requestAnimationFrame short-hand
 
 ```javascript
 import animLoop from 'glowing_loop/animation_loop';
@@ -125,7 +124,9 @@ animLoop(function (deltaTime, handler) {
 });
 ```
 
-### HttpRequest
+### Transports
+
+#### HttpRequest
 
 ```javascript
 import HttpRequest from 'glowing_http/http_request';
