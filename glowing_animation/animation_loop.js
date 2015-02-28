@@ -9,12 +9,14 @@ export class AnimationLoop {
         this.callback = callback;
     }
 
+
     stop () {
         this.running = false;
         cancelAnimationFrame(this.id);
 
         return this;
     }
+
 
     resume () {
         this.lastTime = false;
@@ -23,6 +25,7 @@ export class AnimationLoop {
 
         return this;
     }
+
 
     static enterFrame(handler) {
         handler.id = requestAnimationFrame(function (time) {
@@ -42,5 +45,6 @@ export class AnimationLoop {
             }
         });
     }
+
 
 }

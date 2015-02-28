@@ -20,13 +20,16 @@ export default class HttpRequest {
 
 	}
 
+
 	open () {
 		this.xhr.open(this.method, this.url, true);
 	}
 
+
 	send () {
 		this.xhr.send();
 	}
+
 
 	proxifyEvents (identifiers) {
 		for (var identifier of identifiers) {

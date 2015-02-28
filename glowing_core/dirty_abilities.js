@@ -12,6 +12,7 @@ function dirtyAbilities (object) {
     eventAbilities(object);
 
     defineObservableAttrs(object);
+
     Object.observe(object, observe.bind(object));
 
     Object.assign(object, {observable, notifyChange});

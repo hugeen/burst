@@ -15,17 +15,20 @@ export class DomQuery extends Array {
 		this.push.apply(this, elements);
 	}
 
+
 	on (name, fnc) {
 		this.forEach(el => el.addEventListener(name, fnc));
 
 		return this;
 	}
 
+
 	removeListener (name, fnc) {
 		this.forEach(el => el.removeEventListener(name, fnc));
 
 		return this;
 	}
+
 
 	find (selector) {
 		var domQuery = new DomQuery();
@@ -38,17 +41,21 @@ export class DomQuery extends Array {
 		return domQuery;
 	}
 
+
 	first () {
 		return new DomQuery(this[0]);
 	}
+
 
 	last () {
 		return new DomQuery(this[this.length - 1]);
 	}
 
+
 	static isElement (element) {
 		return element && element.nodeType;
 	}
+
 
 	static getElements (selector, parent) {
 		return (parent || document).querySelectorAll(selector || null);
