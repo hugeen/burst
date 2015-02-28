@@ -1,7 +1,7 @@
 System.config({
-  "baseURL": "/",
-  "paths": {
-    "*": "*.js"
+  baseURL: '/lib/',
+  paths: {
+    "*": "*.js",
+    'app/*': '/app/*.js'
   }
 });
-
