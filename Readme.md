@@ -1,12 +1,10 @@
 # Burst
 
-## How and Why ?
-
 I am looking for new way to develop tools and applications more efficiently. From prototype to production.
 
 My will is to provide a framework and conventions that will allow developers to access high-level features, quickly and without pain.
 
-## For who ?
+## Target
 
 - App and Web developers
 - Game developers
@@ -133,12 +131,3 @@ import HttpRequest from 'glowing_http/http_request';
 
 var http = new HttpRequest({ method: 'get' });
 ```
-
-## Development notes
-
-Thanks to [JSPM](http://jspm.io/), it's now possible to use ES6.
-
-So I start refactoring (once again).
-For that new start I just want to keep things simple (No overpowered features).
-
-Note : To avoid name collisions with future modules, I now prefix each basic module with "glowing" (In reference to Burst).
