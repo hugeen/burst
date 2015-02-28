@@ -92,6 +92,20 @@ $('a').on('click', function (e) {
 });
 ```
 
+### Animation Loop - requestAnimationFrame sugar
+
+```javascript
+import loop from 'glowing_loop/sugar';
+
+loop(function (deltaTime, handler) {
+	// Stop
+	handler.stop();
+
+	// Resume
+	handler.resume();
+});
+```
+
 ## Development notes
 
 Thanks to [JSPM](http://jspm.io/), it's now possible to use ES6.
