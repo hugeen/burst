@@ -20,7 +20,8 @@ My will is to provide a framework and conventions that will allow developers to 
 #### Event (Publish / Subscribe)
 
 ```javascript
-import eventAbilities from 'glowing_core/event';
+// Event Abilities
+import eventAbilities from 'glowing_core/event_abilities';
 
 // Provite event abilities to your object
 var object = {};
@@ -33,12 +34,27 @@ object.on('event name', function () {
 
 // Trigger event
 object.emit('event name');
+
+
+// Event Utils
+import * from 'glowing_core/event_utils';
+
+// Add event proxy
+var proxy = addEventProxy(object2, object1, 'event name');
+
+object1.on('event name', function () {
+	// This function will be called after object2.emit('event name');
+});
+
+// Remove event proxy
+removeEventProxy(object2, 'event name', proxy);
+
 ```
 
 #### Dirty Tracking
 
 ```javascript
-import dirtyAbilities from 'glowing_core/dirty';
+import dirtyAbilities from 'glowing_core/dirty_abilities';
 
 // Provite dirty tracking abilities to your object
 var object = {
