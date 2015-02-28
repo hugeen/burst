@@ -106,6 +106,14 @@ loop(function (deltaTime, handler) {
 });
 ```
 
+### HttpRequest
+
+```javascript
+import HttpRequest from 'glowing_http/http_request';
+
+var http = new HttpRequest({ method: 'get' });
+```
+
 ## Development notes
 
 Thanks to [JSPM](http://jspm.io/), it's now possible to use ES6.
