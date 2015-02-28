@@ -79,10 +79,12 @@ object.on('hello changed', function (change) {
 object.hello = 2;
 ```
 
-### DOM - jQuery Like Utility
+### DOM
+
+#### DomQuery - jQuery Like Utility
 
 ```javascript
-import $ from 'glowing_dom/sugar';
+import $ from 'glowing_dom/dom_query';
 
 $('div');
 $('body').find('div');
@@ -92,12 +94,29 @@ $('a').on('click', function (e) {
 });
 ```
 
-### Animation Loop - requestAnimationFrame sugar
+#### Keyboard util
 
 ```javascript
-import loop from 'glowing_loop/sugar';
+import keyboard from 'glowing_dom/keyboard';
 
-loop(function (deltaTime, handler) {
+// Triggered on key pressed
+keyboard.on('key pressed', function() {});
+
+// Triggered repeatedly on key down
+keyboard.on('key down', function() {});
+
+// Triggered on key released
+keyboard.on('key released', function() {});
+```
+
+### Animation
+
+#### requestAnimationFrame util
+
+```javascript
+import animLoop from 'glowing_loop/animation_loop';
+
+animLoop(function (deltaTime, handler) {
 	// Stop
 	handler.stop();
 
