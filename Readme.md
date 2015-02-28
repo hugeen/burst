@@ -143,3 +143,29 @@ var canvas = new Canvas(element);
 canvas.clear();
 canvas.drawPath(path);
 ```
+
+### Geometry
+
+#### Point
+
+```javascript
+import Point from 'glowing_geometry/point';
+
+// New point
+var point = new Point(0, 0); // x, y
+
+// Clone point
+point.clone();
+```
+
+#### Path
+
+```javascript
+import Path from 'glowing_geometry/path';
+
+// New path
+var path = new Path();
+
+// Append path
+path.push(point);
+```
