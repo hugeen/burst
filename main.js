@@ -1,7 +1,7 @@
 import eventAbilities from 'glowing_core/event_abilities';
 import dirtyAbilities from 'glowing_core/dirty_abilities';
 import {addEventProxy, removeEventProxy} from 'glowing_core/event_utils';
-import HttpRequest from 'glowing_http/http_request';
+import HttpRequest from 'glowing_transport/http_request';
 
 var object1 = {};
 var object2 = {};

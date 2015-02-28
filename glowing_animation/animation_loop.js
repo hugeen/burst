@@ -1,4 +1,9 @@
-export default class AnimationLoop {
+export default function (callback) {
+    return new AnimationLoop(callback).resume();
+}
+
+
+export class AnimationLoop {
 
     constructor (callback) {
         this.callback = callback;
