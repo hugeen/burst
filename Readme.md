@@ -49,6 +49,10 @@ object1.on('event name', function () {
 // Remove event proxy
 removeEventProxy(object2, 'event name', proxy);
 
+// Advanced event proxy
+// Forward and rename click event from document to object 1
+addEventProxy([document, 'addEventListener'], object1, 'click', 'page clicked');
+
 ```
 
 #### Dirty Tracking

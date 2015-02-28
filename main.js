@@ -16,6 +16,9 @@ object1.on('hello', function () {
 var proxy = addEventProxy(object2, object1, 'hello bitch', 'hello');
 removeEventProxy(object2, 'hello bitch', proxy);
 
+object1.on('hello', function () {
+	console.log('hello');
+});
 object2.emit('hello bitch');
 
 var http = new HttpRequest({ method: 'get' });
@@ -24,4 +27,6 @@ http.on('loaded', function () {
 });
 
 http.send();
+
+addEventProxy([document, 'addEventListener'], object1, 'click', 'hello');
 export default {};
