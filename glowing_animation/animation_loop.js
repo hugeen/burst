@@ -30,7 +30,12 @@ export class AnimationLoop {
                 var dt = !handler.lastTime ? 0 : time - handler.lastTime;
                 handler.lastTime = time;
 
-                handler.callback(dt, handler);
+                if (handler.callback) {
+                    handler.callback(dt, handler);
+                } else {
+                    handler.emit('enter frame', dt, handler);
+                }
+
                 AnimationLoop.enterFrame(handler);
             } else {
                 handler.stop();
