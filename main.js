@@ -1,41 +1,19 @@
-import eventAbilities from 'glowing_core/event';
-import dirtyAbilities from 'glowing_core/dirty';
-import $ from 'glowing_dom/sugar';
-import loop from 'glowing_loop/sugar';
+import eventAbilities from 'glowing_core/event_abilities';
+import dirtyAbilities from 'glowing_core/dirty_abilities';
+import {addEventProxy, removeEventProxy} from 'glowing_core/event_utils';
+var object1 = {};
+var object2 = {};
 
-var object = {
-	hello: "world"
-};
+eventAbilities(object1);
+eventAbilities(object2);
 
-eventAbilities(object);
-dirtyAbilities(object);
-
-object.observable('hello');
-
-object.on('hello changed', function (change) {
-	console.log(this.hello, change.oldValue);
+object1.on('hello', function () {
+	console.log('hello');
 });
 
-object.hello = 1;
+var proxy = addEventProxy([object2, 'on'], [object1, 'emit'], 'hello bitch', 'hello');
+removeEventProxy([object2, 'removeListener'], 'hello bitch', proxy);
 
-
-var $hello = $('.hello');
-
-$hello.on('click', function () {
-	object.hello += 1;
-}).on('click', function () {
-	object.hello += 1;
-});
-// console.log($hello[0][0]);
-// console.log($hello.last());
-
-var $body = $('body');
-// console.log($body);
-
-console.log($body.find('div, div').find('span'));
-
-loop(function (a) {
-	console.log(a);
-});
+object2.emit('hello bitch');
 
 export default {};

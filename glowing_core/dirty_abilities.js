@@ -1,4 +1,4 @@
-import eventAbilities from './event';
+import eventAbilities from './event_abilities';
 
 export default dirtyAbilities;
 
