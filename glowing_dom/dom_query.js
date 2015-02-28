@@ -1,4 +1,14 @@
-export default class DomQuery extends Array {
+export default function (a, parent) {
+    return typeof a === 'function' ? onDomReady(a) : new DomQuery(a, parent);
+}
+
+
+function onDomReady (fnc) {
+    return document.readyState === 'complete' ? fnc() : $(document).on('DOMContentLoaded', fnc);
+}
+
+
+export class DomQuery extends Array {
 
 	constructor (selector, parent) {
 		var elements = DomQuery.isElement(selector) ? [selector] : DomQuery.getElements(selector, parent);
