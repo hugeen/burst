@@ -1,7 +1,9 @@
-import keyboard from "glowing_dom/keyboard";
+import assert from "glowing_specs/assert";
 
-keyboard.on('key down', function () {
-    console.log('hello');
-});
+
+// assert(ee, 'true is true');
+var a = assert(false, 'true is true');
+
+console.log(a);
 
 export default {};
