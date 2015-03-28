@@ -1,9 +1,15 @@
-import assert from "glowing_specs/assert";
+import eventAbilitiesSpecs from "specs/glowing_core/event_abilities.spec";
 
+console.group('Event Abilities');
 
-// assert(ee, 'true is true');
-var a = assert(false, 'true is true');
+eventAbilitiesSpecs.run(function (spec) {
+    if (spec.passed) {
+        console.log(spec.message);
+    } else {
+        console.error(spec.error.stack);
+    }
+});
 
-console.log(a);
+console.groupEnd();
 
 export default {};
