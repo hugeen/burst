@@ -8,15 +8,15 @@ var specSets = [
 
 specSets.forEach(function (specSet) {
     console.group(specSet.name);
-    specSet.set.run(run);
+    specSet.set.runAll(output);
     console.groupEnd();
 });
 
 
-function run (spec) {
+function output (spec) {
     if (spec.passed) {
-        console.log(spec.message);
+        console.log(spec.infos.message);
     } else {
-        console.error(spec.error.stack);
+        console.error(spec.infos.stack);
     }
 }

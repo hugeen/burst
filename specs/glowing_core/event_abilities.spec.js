@@ -19,7 +19,7 @@ function increment () {
 }
 
 
-specs.add(function () {
+specs.add('should register and trigger listener', function (name) {
     resetMock();
 
     mock.on('hello', function () {
@@ -28,22 +28,22 @@ specs.add(function () {
 
     mock.emit('hello');
 
-    return assert(passed, 'should register and trigger listener');
+    return assert(passed, name);
 });
 
 
-specs.add(function () {
+specs.add('should trigger multiple listeners', function (name) {
     resetMock();
 
     passed = 0;
-
 
     mock.on('hello', increment);
     mock.on('hello', increment);
     mock.on('hello', increment);
 
     mock.emit('hello');
-    return assert(passed === 3, 'should trigger multiple listeners');
+
+    return assert(passed === 3, name);
 });
 
 
