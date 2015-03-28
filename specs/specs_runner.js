@@ -1,14 +1,12 @@
 import eventAbilitiesSpecs from "specs/glowing_core/event_abilities.spec";
 
 
-var specSets = [
-    {name: 'Event Abilities', set: eventAbilitiesSpecs}
-];
+var specSets = [eventAbilitiesSpecs];
 
 
 specSets.forEach(function (specSet) {
     console.group(specSet.name);
-    specSet.set.runAll(output);
+    specSet.runAll(output);
     console.groupEnd();
 });
 
