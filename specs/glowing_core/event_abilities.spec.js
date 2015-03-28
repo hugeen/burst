@@ -10,7 +10,7 @@ var passed;
 
 function resetMock () {
     mock = eventAbilities();
-    passed = false;
+    passed = 0;
 }
 
 
@@ -35,8 +35,6 @@ specs.add('should register and trigger listener', function (name) {
 specs.add('should trigger multiple listeners', function (name) {
     resetMock();
 
-    passed = 0;
-
     mock.on('hello', increment);
     mock.on('hello', increment);
     mock.on('hello', increment);
@@ -46,6 +44,17 @@ specs.add('should trigger multiple listeners', function (name) {
     return assert(passed === 3, name);
 });
 
+
+specs.add('should remove a listeners', function (name) {
+    resetMock();
+
+    mock.on('hello', increment);
+    mock.removeListener('hello', increment);
+
+    mock.emit('hello');
+
+    return assert(passed === 0, name);
+});
 
 
 export default specs;
