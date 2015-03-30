@@ -1,14 +1,25 @@
 import eventAbilitiesSpecs from "specs/glowing_core/event_abilities.spec";
+import animationLoopSpecs from "specs/glowing_animation/animation_loop.spec";
 
 
-var specSets = [eventAbilitiesSpecs];
+var sets = [
+    eventAbilitiesSpecs,
+    animationLoopSpecs
+];
 
 
-specSets.forEach(function (specSet) {
-    console.group(specSet.name);
-    specSet.runAll(output);
+sets.forEach(function (set) {
+    console.group(set.name);
+    runAll(set.specs);
     console.groupEnd();
 });
+
+
+function runAll (specs) {
+    specs.forEach(function (spec) {
+        output(spec());
+    });
+}
 
 
 function output (spec) {

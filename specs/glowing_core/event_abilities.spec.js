@@ -1,16 +1,14 @@
-import SpecSet from 'glowing_specs/spec_set';
 import assert from 'glowing_specs/assert';
 import eventAbilities from 'glowing_core/event_abilities';
 
 
-
-var specs = new SpecSet('Event abilities');
+var specs = [];
 var mock;
 var passed;
 
 
 
-function resetMock () {
+function reset () {
     mock = eventAbilities();
     passed = 0;
 }
@@ -22,8 +20,8 @@ function increment () {
 
 
 
-specs.add('should register and trigger listener', function (name) {
-    resetMock();
+specs.push(function () {
+    reset();
 
     mock.on('hello', function () {
         passed = true;
@@ -31,12 +29,12 @@ specs.add('should register and trigger listener', function (name) {
 
     mock.emit('hello');
 
-    return assert(passed, name);
+    return assert(passed, 'should register and trigger listener');
 });
 
 
-specs.add('should trigger multiple listeners', function (name) {
-    resetMock();
+specs.push(function () {
+    reset();
 
     mock.on('hello', increment);
     mock.on('hello', increment);
@@ -44,26 +42,26 @@ specs.add('should trigger multiple listeners', function (name) {
 
     mock.emit('hello');
 
-    return assert(passed === 3, name);
+    return assert(passed === 3, 'should trigger multiple listeners');
 });
 
 
 
-specs.add('should remove a listener', function (name) {
-    resetMock();
+specs.push(function () {
+    reset();
 
     mock.on('hello', increment);
     mock.removeListener('hello', increment);
 
     mock.emit('hello');
 
-    return assert(passed === 0, name);
+    return assert(passed === 0, 'should remove a listener');
 });
 
 
 
-specs.add('should forward parameters', function (name) {
-    resetMock();
+specs.push(function () {
+    reset();
 
     var param1;
     var param2;
@@ -74,8 +72,8 @@ specs.add('should forward parameters', function (name) {
 
     mock.emit('custom', true, false);
 
-    return assert(param1 && !param2, name);
+    return assert(param1 && !param2, 'should forward parameters');
 });
 
 
-export default specs;
+export default {name: 'Event abilities', specs};
