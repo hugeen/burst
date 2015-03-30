@@ -19,7 +19,6 @@ function increment () {
 }
 
 
-
 specs.push(function () {
     reset();
 
