@@ -1,5 +1,5 @@
 import assert from 'glowing_core/assert';
-import eventAbilities from 'glowing_core/event_abilities';
+import {on, emit, removeListener} from 'glowing_core/event_emitter';
 
 
 var specs = [];
@@ -9,7 +9,7 @@ var mock;
 var passed;
 
 function reset () {
-    mock = eventAbilities();
+    mock = {};
     passed = 0;
 }
 
@@ -22,11 +22,8 @@ function increment () {
 specs.push(function () {
     reset();
 
-    mock.on('hello', function () {
-        passed = true;
-    });
-
-    mock.emit('hello');
+    on(mock, 'event name', increment);
+    emit(mock, 'event name');
 
     return assert(passed, 'should register and trigger listener');
 });
@@ -35,11 +32,10 @@ specs.push(function () {
 specs.push(function () {
     reset();
 
-    mock.on('hello', increment);
-    mock.on('hello', increment);
-    mock.on('hello', increment);
-
-    mock.emit('hello');
+    on(mock, 'event name', increment);
+    on(mock, 'event name', increment);
+    on(mock, 'event name', increment);
+    emit(mock, 'event name');
 
     return assert(passed === 3, 'should trigger multiple listeners');
 });
@@ -48,12 +44,11 @@ specs.push(function () {
 specs.push(function () {
     reset();
 
-    mock.on('hello', increment);
-    mock.removeListener('hello', increment);
+    on(mock, 'event name', increment);
+    removeListener(mock, 'event name', increment);
+    emit(mock, 'event name');
 
-    mock.emit('hello');
-
-    return assert(passed === 0, 'should remove a listener');
+    return assert(!passed, 'should remove a listener');
 });
 
 
@@ -62,15 +57,16 @@ specs.push(function () {
 
     var param1;
     var param2;
-    mock.on('custom', function (p1, p2) {
+
+    on(mock, 'custom', function (p1, p2) {
         param1 = p1;
         param2 = p2;
     });
 
-    mock.emit('custom', true, false);
+    emit(mock, 'custom', true, false);
 
     return assert(param1 && !param2, 'should forward parameters');
 });
 
 
-export default {name: 'Event abilities', specs};
+export default {name: 'Event emitter', specs};
