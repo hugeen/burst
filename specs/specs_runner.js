@@ -19,6 +19,7 @@ sets.forEach(function (set) {
 
 function runAll (specs) {
     var passed = 0;
+
     specs.forEach(function (spec) {
         var result = spec();
         if (result.passed) {
