@@ -18,16 +18,23 @@ sets.forEach(function (set) {
 
 
 function runAll (specs) {
+    var passed = 0;
     specs.forEach(function (spec) {
-        output(spec());
+        var result = spec();
+        if (result.passed) {
+            passed += 1;
+        }
+        output(result);
     });
+
+    console.log(`${passed}/${specs.length}`);
 }
 
 
-function output (spec) {
-    if (spec.passed) {
-        console.log(spec.infos.message);
+function output (result) {
+    if (result.passed) {
+        console.log(result.infos.message);
     } else {
-        console.error(spec.infos.stack);
+        console.error(result.infos.stack);
     }
 }
