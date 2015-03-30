@@ -15,6 +15,7 @@ function reset() {
 
 }
 
+
 specs.push(function () {
     reset();
     animationLoop.resume();

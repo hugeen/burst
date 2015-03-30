@@ -3,10 +3,10 @@ import eventAbilities from 'glowing_core/event_abilities';
 
 
 var specs = [];
+
+
 var mock;
 var passed;
-
-
 
 function reset () {
     mock = eventAbilities();
@@ -46,7 +46,6 @@ specs.push(function () {
 });
 
 
-
 specs.push(function () {
     reset();
 
@@ -57,7 +56,6 @@ specs.push(function () {
 
     return assert(passed === 0, 'should remove a listener');
 });
-
 
 
 specs.push(function () {
