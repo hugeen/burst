@@ -69,4 +69,25 @@ specs.push(function () {
 });
 
 
+specs.push(function () {
+    reset();
+
+    var array = [1, 2, 3];
+    var count;
+
+    on(array, 'custom', function () {
+        this.push(4);
+    });
+
+    on(array, 'custom', function () {
+        this.push(5);
+    });
+
+    emit(array, 'custom');
+
+    return assert(array.length === 5, 'should work with array');
+});
+
+
+
 export default {name: 'Event emitter', specs};
