@@ -64,6 +64,7 @@ specs.add('should remove a listener', function (name) {
 
 specs.add('should forward parameters', function (name) {
     resetMock();
+
     var param1;
     var param2;
     mock.on('custom', function (p1, p2) {
