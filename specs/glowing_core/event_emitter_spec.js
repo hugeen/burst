@@ -89,5 +89,17 @@ specs.push(function () {
 });
 
 
+specs.push(function () {
+    reset();
+
+    on(increment, 'custom', function () {
+        this();
+    });
+
+    emit(increment, 'custom');
+
+    return assert(passed, 'should work with functions');
+});
+
 
 export default {name: 'Event emitter', specs};
