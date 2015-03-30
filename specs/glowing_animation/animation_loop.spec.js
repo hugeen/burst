@@ -1,4 +1,4 @@
-import assert from 'glowing_specs/assert';
+import assert from 'glowing_core/assert';
 import AnimationLoop from 'glowing_animation/animation_loop';
 
 

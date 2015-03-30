@@ -1,4 +1,4 @@
-import assert from 'glowing_specs/assert';
+import assert from 'glowing_core/assert';
 import eventAbilities from 'glowing_core/event_abilities';
 
 

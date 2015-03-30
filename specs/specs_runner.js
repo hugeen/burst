@@ -1,10 +1,12 @@
 import eventAbilitiesSpecs from "specs/glowing_core/event_abilities.spec";
 import animationLoopSpecs from "specs/glowing_animation/animation_loop.spec";
+import assertSpecs from "specs/glowing_core/assert.spec";
 
 
 var sets = [
     eventAbilitiesSpecs,
-    animationLoopSpecs
+    animationLoopSpecs,
+    assertSpecs
 ];
 
 
