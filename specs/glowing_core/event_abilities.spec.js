@@ -45,7 +45,7 @@ specs.add('should trigger multiple listeners', function (name) {
 });
 
 
-specs.add('should remove a listeners', function (name) {
+specs.add('should remove a listener', function (name) {
     resetMock();
 
     mock.on('hello', increment);
