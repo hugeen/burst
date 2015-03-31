@@ -1,6 +1,6 @@
 import assertSpecs from "specs/glowing_core/assert_spec";
 import eventSpecs from "specs/glowing_core/event_spec";
-import animationLoopSpecs from "specs/glowing_animation/animation_loop_spec";
+import animationLoopSpecs from "specs/glowing_dom/animation_loop_spec";
 
 
 var sets = [
