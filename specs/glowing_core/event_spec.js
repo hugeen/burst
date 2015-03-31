@@ -1,5 +1,5 @@
 import assert from 'glowing_core/assert';
-import {on, emit, removeListener} from 'glowing_core/event_emitter';
+import {on, emit, removeListener} from 'glowing_core/event';
 
 
 var specs = [];
@@ -102,4 +102,4 @@ specs.push(function () {
 });
 
 
-export default {name: 'Event emitter', specs};
+export default {name: 'Event', specs};
