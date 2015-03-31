@@ -11,12 +11,13 @@ Each module is designed to be used in stand-alone or with few dependencies.
 
 ## Themes
 
-* **DOM** (Manipulation, Traversing, Events)
+* **DOM** (Manipulation, Traversing, Events, Utils)
+* **Timers** (Request Animation Frame, Timeout, Interval)
 * **Data Transports** (HTTP, WebSockets, WebRTC)
 * **Inputs** (Mouse, Keyboard, Mobile, Gamepad)
 * **Storage** (LocalStorage, IndexedDB)
 * **Rendering** (HTML/CSS, Canvas2D, WebGL, SVG)
-* **Parallelization** (WebWorkers)
+* **Parallelization** (WebWorker)
 * **Media** (Audio, Video)
 * **File Manipulation** (File API)
 * **Device APIs** (Ambient Light Sensor, Battery Status, Geolocation, Pointer Lock, Proximity, Device Orientation, Screen Orientation, Vibration)
