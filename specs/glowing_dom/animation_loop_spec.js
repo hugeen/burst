@@ -1,61 +1,45 @@
 import assert from 'glowing_core/assert';
-import AnimationLoop from 'glowing_dom/animation_loop';
+import animationLoop from 'glowing_dom/animation_loop';
 
 
 var specs = [];
 
 
-var animationLoop;
-
-function reset() {
-    if (animationLoop) {
-        animationLoop.stop();
-    }
-    animationLoop = new AnimationLoop();
-
-}
-
-
 specs.push(function () {
-    reset();
-    animationLoop.resume();
-    var running = animationLoop.running;
-    animationLoop.stop();
-
-    return assert(running, 'should start the loop');
+    var handler = animationLoop(function () {});
+    var started = handler.animationFrame;
+    handler.stop();
+    return assert(started, 'should start the loop');
 });
 
 
 specs.push(function () {
-    reset();
-    animationLoop.resume();
-    animationLoop.stop();
-    var running = animationLoop.running;
-
-    return assert(!running, 'should stop the loop');
+    var handler = animationLoop(function () {});
+    handler.stop();
+    return assert(!handler.animationFrame, 'should stop the loop');
 });
 
 
 specs.push(function () {
     var passed = false;
-    animationLoop = new AnimationLoop(function () {
+    var handler = animationLoop(function () {
         passed = true;
     });
-    animationLoop.callback();
+    handler.enterFrame(0);
+    handler.stop();
 
     return assert(passed, 'should execute the callback');
 });
 
 
 specs.push(function () {
-    reset();
-    animationLoop.running = true;
-    animationLoop.lastTime = 10;
-    animationLoop.enterFrame(15);
-    var deltaTime = animationLoop.deltaTime;
-    animationLoop.stop();
+    var handler = animationLoop(function() {});
+    handler.deltaTime = 0;
+    handler.lastTime = 10;
+    handler.enterFrame(15);
+    handler.stop();
 
-    return assert(deltaTime === 5, 'should compute delta time');
+    return assert(handler.deltaTime === 5, 'should compute delta time');
 });
 
 
