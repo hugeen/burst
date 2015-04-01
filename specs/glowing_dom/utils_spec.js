@@ -1,10 +1,9 @@
 import assert from 'glowing_core/assert';
-import * as dom from 'glowing_dom/utils';
+import dom from 'glowing_dom/lib';
 
 
 var specs = [];
 var passed = 0;
-
 
 var event = document.createEvent('HTMLEvents');
 event.initEvent('custom', true, true);
@@ -29,7 +28,7 @@ function increment () {
 
 
 specs.push(function () {
-    var body = dom.select('body');
+    var body = dom.getElements('body');
     return assert(body[0] === document.body, 'should select elements with a CSS selector');
 });
 
@@ -58,7 +57,7 @@ specs.push(function () {
 specs.push(function () {
     reset();
 
-    dom.onDomReady(increment)
+    dom.domReady(increment)
 
     return assert(passed, 'should execute a callback on dom ready');
 });
