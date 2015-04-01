@@ -1,5 +1,5 @@
 import assert from 'glowing_core/assert';
-import dom from 'glowing_dom/lib';
+import dom from 'glowing_dom/all';
 
 
 var specs = [];
