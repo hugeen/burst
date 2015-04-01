@@ -1,5 +1,5 @@
-import assert from 'glowing_core/assert';
-import animationLoop from 'glowing_time/animation_loop';
+import assert from 'core/assert';
+import animationLoop from 'time/animation_loop';
 
 
 var specs = [];

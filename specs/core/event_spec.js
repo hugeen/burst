@@ -1,5 +1,5 @@
-import assert from 'glowing_core/assert';
-import {on, emit, removeListener} from 'glowing_core/event';
+import assert from 'core/assert';
+import {on, emit, removeListener} from 'core/event';
 
 
 var specs = [];

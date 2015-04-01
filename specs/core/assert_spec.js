@@ -1,4 +1,4 @@
-import assert from 'glowing_core/assert';
+import assert from 'core/assert';
 
 
 var specs = [];
