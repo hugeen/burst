@@ -1,5 +1,5 @@
 import assert from 'core/assert';
-import {on, emit, removeListener} from 'core/event';
+import {on, emit, removeListener, getListeners} from 'core/event';
 
 
 var specs = [];
@@ -33,6 +33,16 @@ specs.push(function () {
     reset();
 
     on(mock, 'event name', increment);
+    var listeners = getListeners(mock, 'event name');
+
+    return assert(listeners.length, 'should get listeners');
+});
+
+
+specs.push(function () {
+    reset();
+
+    on(mock, 'event name', increment);
     on(mock, 'event name', increment);
     on(mock, 'event name', increment);
     emit(mock, 'event name');
@@ -49,6 +59,17 @@ specs.push(function () {
     emit(mock, 'event name');
 
     return assert(!passed, 'should remove a listener');
+});
+
+
+specs.push(function () {
+    reset();
+
+    on(mock, 'event name', increment);
+    removeListener(mock, 'event name', function() {});
+    var listeners = getListeners(mock, 'event name');
+
+    return assert(listeners.length, 'should not remove listener');
 });
 
 
