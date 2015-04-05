@@ -6,7 +6,7 @@
 * Data attributes short-hand
 
 
-# Time
+## Time
 
 * Delay
 * Defer
