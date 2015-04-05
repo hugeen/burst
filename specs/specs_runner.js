@@ -1,7 +1,10 @@
 import assertSpecs from "specs/core/assert_spec";
 import eventSpecs from "specs/core/event_spec";
 import animationLoopSpecs from "specs/time/animation_loop_spec";
-import domUtilsSpecs from "specs/dom/all_spec";
+import domTraversingSpecs from "specs/dom/traversing_spec";
+import domEventsSpecs from "specs/dom/events_spec";
+import domManipulationSpecs from "specs/dom/manipulation_spec";
+import domUtilsSpecs from "specs/dom/utils_spec";
 import xhrSpecs from "specs/transports/xhr_spec";
 
 
@@ -9,6 +12,9 @@ var sets = [
     assertSpecs,
     eventSpecs,
     animationLoopSpecs,
+    domTraversingSpecs,
+    domEventsSpecs,
+    domManipulationSpecs,
     domUtilsSpecs,
     xhrSpecs
 ];
