@@ -16,6 +16,8 @@ document.readyState = 'complete';
 
 function reset() {
     container.innerHTML = '';
+    container.style.display = ''
+    container.classList.remove('hello');
     passed = 0;
     document.removeEventListener('custom', increment);
     delete document.propName;
@@ -110,6 +112,74 @@ specs.push(function () {
     var isWindow = dom.isWindow(window);
 
     return assert(isWindow, 'should check if an object is a window');
+});
+
+
+specs.push(function () {
+    reset();
+    container.style.display = 'none';
+    dom.show(container);
+
+    return assert(container.style.display !== 'none', 'should show');
+});
+
+
+specs.push(function () {
+    reset();
+    dom.hide(container);
+
+    return assert(container.style.display === 'none', 'should hide');
+});
+
+
+specs.push(function () {
+    reset();
+    dom.addClass(container, 'hello');
+
+    return assert(container.classList.contains('hello'), 'should add a class');
+});
+
+
+specs.push(function () {
+    reset();
+    container.classList.add('hello');
+    dom.removeClass(container, 'hello');
+
+    return assert(!container.classList.contains('hello'), 'should remove a class');
+});
+
+
+specs.push(function () {
+    reset();
+    container.classList.add('hello');
+
+    return assert(dom.hasClass(container, 'hello'), 'should check class');
+});
+
+
+specs.push(function () {
+    reset();
+    dom.append(container, document.createElement('h1'));
+    dom.append(container, document.createElement('h2'));
+
+    return assert(container.innerHTML === '<h1></h1><h2></h2>', 'should append');
+});
+
+
+specs.push(function () {
+    reset();
+    dom.prepend(container, document.createElement('h1'));
+    dom.prepend(container, document.createElement('h2'));
+
+    return assert(container.innerHTML === '<h2></h2><h1></h1>', 'should prepend');
+});
+
+
+specs.push(function () {
+    reset();
+    container.innerHTML = 'hello';
+
+    return assert(container.innerHTML === '', 'should empty');
 });
 
 
