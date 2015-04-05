@@ -29,23 +29,29 @@ sets.forEach(function (set) {
 
 function runAll (specs) {
     var passed = 0;
+    var totalTime = 0;
 
     specs.forEach(function (spec) {
+        var start = (new Date().getTime());
         var result = spec();
+        var elapsed = (new Date().getTime())-start;
+        totalTime += elapsed;
+
         if (result.passed) {
             passed += 1;
         }
-        output(result);
+
+        output(result, elapsed);
     });
 
-    console.log(`${passed}/${specs.length}`);
+    console.log(`${passed}/${specs.length} in ${totalTime}ms`);
 }
 
 
-function output (result) {
+function output (result, elapsed) {
     if (result.passed) {
-        console.log(result.infos.message);
+        console.log(result.infos.message, `${elapsed}ms`);
     } else {
-        console.error(result.infos.stack);
+        console.error(result.infos.stack, `${elapsed}ms`);
     }
 }
