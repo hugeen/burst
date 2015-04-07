@@ -112,4 +112,22 @@ specs.push(function () {
 });
 
 
+specs.push(function () {
+    reset();
+    var element = document.createElement('h1');
+    dom.setStyle(element, 'left', '-11px');
+
+    return assert(element.style.left === '-11px', 'should set a style property on an element');
+});
+
+
+specs.push(function () {
+    reset();
+    var element = document.createElement('h2');
+    dom.setStyles(element, {left: '-12px', right: '-13px'});
+    var isStyled = element.style.left === '-12px' && element.style.right === '-13px';
+
+    return assert(isStyled, 'should set many style properties on an element');
+});
+
 export default {name: 'DOM manipulation', specs};
