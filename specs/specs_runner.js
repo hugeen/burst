@@ -24,7 +24,7 @@ var totalTime = 0;
 var passed = 0;
 var count = 0;
 sets.forEach(function (set) {
-    console.group(set.name);
+    console.group(`%c ${set.name} `, 'font-size: 1.3em;');
     var result = runAll(set.specs);
 
     passed += result.passed;
@@ -34,7 +34,7 @@ sets.forEach(function (set) {
     console.groupEnd();
 });
 
-logResult({count, passed, totalTime}, 'Total -');
+logResult({count, passed, totalTime}, 'Total - ');
 
 
 function runAll (specs) {
@@ -72,6 +72,11 @@ function output (result, elapsed) {
 
 function logResult (result, label = '') {
     var {count, passed, totalTime} = result;
+    var allPassed = count === passed;
+    var style = 'font-weight: bold;';
+    if (!allPassed) {
+        style += ' color: red;';
+    }
 
-    console[count === passed ? 'info' : 'warn'](`${label} ${passed}/${count} in ${totalTime}ms`);
+    console[allPassed ? 'info' : 'warn'](`%c ${label}${passed}/${count} in ${totalTime}ms `, style);
 }
