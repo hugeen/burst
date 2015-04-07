@@ -37,9 +37,17 @@ specs.push(function () {
 
 specs.push(function () {
     reset();
+    var element = dom.eachElement([document], increment);
+
+    return assert(passed, 'should cast an array of elements into a dom element');
+});
+
+
+specs.push(function () {
+    reset();
     var element = dom.castElement([document]);
 
-    return assert(element === document, 'should cast an array of elements into a dom element');
+    return assert(element === document, 'should iterate on an array of elements');
 });
 
 
