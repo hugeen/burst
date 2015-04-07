@@ -12,7 +12,8 @@ document.body.appendChild(container);
 
 function reset() {
     container.innerHTML = '';
-    container.style.display = ''
+    container.style.display = '';
+    container.style.height = '';
     container.classList.remove('hello');
 }
 
@@ -159,6 +160,14 @@ specs.push(function () {
     var isSet = element.getAttribute('data-hello') === 'world' && element.getAttribute('data-foo') === 'bar';
 
     return assert(isSet, 'should set many attributes on an element');
+});
+
+
+specs.push(function () {
+    reset();
+    container.style.height = '40px';
+
+    return assert(dom.getHeight(container) === 40, 'should get element height');
 });
 
 
