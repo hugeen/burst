@@ -86,4 +86,20 @@ specs.push(function () {
 });
 
 
+specs.push(function () {
+    reset();
+    var visibility = dom.getStyle(container, 'visibility');
+
+    return assert(visibility === 'visible', 'should get a style property from an element');
+});
+
+
+specs.push(function () {
+    reset();
+    var styles = dom.getStyles(container);
+
+    return assert(styles.visibility === 'visible', 'should get all style properties from an element');
+});
+
+
 export default {name: 'DOM manipulation', specs};
