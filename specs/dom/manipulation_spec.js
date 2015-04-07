@@ -83,7 +83,7 @@ specs.push(function () {
     container.appendChild(element)
     dom.remove(element);
 
-    return assert(!document.querySelector('h1'), 'should remove an element');
+    return assert(document.querySelector('h1'), 'should remove an element');
 });
 
 

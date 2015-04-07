@@ -20,20 +20,31 @@ var sets = [
 ];
 
 
+var totalTime = 0;
+var passed = 0;
+var count = 0;
 sets.forEach(function (set) {
     console.group(set.name);
-    runAll(set.specs);
+    var result = runAll(set.specs);
+
+    passed += result.passed;
+    totalTime += result.totalTime;
+    count += result.count;
+
     console.groupEnd();
 });
 
+logResult({count, passed, totalTime}, 'Total -');
+
 
 function runAll (specs) {
-    var passed = 0;
-    var totalTime = 0;
+    let passed = 0;
+    let totalTime = 0;
+    var count = specs.length;
 
     specs.forEach(function (spec) {
         var start = (new Date().getTime());
-        var result = spec();
+        let result = spec();
         var elapsed = (new Date().getTime())-start;
         totalTime += elapsed;
 
@@ -44,7 +55,9 @@ function runAll (specs) {
         output(result, elapsed);
     });
 
-    console.log(`${passed}/${specs.length} in ${totalTime}ms`);
+    logResult({count, passed, totalTime});
+
+    return {count, passed, totalTime};
 }
 
 
@@ -54,4 +67,11 @@ function output (result, elapsed) {
     } else {
         console.error(result.infos.stack, `${elapsed}ms`);
     }
+}
+
+
+function logResult (result, label = '') {
+    var {count, passed, totalTime} = result;
+
+    console[count === passed ? 'info' : 'warn'](`${label} ${passed}/${count} in ${totalTime}ms`);
 }
