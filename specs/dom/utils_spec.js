@@ -37,6 +37,14 @@ specs.push(function () {
 
 specs.push(function () {
     reset();
+    var element = dom.castElement([document]);
+
+    return assert(element === document, 'should cast an array of elements into a dom element');
+});
+
+
+specs.push(function () {
+    reset();
     dom.invoke(document, 'addEventListener', 'custom', increment);
     document.dispatchEvent(event);
 
