@@ -1,7 +1,7 @@
 ## DOM
 
 * Position / Offset
-* Data attributes short-hand
+* Width / Size
 
 
 ## Time
