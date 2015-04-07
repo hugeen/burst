@@ -1,8 +1,6 @@
 ## DOM
 
 * Position / Offset
-* ComputedStyle (CSS)
-* Remove an element
 * Data attributes short-hand
 
 

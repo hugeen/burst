@@ -79,6 +79,16 @@ specs.push(function () {
 
 specs.push(function () {
     reset();
+    var element = document.createElement('h1');
+    container.appendChild(element)
+    dom.remove(element);
+
+    return assert(!document.querySelector('h1'), 'should remove an element');
+});
+
+
+specs.push(function () {
+    reset();
     container.innerHTML = 'hello';
     dom.empty(container);
 
