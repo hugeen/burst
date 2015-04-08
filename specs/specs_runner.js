@@ -7,7 +7,6 @@ import domManipulationSpecs from "specs/dom/manipulation_spec";
 import domUtilsSpecs from "specs/dom/utils_spec";
 import domDimensionsSpecs from "specs/dom/dimensions_spec";
 import domAccessorsSpecs from "specs/dom/accessors_spec";
-import domPositionsSpecs from "specs/dom/positions_spec";
 import xhrSpecs from "specs/transports/xhr_spec";
 
 
@@ -21,7 +20,6 @@ var sets = [
     domUtilsSpecs,
     domDimensionsSpecs,
     domAccessorsSpecs,
-    domPositionsSpecs,
     xhrSpecs
 ];
 

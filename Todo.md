@@ -1,7 +1,6 @@
 ## DOM
 
 * Harmonize method names
-* Position / Offset
 * Width / Size
 
 
