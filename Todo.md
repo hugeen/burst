@@ -20,16 +20,14 @@
 
 ## Specs
 
-* Async support
-* XHR get & post
-* PhantomJS Script
+* Async support on specs
+* PhantomJS Runner
+* Specs for XHR get & post
 
 
-## Harmonize SystemJS / Babel / ES6 Module Loader
+## Harmonize Module Loader / Transpiler / Build
 
-* https://github.com/systemjs/systemjs/
-* http://babeljs.io/docs/using-babel/
-* https://github.com/ModuleLoader/es6-module-loader/
-* Paths / Modules
-* export * from 'dom';
-* Gulp Build
+* Gulp
+* Babel
+* Watch
+* Sourcemaps
