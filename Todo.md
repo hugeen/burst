@@ -1,4 +1,4 @@
-## DOM
+## All
 
 * Harmonize method names
 
