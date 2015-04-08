@@ -1,7 +1,6 @@
 ## DOM
 
 * Harmonize method names
-* Width / Size
 
 
 ## Time
