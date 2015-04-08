@@ -1,5 +1,6 @@
 ## DOM
 
+* Harmonize method names
 * Position / Offset
 * Width / Size
 
@@ -15,7 +16,7 @@
 ## Transport
 
 * DOM Transport (img, video, audio)
-* Loader
+* Assets Loader
 
 
 ## Specs
