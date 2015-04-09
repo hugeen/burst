@@ -27,68 +27,68 @@ function increment () {
 
 
 
-specs.push(function () {
+specs.push(function (done) {
     reset();
     var elements = dom.castElements(document);
 
-    return assert(elements.length, 'should cast a dom element into an array on elements');
+    done(assert(elements.length, 'should cast a dom element into an array on elements'));
 });
 
 
-specs.push(function () {
+specs.push(function (done) {
     reset();
     var element = dom.eachElement([document], increment);
 
-    return assert(passed, 'should cast an array of elements into a dom element');
+    done(assert(passed, 'should cast an array of elements into a dom element'));
 });
 
 
-specs.push(function () {
+specs.push(function (done) {
     reset();
     var element = dom.castElement([document]);
 
-    return assert(element === document, 'should iterate on an array of elements');
+    done(assert(element === document, 'should iterate on an array of elements'));
 });
 
 
-specs.push(function () {
+specs.push(function (done) {
     reset();
     dom.invoke(document, 'addEventListener', 'custom', increment);
     document.dispatchEvent(event);
 
-    return assert(passed, 'should invoke a method on each elements');
+    done(assert(passed, 'should invoke a method on each elements'));
 });
 
 
-specs.push(function () {
+specs.push(function (done) {
     reset();
     dom.setProperty(document, 'propName', true);
 
-    return assert(document.propName, 'should set a property on each elements');
+    done(assert(document.propName, 'should set a property on each elements'));
 });
 
 
-specs.push(function () {
+specs.push(function (done) {
     reset();
     var isDiv = dom.is(container, 'div');
 
-    return assert(isDiv, 'should check if elements matches with a selector');
+    done(assert(isDiv, 'should check if elements matches with a selector'));
 });
 
 
-specs.push(function () {
+specs.push(function (done) {
     reset();
     var isElement = dom.isElement(container);
 
-    return assert(isElement, 'should check if an object is an element');
+    done(assert(isElement, 'should check if an object is an element'));
 });
 
 
-specs.push(function () {
+specs.push(function (done) {
     reset();
     var isWindow = dom.isWindow(window);
 
-    return assert(isWindow, 'should check if an object is a window');
+    done(assert(isWindow, 'should check if an object is a window'));
 });
 
 

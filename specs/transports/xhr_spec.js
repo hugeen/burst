@@ -17,13 +17,13 @@ function increment (...args) {
 }
 
 
-specs.push(function () {
+specs.push(function (done) {
     var xhr = buildXhr();
-    return assert(xhr instanceof XMLHttpRequest, 'should make build a new XHR');
+    done(assert(xhr instanceof XMLHttpRequest, 'should make build a new XHR'));
 });
 
 
-specs.push(function () {
+specs.push(function (done) {
     reset();
     var xhr = new XMLHttpRequest();
 
@@ -32,11 +32,11 @@ specs.push(function () {
     on(xhr, 'load', increment);
     xhr.dispatchEvent(e);
 
-    return assert(passed, 'should proxify XHR event');
+    done(assert(passed, 'should proxify XHR event'));
 });
 
 
-specs.push(function () {
+specs.push(function (done) {
     reset();
     var xhr = new XMLHttpRequest();
 
@@ -47,7 +47,7 @@ specs.push(function () {
         xhr.dispatchEvent(e);
     });
 
-    return assert(passed === xhrEvents.length, 'should proxify XHR events');
+    done(assert(passed === xhrEvents.length, 'should proxify XHR events'));
 });
 
 

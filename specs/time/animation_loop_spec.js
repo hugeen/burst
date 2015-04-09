@@ -5,22 +5,22 @@ import animationLoop from 'time/animation_loop';
 var specs = [];
 
 
-specs.push(function () {
+specs.push(function (done) {
     var handler = animationLoop(function () {});
     var started = handler.animationFrame;
     handler.stop();
-    return assert(started, 'should start the loop');
+    done(assert(started, 'should start the loop'));
 });
 
 
-specs.push(function () {
+specs.push(function (done) {
     var handler = animationLoop(function () {});
     handler.stop();
-    return assert(!handler.animationFrame, 'should stop the loop');
+    done(assert(!handler.animationFrame, 'should stop the loop'));
 });
 
 
-specs.push(function () {
+specs.push(function (done) {
     var passed = false;
     var handler = animationLoop(function () {
         passed = true;
@@ -28,18 +28,18 @@ specs.push(function () {
     handler.enterFrame(0);
     handler.stop();
 
-    return assert(passed, 'should execute the callback');
+    done(assert(passed, 'should execute the callback'));
 });
 
 
-specs.push(function () {
+specs.push(function (done) {
     var handler = animationLoop(function() {});
     handler.deltaTime = 0;
     handler.lastTime = 10;
     handler.enterFrame(15);
     handler.stop();
 
-    return assert(handler.deltaTime === 5, 'should compute delta time');
+    done(assert(handler.deltaTime === 5, 'should compute delta time'));
 });
 
 

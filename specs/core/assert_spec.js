@@ -4,24 +4,24 @@ import assert from 'core/assert';
 var specs = [];
 
 
-specs.push(function () {
+specs.push(function (done) {
     var assertion = assert(true, 'should pass');
 
-    return assert(assertion.passed, 'should pass');
+    done(assert(assertion.passed, 'should pass'));
 });
 
 
-specs.push(function () {
+specs.push(function (done) {
     var assertion = assert(false, 'should fail');
 
-    return assert(!assertion.passed, 'should fail');
+    done(assert(!assertion.passed, 'should fail'));
 });
 
 
-specs.push(function () {
+specs.push(function (done) {
     var assertion = assert(true, 'should pass');
 
-    return assert(assertion.infos instanceof Error, 'should return an object Error');
+    done(assert(assertion.infos instanceof Error, 'should return an object Error'));
 });
 
 

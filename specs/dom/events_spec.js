@@ -21,33 +21,33 @@ function increment () {
 }
 
 
-specs.push(function () {
+specs.push(function (done) {
     reset();
 
     dom.addListener(document, 'custom', increment);
     document.dispatchEvent(event);
 
-    return assert(passed, 'should add a listener');
+    done(assert(passed, 'should add a listener'));
 });
 
 
-specs.push(function () {
+specs.push(function (done) {
     reset();
 
     document.addEventListener('custom', increment);
     dom.removeListener(document, 'custom', increment);
     document.dispatchEvent(event);
 
-    return assert(!passed, 'should remove a listener');
+    done(assert(!passed, 'should remove a listener'));
 });
 
 
-specs.push(function () {
+specs.push(function (done) {
     reset();
 
     dom.domReady(increment)
 
-    return assert(passed, 'should execute a callback on dom ready');
+    done(assert(passed, 'should execute a callback on dom ready'));
 });
 
 

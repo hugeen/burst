@@ -19,59 +19,59 @@ function reset() {
 }
 
 
-specs.push(function () {
+specs.push(function (done) {
     reset();
     container.style.height = '40px';
 
-    return assert(dom.getHeight(container) === 40, 'should get element height');
+    done(assert(dom.getHeight(container) === 40, 'should get element height'));
 });
 
 
-specs.push(function () {
+specs.push(function (done) {
     reset();
     container.style.width = '50px';
 
-    return assert(dom.getWidth(container) === 50, 'should get element width');
+    done(assert(dom.getWidth(container) === 50, 'should get element width'));
 });
 
 
-specs.push(function () {
+specs.push(function (done) {
     reset();
     container.style.width = '50px';
     container.style.height = '40px';
 
     var {width, height} = dom.getSize(container);
-    return assert(height === 40 && width === 50, 'should get element size');
+    done(assert(height === 40 && width === 50, 'should get element size'));
 });
 
 
-specs.push(function () {
+specs.push(function (done) {
     reset();
     var div = document.createElement('div');
     container.appendChild(div);
 
     var {top, left} = dom.getPosition(div);
-    return assert(top === 0 && left === 0, 'should get element position');
+    done(assert(top === 0 && left === 0, 'should get element position'));
 });
 
 
-specs.push(function () {
+specs.push(function (done) {
     reset();
     var div = document.createElement('div');
     container.appendChild(div);
 
     var {top, left} = dom.getOffset(div);
-    return assert(top === 40 && left === 50, 'should get element offset');
+    done(assert(top === 40 && left === 50, 'should get element offset'));
 });
 
 
-specs.push(function () {
+specs.push(function (done) {
     reset();
     var div = document.createElement('div');
     container.appendChild(div);
 
     var {top, left} = dom.getPositionFromViewport(container);
-    return assert(top === 40 && left === 50, 'should get element position from viewport');
+    done(assert(top === 40 && left === 50, 'should get element position from viewport'));
 });
 
 

@@ -24,48 +24,43 @@ var sets = [
 ];
 
 
-var totalTime = 0;
-var passed = 0;
-var count = 0;
-sets.forEach(function (set) {
-    console.group(`%c ${set.name} `, 'font-size: 1.3em;');
-    var result = runAll(set.specs);
-
-    passed += result.passed;
-    totalTime += result.totalTime;
-    count += result.count;
-
-    console.groupEnd();
-});
-
-logResult({count, passed, totalTime}, 'Total - ');
+runNextSet(sets);
 
 
-function runAll (specs) {
-    let passed = 0;
-    let totalTime = 0;
-    var count = specs.length;
+var specsCount = 0;
+var totalPassed = 0;
 
-    specs.forEach(function (spec) {
-        var start = (new Date().getTime());
-        let result = spec();
-        var elapsed = (new Date().getTime())-start;
-        totalTime += elapsed;
+function runNextSet(sets, i = 0) {
+    if (i < sets.length) {
+        var set = sets[i];
+        console.group(`%c ${set.name} `, 'font-size: 1.3em;');
 
-        if (result.passed) {
-            passed += 1;
-        }
-
-        output(result, elapsed);
-    });
-
-    logResult({count, passed, totalTime});
-
-    return {count, passed, totalTime};
+        runNextSpec(set, 0, function () {
+            logResult({count: set.specs.length, passed: set.passed});
+            console.groupEnd();
+            runNextSet(sets, i + 1);
+        });
+    }
 }
 
 
-function output (result, elapsed) {
+function runNextSpec(set, i, callback) {
+
+    if (i >= set.specs.length) {
+        callback();
+    } else {
+        set.specs[i](function(result) {
+            output(result, 0);
+            if (result.passed) {
+                set.passed = (set.passed || 0) + 1;
+            }
+            runNextSpec(set, i + 1, callback);
+        });
+    }
+}
+
+
+function output(result, elapsed) {
     if (result.passed) {
         console.log(result.infos.message, `${elapsed}ms`);
     } else {
@@ -74,13 +69,15 @@ function output (result, elapsed) {
 }
 
 
-function logResult (result, label = '') {
-    var {count, passed, totalTime} = result;
+function logResult(result, label = '') {
+    var {
+        count, passed
+    } = result;
     var allPassed = count === passed;
     var style = 'font-weight: bold;';
     if (!allPassed) {
         style += ' color: red;';
     }
 
-    console[allPassed ? 'info' : 'warn'](`%c ${label}${passed}/${count} in ${totalTime}ms `, style);
+    console[allPassed ? 'info' : 'warn'](`%c ${label}${passed}/${count}`, style);
 }

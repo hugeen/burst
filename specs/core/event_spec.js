@@ -19,27 +19,27 @@ function increment () {
 }
 
 
-specs.push(function () {
+specs.push(function (done) {
     reset();
 
     on(mock, 'event name', increment);
     emit(mock, 'event name');
 
-    return assert(passed, 'should register and trigger listener');
+    done(assert(passed, 'should register and trigger listener'));
 });
 
 
-specs.push(function () {
+specs.push(function (done) {
     reset();
 
     on(mock, 'event name', increment);
     var listeners = getListeners(mock, 'event name');
 
-    return assert(listeners.length, 'should get listeners');
+    done(assert(listeners.length, 'should get listeners'));
 });
 
 
-specs.push(function () {
+specs.push(function (done) {
     reset();
 
     on(mock, 'event name', increment);
@@ -47,33 +47,33 @@ specs.push(function () {
     on(mock, 'event name', increment);
     emit(mock, 'event name');
 
-    return assert(passed === 3, 'should trigger multiple listeners');
+    done(assert(passed === 3, 'should trigger multiple listeners'));
 });
 
 
-specs.push(function () {
+specs.push(function (done) {
     reset();
 
     on(mock, 'event name', increment);
     removeListener(mock, 'event name', increment);
     emit(mock, 'event name');
 
-    return assert(!passed, 'should remove a listener');
+    done(assert(!passed, 'should remove a listener'));
 });
 
 
-specs.push(function () {
+specs.push(function (done) {
     reset();
 
     on(mock, 'event name', increment);
     removeListener(mock, 'event name', function() {});
     var listeners = getListeners(mock, 'event name');
 
-    return assert(listeners.length, 'should not remove listener');
+    done(assert(listeners.length, 'should not remove listener'));
 });
 
 
-specs.push(function () {
+specs.push(function (done) {
     reset();
 
     var param1;
@@ -86,11 +86,11 @@ specs.push(function () {
 
     emit(mock, 'custom', true, false);
 
-    return assert(param1 && !param2, 'should forward parameters');
+    done(assert(param1 && !param2, 'should forward parameters'));
 });
 
 
-specs.push(function () {
+specs.push(function (done) {
     reset();
 
     var array = [1, 2, 3];
@@ -106,11 +106,11 @@ specs.push(function () {
 
     emit(array, 'custom');
 
-    return assert(array.length === 5, 'should work with array');
+    done(assert(array.length === 5, 'should work with array'));
 });
 
 
-specs.push(function () {
+specs.push(function (done) {
     reset();
 
     on(increment, 'custom', function () {
@@ -119,7 +119,7 @@ specs.push(function () {
 
     emit(increment, 'custom');
 
-    return assert(passed, 'should work with functions');
+    done(assert(passed, 'should work with functions'));
 });
 
 
