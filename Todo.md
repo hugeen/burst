@@ -1,6 +1,16 @@
 ## All
 
-* Harmonize method names
+* Better function names
+
+
+# Core
+
+* Queue
+
+
+# DOM
+
+* Event delegation
 
 
 ## Time
@@ -17,14 +27,18 @@
 * Assets Loader
 
 
+# XHR
+
+* Rewrite get & post functions
+
+
 ## Specs
 
 * Async support on specs
 * PhantomJS Runner
-* Specs for XHR get & post
 
 
-## Harmonize Module Loader / Transpiler / Build
+## Build and Debug
 
 * Gulp
 * Babel
