@@ -50,7 +50,7 @@ function runNextSpec(set, i, callback) {
         callback();
     } else {
         set.specs[i](function(result) {
-            output(result, 0);
+            output(result);
             if (result.passed) {
                 set.passed = (set.passed || 0) + 1;
             }
@@ -60,11 +60,11 @@ function runNextSpec(set, i, callback) {
 }
 
 
-function output(result, elapsed) {
+function output(result) {
     if (result.passed) {
-        console.log(result.infos.message, `${elapsed}ms`);
+        console.log(result.infos.message;
     } else {
-        console.error(result.infos.stack, `${elapsed}ms`);
+        console.error(result.infos.stack);
     }
 }
 
