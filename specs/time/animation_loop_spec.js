@@ -43,4 +43,20 @@ specs.push(function (done) {
 });
 
 
+specs.push(function (done) {
+    var message = 'should enterFrame';
+
+    var handler = animationLoop(function (handler) {
+        clearTimeout(fail);
+        handler.stop();
+        done(assert(true, message));
+    });
+
+    var fail = setTimeout(function () {
+        done(assert(false, message));
+    }, 100);
+
+});
+
+
 export default {name: 'Animation loop', specs};
