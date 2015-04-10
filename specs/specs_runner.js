@@ -53,7 +53,7 @@ function runNextSpec(set, i, callback) {
             }
             runNextSpec(set, i + 1, callback);
         });
-    }
+    }$
 }
 
 
