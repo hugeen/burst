@@ -1,61 +1,41 @@
 import assert from 'core/assert';
-import animationLoop from 'time/animation_loop';
+import {startAnimationLoop, stopAnimationLoop} from 'time/animation_loop';
+import {on} from 'core/event';
+import {failTimeout} from 'specs/specs_helper';
 
 
 var specs = [];
 
 
 specs.push(function (done) {
-    var handler = animationLoop(function () {});
-    var started = handler.animationFrame;
-    handler.stop();
-    done(assert(started, 'should start the loop'));
-});
+    var message = 'should start the loop';
+    var timeout = failTimeout(done, 100, message);
 
-
-specs.push(function (done) {
-    var handler = animationLoop(function () {});
-    handler.stop();
-    done(assert(!handler.animationFrame, 'should stop the loop'));
-});
-
-
-specs.push(function (done) {
-    var passed = false;
-    var handler = animationLoop(function () {
-        passed = true;
-    });
-    handler.enterFrame(0);
-    handler.stop();
-
-    done(assert(passed, 'should execute the callback'));
-});
-
-
-specs.push(function (done) {
-    var handler = animationLoop(function() {});
-    handler.deltaTime = 0;
-    handler.lastTime = 10;
-    handler.enterFrame(15);
-    handler.stop();
-
-    done(assert(handler.deltaTime === 5, 'should compute delta time'));
-});
-
-
-specs.push(function (done) {
-    var message = 'should enterFrame';
-
-    var handler = animationLoop(function (handler) {
-        clearTimeout(fail);
-        handler.stop();
+    var object = {};
+    on(object, 'enter frame', function (deltaTime) {
+        stopAnimationLoop(object);
+        clearTimeout(timeout);
         done(assert(true, message));
     });
 
-    var fail = setTimeout(function () {
-        done(assert(false, message));
+    startAnimationLoop(object);
+});
+
+
+specs.push(function (done) {
+    var message = 'should stop the loop';
+    var timeout = setTimeout(function () {
+        done(assert(true, message));
     }, 100);
 
+    var object = {};
+    on(object, 'enter frame', function (deltaTime) {
+        clearTimeout(timeout);
+        done(assert(false, message));
+    });
+
+    startAnimationLoop(object);
+    stopAnimationLoop(object);
 });
 
 
