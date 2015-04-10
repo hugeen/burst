@@ -10,7 +10,7 @@ import domAccessorsSpecs from "specs/dom/accessors_spec";
 import xhrSpecs from "specs/transports/xhr_spec";
 
 
-var sets = [
+runNextSet([
     assertSpecs,
     eventSpecs,
     animationLoopSpecs,
@@ -21,10 +21,7 @@ var sets = [
     domDimensionsSpecs,
     domAccessorsSpecs,
     xhrSpecs
-];
-
-
-runNextSet(sets);
+]);
 
 
 var specsCount = 0;
@@ -62,7 +59,7 @@ function runNextSpec(set, i, callback) {
 
 function output(result) {
     if (result.passed) {
-        console.log(result.infos.message;
+        console.log(result.infos.message);
     } else {
         console.error(result.infos.stack);
     }
