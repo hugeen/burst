@@ -9,6 +9,7 @@ import domUtilsSpecs from 'specs/dom/utils_spec';
 import domDimensionsSpecs from 'specs/dom/dimensions_spec';
 import domAccessorsSpecs from 'specs/dom/accessors_spec';
 import xhrSpecs from 'specs/transports/xhr_spec';
+import mediaSpecs from 'specs/transports/media_spec';
 
 
 runNextSet([
@@ -22,7 +23,8 @@ runNextSet([
     domUtilsSpecs,
     domDimensionsSpecs,
     domAccessorsSpecs,
-    xhrSpecs
+    xhrSpecs,
+    mediaSpecs
 ]);
 
 
