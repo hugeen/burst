@@ -1,5 +1,6 @@
 import assertSpecs from 'specs/core/assert_spec';
 import eventSpecs from 'specs/core/event_spec';
+import queueSpecs from 'specs/core/queue_spec';
 import animationLoopSpecs from 'specs/time/animation_loop_spec';
 import domTraversingSpecs from 'specs/dom/traversing_spec';
 import domEventsSpecs from 'specs/dom/events_spec';
@@ -13,6 +14,7 @@ import xhrSpecs from 'specs/transports/xhr_spec';
 runNextSet([
     assertSpecs,
     eventSpecs,
+    queueSpecs,
     animationLoopSpecs,
     domTraversingSpecs,
     domEventsSpecs,
