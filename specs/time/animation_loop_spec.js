@@ -1,5 +1,5 @@
 import assert from 'core/assert';
-import {startAnimationLoop, stopAnimationLoop} from 'time/animation_loop';
+import {globalAnimationLoop, startAnimationLoop, stopAnimationLoop} from 'time/animation_loop';
 import {on} from 'core/event';
 import {failTimeout} from 'specs/specs_helper';
 
