@@ -1,6 +1,6 @@
 import assert from 'core/assert';
 import {on} from 'core/event';
-import {startQueue} from 'core/queue';
+import {processQueue} from 'core/queue';
 
 
 var specs = [];
@@ -19,7 +19,7 @@ function reset () {
 specs.push(function (done) {
     reset();
     var queue = [increment, increment, increment];
-    startQueue(queue);
+    processQueue(queue);
     done(assert(queue, 'should start queue'));
 });
 
@@ -31,7 +31,7 @@ specs.push(function (done) {
     on(queue, 'complete', function () {
         completed = true;
     });
-    startQueue(queue);
+    processQueue(queue);
     done(assert(completed, 'should emit an event on complete'));
 });
 
