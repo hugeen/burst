@@ -1,5 +1,5 @@
 import assert from 'core/assert';
-import {globalAnimationLoop, startAnimationLoop, stopAnimationLoop} from 'time/animation_loop';
+import {animationLoop, enableAnimationLoop, disableAnimationLoop} from 'time/animation_loop';
 import {on} from 'core/event';
 import {failTimeout} from 'specs/specs_helper';
 
@@ -13,12 +13,12 @@ specs.push(function (done) {
 
     var object = {};
     on(object, 'enter frame', function (deltaTime) {
-        stopAnimationLoop(object);
+        disableAnimationLoop(object);
         clearTimeout(timeout);
         done(assert(true, message));
     });
 
-    startAnimationLoop(object);
+    enableAnimationLoop(object);
 });
 
 
@@ -34,8 +34,8 @@ specs.push(function (done) {
         done(assert(false, message));
     });
 
-    startAnimationLoop(object);
-    stopAnimationLoop(object);
+    enableAnimationLoop(object);
+    disableAnimationLoop(object);
 });
 
 
