@@ -29,7 +29,7 @@ function increment () {
 
 specs.push(function (done) {
     reset();
-    var elements = dom.castElements(document);
+    var elements = dom.toElementList(document);
 
     done(assert(elements.length, 'should cast a dom element into an array on elements'));
 });
@@ -45,7 +45,7 @@ specs.push(function (done) {
 
 specs.push(function (done) {
     reset();
-    var element = dom.castElement([document]);
+    var element = dom.toElement([document]);
 
     done(assert(element === document, 'should iterate on an array of elements'));
 });
