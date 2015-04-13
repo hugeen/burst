@@ -19,7 +19,7 @@ Each library is designed to be usable stand-alone or with few dependencies.
 
 * **DOM** (Manipulation, Traversing, Events, Utils)
 * **Timers** (Request Animation Frame, Timeout, Interval)
-* **Data Transports** (HTTP, WebSockets, WebRTC)
+* **Data Transports** (HTTP, WebSockets, WebRTC, DOM)
 * **Inputs** (Mouse, Keyboard, Mobile, Gamepad)
 * **Storage** (LocalStorage, IndexedDB)
 * **Rendering** (HTML/CSS, Canvas2D, WebGL, SVG)
