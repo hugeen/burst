@@ -70,25 +70,49 @@ specs.push(function (done) {
 
 specs.push(function (done) {
     reset();
-    var isDiv = dom.is(container, 'div');
+    var check = dom.is(container, 'div');
 
-    done(assert(isDiv, 'should check if elements matches with a selector'));
+    done(assert(check, 'should check if elements matches with a selector'));
 });
 
 
 specs.push(function (done) {
     reset();
-    var isElement = dom.isElement(container);
+    var check = dom.isElement(container);
 
-    done(assert(isElement, 'should check if an object is an element'));
+    done(assert(check, 'should check if an object is an element'));
 });
 
 
 specs.push(function (done) {
     reset();
-    var isWindow = dom.isWindow(window);
+    var check = dom.isWindow(window);
 
-    done(assert(isWindow, 'should check if an object is a window'));
+    done(assert(check, 'should check if an object is a window'));
+});
+
+
+specs.push(function (done) {
+    reset();
+    var check = dom.isNodeList(document.querySelectorAll('div'));
+
+    done(assert(check, 'should check if an object is a node list'));
+});
+
+
+specs.push(function (done) {
+    reset();
+    var check = dom.isElementList([document, document.body]);
+
+    done(assert(check, 'should check if an object is an element list'));
+});
+
+
+specs.push(function (done) {
+    reset();
+    var check = dom.isElementList([document, document.body]);
+
+    done(assert(check, 'should check if an object is an element or an element list'));
 });
 
 
