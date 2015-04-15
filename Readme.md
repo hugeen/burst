@@ -13,7 +13,7 @@ Each library is designed to be usable stand-alone or with few dependencies.
 * [Todo](https://github.com/hugeen/burst/wiki/Todo)
 
 
-## Themes
+## Main themes
 
 * **DOM** (Manipulation, Traversing, Events, Utils)
 * **Timers** (Request Animation Frame, Timeout, Interval)
