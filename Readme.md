@@ -11,8 +11,8 @@ Burst is a collection of libraries to build bigger things, such as applications 
 Each library is designed to be usable stand-alone or with few dependencies.
 
 
-* [Features](https://github.com/hugeen/Burst/wiki/Features)
-* [Todo](https://github.com/hugeen/Burst/wiki/Todo)
+* [Features](wiki/Features)
+* [Todo](wiki/Todo)
 
 
 ## Themes
