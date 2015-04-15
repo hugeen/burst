@@ -4,9 +4,7 @@
 
 Attempt to harmonize the different components of modern JavaScript environments (using **ES6**).
 
-I aim for **simplicity** and *minimalism*.
-
-Burst is a collection of libraries to build bigger things, such as applications or games.
+**burst** is a collection of libraries to build bigger things, such as applications or games.
 
 Each library is designed to be usable stand-alone or with few dependencies.
 
