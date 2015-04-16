@@ -1,5 +1,6 @@
 import assert from 'core/assert';
 import * as dom from 'dom/events';
+import {on, removeListener} from 'core/event';
 
 
 var specs = [];
@@ -11,6 +12,7 @@ event.eventName = 'custom';
 
 
 function reset() {
+    dom.enableDomEvents();
     passed = 0;
     document.removeEventListener('custom', increment);
 }
@@ -24,8 +26,6 @@ function increment () {
 specs.push(function (done) {
     reset();
 
-    dom.enableDomEvents();
-
     done(assert(dom.eventsEnabled, 'should enable dom events'));
 });
 
@@ -33,7 +33,6 @@ specs.push(function (done) {
 specs.push(function (done) {
     reset();
 
-    dom.enableDomEvents();
     dom.disableDomEvents();
 
     done(assert(!dom.eventsEnabled, 'should enable dom events'));
@@ -43,7 +42,7 @@ specs.push(function (done) {
 specs.push(function (done) {
     reset();
 
-    dom.addListener(document, 'custom', increment);
+    on(document, 'custom', increment);
     document.dispatchEvent(event);
 
     done(assert(passed, 'should add a listener'));
@@ -54,7 +53,7 @@ specs.push(function (done) {
     reset();
 
     document.addEventListener('custom', increment);
-    dom.removeListener(document, 'custom', increment);
+    removeListener(document, 'custom', increment);
     document.dispatchEvent(event);
 
     done(assert(!passed, 'should remove a listener'));
