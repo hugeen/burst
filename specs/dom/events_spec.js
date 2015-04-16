@@ -1,5 +1,5 @@
 import assert from 'core/assert';
-import * as dom from 'dom/events';
+import * as dom from 'dom/event';
 import {on, removeListener} from 'core/event';
 
 

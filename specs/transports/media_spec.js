@@ -1,6 +1,6 @@
 import assert from 'core/assert';
 import {base64image, failTimeout} from 'specs/specs_helper';
-import {enableDomEvents} from 'dom/events';
+import {enableDomEvents} from 'dom/event';
 import {on} from 'core/event';
 import {loadImage} from 'transports/media';
 
