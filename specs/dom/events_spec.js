@@ -24,6 +24,25 @@ function increment () {
 specs.push(function (done) {
     reset();
 
+    dom.enableDomEvents();
+
+    done(assert(dom.eventsEnabled, 'should enable dom events'));
+});
+
+
+specs.push(function (done) {
+    reset();
+
+    dom.enableDomEvents();
+    dom.disableDomEvents();
+
+    done(assert(!dom.eventsEnabled, 'should enable dom events'));
+});
+
+
+specs.push(function (done) {
+    reset();
+
     dom.addListener(document, 'custom', increment);
     document.dispatchEvent(event);
 
