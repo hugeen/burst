@@ -1,5 +1,8 @@
 import assert from 'core/assert';
-import {on, emit, removeListener, getListeners} from 'core/event';
+import {
+    on, emit, removeListener, getListeners,
+    globalOn, globalEmit, globalRemoveListener, globalListeners
+} from 'core/event';
 
 
 var specs = [];
@@ -120,6 +123,28 @@ specs.push(function (done) {
     emit(increment, 'custom');
 
     done(assert(passed, 'should work with functions'));
+});
+
+
+specs.push(function (done) {
+    reset();
+
+    globalOn('event name', increment);
+    globalEmit('event name');
+    globalRemoveListener('event name', increment);
+
+    done(assert(passed, 'should register and trigger global listener'));
+});
+
+
+specs.push(function (done) {
+    reset();
+
+    globalOn('listener added', increment);
+    on(mock, 'event name', function () {});
+    globalRemoveListener('listener added', increment);
+
+    done(assert(passed, 'should trigger global listener on local listener added'));
 });
 
 
