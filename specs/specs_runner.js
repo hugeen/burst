@@ -10,6 +10,7 @@ import domDimensionsSpecs from 'specs/dom/dimensions_spec';
 import domAccessorsSpecs from 'specs/dom/accessors_spec';
 import xhrSpecs from 'specs/transports/xhr_spec';
 import mediaSpecs from 'specs/transports/media_spec';
+import keyboardSpecs from 'specs/input/keyboard_spec';
 
 
 runNextSet([
@@ -24,7 +25,8 @@ runNextSet([
     domDimensionsSpecs,
     domAccessorsSpecs,
     xhrSpecs,
-    mediaSpecs
+    mediaSpecs,
+    keyboardSpecs
 ]);
 
 
