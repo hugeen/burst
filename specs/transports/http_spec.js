@@ -1,5 +1,6 @@
 import assert from 'core/assert';
 import {on} from 'core/event';
+import {base64html, failTimeout} from 'specs/specs_helper';
 import * as http from 'transports/http';
 
 
@@ -35,5 +36,17 @@ specs.push(function (done) {
     done(assert(passed, 'should proxify events'));
 });
 
+
+specs.push(function (done) {
+
+    var message = 'should load http data';
+    var timeout = failTimeout(done, 100, message);
+
+    http.get(base64html, function (e) {
+        clearTimeout(timeout);
+        done(assert(e.currentTarget.responseText === '<div>template</div>', message));
+    });
+
+});
 
 export default {name: 'Http', specs};
