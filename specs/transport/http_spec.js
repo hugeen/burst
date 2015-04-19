@@ -1,7 +1,7 @@
 import assert from 'core/assert';
 import {on} from 'core/event';
 import {base64html, failTimeout} from 'specs/specs_helper';
-import * as http from 'transports/http';
+import * as http from 'transport/http';
 
 
 var specs = [];
