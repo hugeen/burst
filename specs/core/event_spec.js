@@ -28,7 +28,7 @@ describe('Event', function () {
         on(mock, 'event name', increment);
         emit(mock, 'event name');
 
-        should(false);
+        should(passed);
     });
 
 
