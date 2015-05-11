@@ -12,9 +12,9 @@
 
 
 import 'specs/core/event_spec';
-import {run} from 'test/spec';
+import {runAll} from 'test/run';
 
-run();
+runAll();
 
 
 // var specsCount = 0;

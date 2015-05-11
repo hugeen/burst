@@ -1,4 +1,5 @@
-import {describe, it, beforeEach, should} from 'test/spec';
+import {describe, it, beforeEach} from 'test/describe';
+import should from 'test/should';
 
 import {
     on, emit, removeListener, getListeners,
@@ -27,7 +28,7 @@ describe('Event', function () {
         on(mock, 'event name', increment);
         emit(mock, 'event name');
 
-        should(passed);
+        should(false);
     });
 
 
