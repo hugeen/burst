@@ -1,26 +1,29 @@
-import assert from 'core/assert';
+import {describe, it, beforeEach} from 'test/describe';
+import should from 'test/should';
+
 import {processQueue} from 'core/queue';
 
 
-var specs = [];
+describe('Queue', function () {
 
-var passed = 0;
+    var queue;
+    var passed;
 
-function increment (next) {
-    passed += 1;
-    next();
-}
 
-function reset () {
-    passed = 0;
-}
+    beforeEach(function () {
+        queue = [];
+        passed = 0;
+    });
 
-specs.push(function (done) {
-    reset();
-    var queue = [increment, increment, increment];
-    processQueue(queue);
-    done(assert(queue, 'should start queue'));
+
+    it('should process queue', function () {
+        queue.push(function (done) {
+            passed += 1;
+            done();
+        });
+        processQueue(queue);
+
+        should(passed);
+    });
+
 });
-
-
-export default {name: 'Queue', specs};

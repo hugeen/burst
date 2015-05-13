@@ -12,6 +12,7 @@
 
 
 import 'specs/core/event_spec';
+import 'specs/core/queue_spec';
 import {runAll} from 'test/run';
 
 runAll();
