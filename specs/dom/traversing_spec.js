@@ -1,14 +1,14 @@
-import assert from 'core/assert';
+import {describe, it, beforeEach} from 'test/describe';
+import should from 'test/should';
+
 import * as dom from 'dom/traversing';
 
 
-var specs = [];
+describe('DOM Traversing', function () {
 
+    it('should select elements with a CSS selector', function () {
+        var body = dom.getElements('body');
+        should(body[0] === document.body);
+    });
 
-specs.push(function (done) {
-    var body = dom.getElements('body');
-    done(assert(body[0] === document.body, 'should select elements with a CSS selector'));
 });
-
-
-export default {name: 'DOM traversing', specs};

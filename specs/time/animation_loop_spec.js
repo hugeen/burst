@@ -5,7 +5,7 @@ import {animationLoop, enableAnimationLoop, disableAnimationLoop} from 'time/ani
 import {on} from 'core/event';
 
 
-describe('Animation loop', function () {
+describe('Animation Loop', function () {
 
     var mock;
     var passed;
