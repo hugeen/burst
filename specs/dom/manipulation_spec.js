@@ -1,98 +1,81 @@
-import assert from 'core/assert';
+import {describe, it, beforeEach} from 'test/describe';
+import should from 'test/should';
+
 import * as dom from 'dom/manipulation';
 
 
-var specs = [];
+describe('DOM Manipulation', function () {
 
 
-var container = document.createElement('div');
-document.body.appendChild(container);
+    var container = document.createElement('div');
+    document.body.appendChild(container);
 
 
-function reset() {
-    container.innerHTML = '';
-    container.style.display = '';
-    container.classList.remove('hello');
-}
+    beforeEach(function () {
+        container.innerHTML = '';
+        container.style.display = '';
+        container.classList.remove('hello');
+    });
 
 
-specs.push(function (done) {
-    reset();
-    container.style.display = 'none';
-    dom.show(container);
+    it('should show an element', function () {
+        container.style.display = 'none';
+        dom.show(container);
+        should(container.style.display !== 'none');
+    });
 
-    done(assert(container.style.display !== 'none', 'should show an element'));
+
+    it('should hide an element', function () {
+        dom.hide(container);
+        should(container.style.display === 'none');
+    });
+
+
+    it('should add a class to an element', function () {
+        dom.addClass(container, 'hello');
+        should(container.classList.contains('hello'));
+    });
+
+
+    it('should remove a class to an element', function () {
+        container.classList.add('hello');
+        dom.removeClass(container, 'hello');
+        should(!container.classList.contains('hello'));
+    });
+
+
+    it('should check class of an element', function () {
+        container.classList.add('hello');
+        should(dom.hasClass(container, 'hello'));
+    });
+
+
+    it('should append an element', function () {
+        dom.append(container, document.createElement('h1'));
+        dom.append(container, document.createElement('h2'));
+        should(container.innerHTML === '<h1></h1><h2></h2>');
+    });
+
+
+    it('should prepend an element', function () {
+        dom.prepend(container, document.createElement('h1'));
+        dom.prepend(container, document.createElement('h2'));
+        should(container.innerHTML === '<h2></h2><h1></h1>');
+    });
+
+
+    it('should remove an element', function () {
+        var element = document.createElement('h1');
+        container.appendChild(element)
+        dom.remove(element);
+        should(!document.querySelector('h1'));
+    });
+
+
+    it('should empty an element', function () {
+        container.innerHTML = 'hello';
+        dom.empty(container);
+        should(container.innerHTML === '');
+    });
+
 });
-
-
-specs.push(function (done) {
-    reset();
-    dom.hide(container);
-
-    done(assert(container.style.display === 'none', 'should hide an element'));
-});
-
-
-specs.push(function (done) {
-    reset();
-    dom.addClass(container, 'hello');
-
-    done(assert(container.classList.contains('hello'), 'should add a class to an element'));
-});
-
-
-specs.push(function (done) {
-    reset();
-    container.classList.add('hello');
-    dom.removeClass(container, 'hello');
-
-    done(assert(!container.classList.contains('hello'), 'should remove a class to an element'));
-});
-
-
-specs.push(function (done) {
-    reset();
-    container.classList.add('hello');
-
-    done(assert(dom.hasClass(container, 'hello'), 'should check class of an element'));
-});
-
-
-specs.push(function (done) {
-    reset();
-    dom.append(container, document.createElement('h1'));
-    dom.append(container, document.createElement('h2'));
-
-    done(assert(container.innerHTML === '<h1></h1><h2></h2>', 'should append an element'));
-});
-
-
-specs.push(function (done) {
-    reset();
-    dom.prepend(container, document.createElement('h1'));
-    dom.prepend(container, document.createElement('h2'));
-
-    done(assert(container.innerHTML === '<h2></h2><h1></h1>', 'should prepend an element'));
-});
-
-
-specs.push(function (done) {
-    reset();
-    var element = document.createElement('h1');
-    container.appendChild(element)
-    dom.remove(element);
-
-    done(assert(!document.querySelector('h1'), 'should remove an element'));
-});
-
-
-specs.push(function (done) {
-    reset();
-    container.innerHTML = 'hello';
-    dom.empty(container);
-
-    done(assert(container.innerHTML === '', 'should empty an element'));
-});
-
-
-export default {name: 'DOM manipulation', specs};
