@@ -1,42 +1,37 @@
-import assert from 'core/assert';
+import {describe, it, beforeEach} from 'test/describe';
+import should from 'test/should';
+
 import {animationLoop, enableAnimationLoop, disableAnimationLoop} from 'time/animation_loop';
 import {on} from 'core/event';
-import {failTimeout} from 'specs/specs_helper';
 
 
-var specs = [];
+describe('Animation loop', function () {
+
+    var mock;
+    var passed;
 
 
-specs.push(function (done) {
-    var message = 'should start the loop';
-    var timeout = failTimeout(done, 100, message);
+    function increment () {
+        passed += 1;
+    }
 
-    var object = {};
-    on(object, 'enter frame', function (deltaTime) {
-        disableAnimationLoop(object);
-        clearTimeout(timeout);
-        done(assert(true, message));
+
+    beforeEach(function () {
+        mock = {};
+        passed = 0;
     });
 
-    enableAnimationLoop(object);
-});
 
+    it('should start the loop', function (done) {
+        var object = {};
+        on(object, 'enter frame', function (deltaTime) {
+            disableAnimationLoop(object);
+            done();
+        });
 
-specs.push(function (done) {
-    var message = 'should stop the loop';
-    var timeout = setTimeout(function () {
-        done(assert(true, message));
-    }, 100);
-
-    var object = {};
-    on(object, 'enter frame', function (deltaTime) {
-        clearTimeout(timeout);
-        done(assert(false, message));
+        enableAnimationLoop(object);
     });
 
-    enableAnimationLoop(object);
-    disableAnimationLoop(object);
+
 });
 
-
-export default {name: 'Animation loop', specs};
