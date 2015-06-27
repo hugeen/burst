@@ -1,8 +1,6 @@
-import {describe, it, beforeEach} from 'test/describe';
-import should from 'test/should';
-
-import {animationLoop, enableAnimationLoop, disableAnimationLoop} from 'time/animation_loop';
-import {on} from 'core/event';
+import assert from 'assert';
+import {animationLoop, enableAnimationLoop, disableAnimationLoop} from '../../time/animation_loop';
+import {on} from '../../core/event';
 
 
 describe('Animation Loop', function () {
