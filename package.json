@@ -1,8 +1,16 @@
 {
+
   "name": "burst",
-  "version": "1.0.0",
-  "description": "![Burst](logo.png?1)",
-  "main": "config.js",
+  "version": "0.0.1",
+  "description": "ES6 Toolbox - Simplicity & Minimalism",
+  "homepage": "http://www.hugeen.com/",
+  "author": {
+    "name": "Cyrille Bogaert",
+    "url": "http://www.hugeen.com/"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
+  },
   "scripts": {
     "gulp": "gulp",
     "testem": "testem",
