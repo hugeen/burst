@@ -1,5 +1,4 @@
 {
-
   "name": "burstem",
   "version": "0.0.1",
   "description": "ES6 Toolbox - Simplicity & Minimalism",
@@ -9,7 +8,7 @@
     "url": "http://www.hugeen.com/"
   },
   "engines": {
-    "node": ">= 0.10.0"
+    "node": ">= 0.12.0"
   },
   "scripts": {
     "gulp": "gulp",
