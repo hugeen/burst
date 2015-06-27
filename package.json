@@ -7,7 +7,7 @@
     "gulp": "gulp",
     "testem": "testem",
     "mocha": "mocha",
-    "test": "testem ci"
+    "test": "./node_modules/testem/testem.js -l Firefox ci"
   },
   "repository": {
     "type": "git",
