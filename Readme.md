@@ -1,4 +1,4 @@
-![Build](https://api.travis-ci.org/hugeen/burst.svg)
+[![Build](https://api.travis-ci.org/hugeen/burst.svg)](https://travis-ci.org/hugeen/burst)
 [![Join the chat at https://gitter.im/hugeen/Burst](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/hugeen/Burst?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ![Burst](logo.png?1)
