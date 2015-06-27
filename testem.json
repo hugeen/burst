@@ -1,4 +1,5 @@
 {
+  "growl": true,
   "framework": "mocha",
   "launch_in_dev": [
     "Chrome"
