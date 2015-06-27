@@ -1,7 +1,7 @@
 import {
     on, emit, removeListener, getListeners,
     globalOn, globalEmit, globalRemoveListener, globalListeners
-} from '../../lib/core/event';
+} from '../../core/event';
 
 import assert from 'assert';
 
