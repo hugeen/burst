@@ -10,8 +10,20 @@ Attempt to harmonize the different components of modern JavaScript environments 
 Each library is designed to be usable stand-alone or with few dependencies.
 
 
-* [Features](https://github.com/hugeen/burst/wiki/Features)
-* [Todo](https://github.com/hugeen/burst/wiki/Todo)
+##
+
+Installation
+
+````
+npm install --save burstem
+````
+
+
+Usage
+
+````
+import {on, emit} from 'burstem/core/event'
+````
 
 
 ## Main themes
