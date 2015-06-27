@@ -7,6 +7,6 @@
     "Firefox"
   ],
   "src_files": [
-    "dist/specs/test_mocha.js"
+    "dist/test/suite.js"
   ]
 }

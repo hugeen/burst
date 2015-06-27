@@ -2,3 +2,4 @@
 jspm_packages/
 config.js
 node_modules
+.npm-debug
