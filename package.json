@@ -14,7 +14,7 @@
     "gulp": "gulp",
     "testem": "testem",
     "mocha": "mocha",
-    "test": "gulp testem:ci"
+    "test": "gulp testem"
   },
   "repository": {
     "type": "git",

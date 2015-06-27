@@ -11,7 +11,7 @@ gulp.task('build:tests', function() {
 });
 
 
-gulp.task('testem:ci', ['build:tests'], function (cb) {
+gulp.task('testem', ['build:tests'], function (cb) {
   exec('./node_modules/testem/testem.js -l Firefox ci', function (err, stdout, stderr) {
     console.log(stdout);
     console.log(stderr);
@@ -19,14 +19,6 @@ gulp.task('testem:ci', ['build:tests'], function (cb) {
   });
 });
 
-
-gulp.task('testem', ['build:tests'], function (cb) {
-  exec('./node_modules/testem/testem.js -l Chrome', function (err, stdout, stderr) {
-    console.log(stdout);
-    console.log(stderr);
-    cb(err);
-  });
-});
 
 function build (entry, dest) {
     browserify({
