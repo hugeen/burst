@@ -2,7 +2,7 @@ import assert from 'assert';
 import * as dom from '../../dom/manipulation';
 
 
-describe('DOM', function () {
+describe('DOM Manipulation', function () {
 
 
     var container;
