@@ -10,7 +10,7 @@ Attempt to harmonize the different components of modern JavaScript environments 
 Each library is designed to be usable stand-alone or with few dependencies.
 
 
-##
+## Quick start
 
 Installation
 
