@@ -27,6 +27,17 @@ gulp.task('build:specs', function() {
 });
 
 
+
+var exec = require('child_process').exec;
+
+gulp.task('testem', function (cb) {
+  exec('./node_modules/testem/testem.js -l Firefox ci', function (err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+    cb(err);
+  });
+})
+
 function build (entry, dest) {
     browserify({
         entries: entry,
