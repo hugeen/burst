@@ -1,0 +1,1 @@
+{"version":3,"sources":["app.js"],"names":[],"mappings":";;yBAAwB,WAAW;;AACnC,OAAO,CAAC,GAAG,YADH,SAAS,CACK,CAAC;AACvB,OAAO,CAAC,GAAG,CAAC,OAAO,CAAC,CAAC","file":"app.js","sourcesContent":["import {something} from 'something';\nconsole.log(something);\nconsole.log('hello');\n"],"sourceRoot":"/source/"}

@@ -1,0 +1,12 @@
+{
+  "framework": "mocha",
+  "launch_in_dev": [
+    "PhantomJS"
+  ],
+  "launch_in_ci": [
+    "Chrome"
+  ],
+  "src_files": [
+    "dist/specs/test_mocha.js"
+  ]
+}
