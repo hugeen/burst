@@ -4,7 +4,7 @@
     "Chrome"
   ],
   "launch_in_ci": [
-    "Chromium"
+    "Firefox"
   ],
   "src_files": [
     "dist/specs/test_mocha.js"
