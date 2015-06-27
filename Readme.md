@@ -1,6 +1,7 @@
-![Burst](logo.png?1)![Build](https://api.travis-ci.org/hugeen/burst.svg)
-
+![Build](https://api.travis-ci.org/hugeen/burst.svg)
 [![Join the chat at https://gitter.im/hugeen/Burst](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/hugeen/Burst?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+![Burst](logo.png?1)
 
 Attempt to harmonize the different components of modern JavaScript environments (using **ES6**).
 
