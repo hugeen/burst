@@ -1,72 +1,63 @@
-import assert from 'core/assert';
-import * as dom from 'dom/event';
-import {on, removeListener} from 'core/event';
+import assert from 'assert';
+import * as dom from '../../dom/event';
+import {on, removeListener} from '../../core/event';
 
 
-var specs = [];
-var passed = 0;
-
-var event = document.createEvent('HTMLEvents');
-event.initEvent('custom', true, true);
-event.eventName = 'custom';
+describe('DOM Event', function () {
 
 
-function reset() {
-    dom.enableDomEvents();
-    passed = 0;
-    document.removeEventListener('custom', increment);
-}
+    var event;
+    var passed;
 
 
-function increment () {
-    passed += 1;
-}
+    function increment () {
+        passed += 1;
+    }
 
 
-specs.push(function (done) {
-    reset();
+    beforeEach(function () {
+        event = document.createEvent('HTMLEvents');
+        event.initEvent('custom', true, true);
+        event.eventName = 'custom';
+        dom.enableDomEvents();
+        passed = 0;
+        document.removeEventListener('custom', increment);
+    });
 
-    done(assert(dom.eventsEnabled, 'should enable dom events'));
+
+    it('should enable dom events', function () {
+        assert(dom.eventsEnabled);
+    });
+
+
+    it('should disable dom events', function () {
+        dom.disableDomEvents();
+        assert(!dom.eventsEnabled);
+    });
+
+
+    it('should add a listener', function () {
+        on(document, 'custom', increment);
+        document.dispatchEvent(event);
+        assert(passed);
+    });
+
+
+    it('should remove a listener', function () {
+        document.addEventListener('custom', increment);
+        removeListener(document, 'custom', increment);
+        document.dispatchEvent(event);
+
+        assert(!passed);
+    });
+
+
+    it('should execute a callback on dom ready', function (done) {
+        dom.domReady(function () {
+            done();
+        });
+    });
+
+
 });
 
-
-specs.push(function (done) {
-    reset();
-
-    dom.disableDomEvents();
-
-    done(assert(!dom.eventsEnabled, 'should enable dom events'));
-});
-
-
-specs.push(function (done) {
-    reset();
-
-    on(document, 'custom', increment);
-    document.dispatchEvent(event);
-
-    done(assert(passed, 'should add a listener'));
-});
-
-
-specs.push(function (done) {
-    reset();
-
-    document.addEventListener('custom', increment);
-    removeListener(document, 'custom', increment);
-    document.dispatchEvent(event);
-
-    done(assert(!passed, 'should remove a listener'));
-});
-
-
-specs.push(function (done) {
-    reset();
-
-    dom.domReady(increment)
-
-    done(assert(passed, 'should execute a callback on dom ready'));
-});
-
-
-export default {name: 'DOM events', specs};
