@@ -29,9 +29,16 @@ import {on, emit} from 'burstem/core/event'
 Test
 
 ````
-npm run gulp
+npm run gulp build:tests
+npm run testem
 ````
 
+
+Test (CI)
+
+````
+npm run gulp
+````
 
 
 ## Main themes
