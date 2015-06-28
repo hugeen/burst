@@ -3,5 +3,5 @@ import './dom/manipulation_spec';
 import './dom/traversing_spec';
 import './dom/dimensions_spec';
 import './dom/accessors_spec';
-import './dom/events_spec';
+import './dom/event_spec';
 import './time/animation_loop_spec';
