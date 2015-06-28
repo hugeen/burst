@@ -1,6 +1,6 @@
 
 import {on} from '../../core/event';
-import {base64html, failTimeout} from '../helpers';
+import {base64html} from '../helpers';
 import * as http from '../../transport/http';
 import assert from 'assert';
 

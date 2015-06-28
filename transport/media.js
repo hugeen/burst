@@ -3,12 +3,9 @@ var mediaDataMap = new WeakSet();
 
 export function createMedia (MediaType, url) {
     var media = new MediaType();
-    mediaDataMap.set(media, {url: url});
-};
+    mediaDataMap.add(media, {url: url});
 
-
-export function loadMedia () {
-
+    return media;
 };
 
 
@@ -17,36 +14,8 @@ export function getMediaData (media) {
 };
 
 
-export function loadImage (image, configure) {
+export function loadImage (url, configure) {
+    var image = createMedia(Image, url);
     configure(image);
-    image.src = sourceUrl;
+    image.src = url;
 };
-
-
-// createMedia(Image, '/erer.js');
-
-// var queue = buildQueue(function (add) {
-//     add(function (done) {
-//         done();
-//     });
-// });
-
-
-// loadAssets(function (addToLoader) {
-//     addToLoader(Image, '/hello.png');
-//     addToLoader(Video, '/vid.jpg');
-// })
-
-// processQueue(function (addToQueue) {
-//     addToQueue(function (done) {
-//         loadImage('/hello.png', function (image) {
-//             on(image, 'load', done);
-//         });
-//     });
-
-//     addToQueue(function (done) {
-//         loadImage('/yo.png', function (image) {
-//             on(image, 'load', done);
-//         });
-//     });
-// });

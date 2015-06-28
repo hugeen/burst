@@ -8,3 +8,4 @@ import './dom/utils_spec';
 import './time/animation_loop_spec';
 import './input/keyboard_spec';
 import './transport/http_spec';
+import './transport/media_spec';
