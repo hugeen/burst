@@ -16,9 +16,7 @@ describe('Transport Media', function () {
     it('should load an image', function (done) {
 
         loadImage(base64image, function (image) {
-            console.log(image);
             on(image, 'load', function () {
-                console.log('loaded');
                 done();
             });
         });
