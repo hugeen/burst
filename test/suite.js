@@ -6,3 +6,4 @@ import './dom/accessors_spec';
 import './dom/event_spec';
 import './dom/utils_spec';
 import './time/animation_loop_spec';
+import './input/keyboard_spec';
