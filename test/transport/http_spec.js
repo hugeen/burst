@@ -1,8 +1,7 @@
-
+import assert from 'assert';
 import {on} from '../../core/event';
 import {base64html} from '../helpers';
 import * as http from '../../transport/http';
-import assert from 'assert';
 
 
 describe('HTTP Transport', function () {

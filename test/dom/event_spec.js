@@ -53,6 +53,7 @@ describe('DOM Event', function () {
 
 
     it('should execute a callback on dom ready', function (done) {
+        this.timeout(3500);
         dom.domReady(function () {
             done();
         });
