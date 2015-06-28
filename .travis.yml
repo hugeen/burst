@@ -3,6 +3,7 @@ node_js:
   - "0.12.4"
 before_install:
   - npm -g install testem
+  - npm -g install gulp
 env:
   - DISPLAY=:99.0
 before_script:
