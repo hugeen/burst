@@ -8,9 +8,12 @@ describe('DOM Manipulation', function () {
     var container;
 
     beforeEach(function () {
-        document.body.innerHTML = '';
+        if(container) {
+            container.parentNode.removeChild(container);
+        }
         container = document.createElement('div');
         document.body.appendChild(container);
+
         container.innerHTML = '';
         container.style.display = '';
         container.classList.remove('hello');
@@ -65,9 +68,9 @@ describe('DOM Manipulation', function () {
 
     it('should remove an element', function () {
         var element = document.createElement('h1');
-        container.appendChild(element)
+        container.appendChild(element);
         dom.remove(element);
-        assert(!document.querySelector('h1'));
+        assert(!container.querySelector('h1'));
     });
 
 
