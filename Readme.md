@@ -26,6 +26,14 @@ import {on, emit} from 'burstem/core/event'
 ````
 
 
+Test
+
+````
+npm run gulp
+````
+
+
+
 ## Main themes
 
 * **DOM** (Manipulation, Traversing, Events, Utils)
