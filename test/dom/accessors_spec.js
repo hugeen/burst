@@ -8,7 +8,9 @@ describe('DOM Accessors', function () {
     var container;
 
     beforeEach(function () {
-        document.body.innerHTML = '';
+        if(container) {
+            container.parentNode.removeChild(container);
+        }
         container = document.createElement('div');
         document.body.appendChild(container);
         container.innerHTML = '';
