@@ -8,11 +8,24 @@ on(something, 'my event', myListener);
 off(something, 'my event', myListener);
 emit(something, 'my event', myListener);
 
+// Build-in events
+on(Keyboard, 'key pressed', myListener);
+on(Device, 'tap', myListener);
+
+// String find the associated symbol
+on('keyboard', 'key press', myListener);
+// Same as
+on(Keyboard, 'key press', myListener);
+// And
+on(Symbol.for('keyboa'), 'key pressed', myListener);
+
 
 
 // Dom utils
 var myElements = Dom.get('div');
 Dom.addClass(myElements, 'myClasse');
+// Same as
+Dom.addClass('div', 'myClasse');
 Dom.on(myElements, 'click', myListener);
 Dom.off(myElements, myListener);
 Dom.append(myElements, otherElement);
@@ -28,6 +41,7 @@ Dom.removeClass(myElements, 'class-name');
 
 
 // Keyboard events
+on(Keyboard, 'key press', myListener);
 Keyboard.on('key press', myListener);
 Keyboard.off('key press', myListener);
 Keyboard.keyPressed('A');
@@ -149,15 +163,16 @@ on(queue, 'stop', myListener);
 
 
 // Canvas drawing tools
-Canvas.clear(canvas, params);
-Canvas.drawImage(canvas, image, params);
-Canvas.drawPixel(canvas, pixel, params);
-Canvas.drawRectangle(canvas, rectange, params);
-Canvas.drawArc(canvas, arc, params);
-Canvas.drawPolygon(canvas, polygon, params);
-Canvas.drawPath(canvas, path, params);
-Canvas.forEachPixel(canvas, myIterator);
-Canvas.toUrl(canvas);
+var myScreen = Screen.add(element);
+Screen.clear(myScreen, params);
+Screen.drawImage(myScreen, image, params);
+Screen.drawPixel(myScreen, pixel, params);
+Screen.drawRectangle(myScreen, rectange, params);
+Screen.drawCircle(myScreen, arc, params);
+Screen.drawPolygon(myScreen, polygon, params);
+Screen.drawPath(myScreen, path, params);
+Screen.forEachPixel(myScreen, myIterator);
+Screen.toUrl(myScreen);
 
 // Separated helpers
 Path, Rectangle, Arc, Polygon, Coord, Vector, Vector3
