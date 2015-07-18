@@ -5,66 +5,22 @@
 
 // Stop using objects, they are fine, I've used them for years.
 // But they are complex, mutating and expanding over the time.
-// They are hard to maintain and track everything they can do.
+// It's are hard to maintain and to track everything they can do.
 
 
 // Object literals allowed to store data.
 // To prevent mutation you can use destructuring
 var position = { x: 0, y: 1 };
+var {x, y} = data;
 // You have now access to x and y;
 // Same as var x = data.x; var y = data.y;
-var {x, y} = data;
-
-// To save states you can use Symbol associated to Map or WeakMap
-var playerState = new WeakMap();
-const $pos = Symbol.for('position');
-playerState.set($pos, {x, y});
-
-// Get player position
-// Will return {x: 0, y: 1}
-playerState.get($pos);
-
-// Don't worry about memory while creating new objects this way
-// Old objects will be thrown to garbage collector instantly
-
-
-
-// Experiments
-
-// var players = new WeakMap();
-
-// function add (data) {
-//     var {life} = data;
-
-//     var $player = Symbol();
-//     var data = new WeakMap();
-//     data.set(Symbol.for('life'), life);
-//     players.set($player, data);
-
-//     emit(Player, 'added', $player);
-
-//     return $player;
-// }
-
-// function takeDamages ($player, amount) {
-//     var data = players.get($player);
-//     var life = data.get(Symbol.for('life'));
-//     data.set(Symbol.for('life'), life -= amount);
-// }
-
-
-// var $player = Player.add({life: 100});
-// Player.takeDamages($player, 100);
-
-// var $life = Symbol.for('life');
-// var life = Player.getData($player, $life);
 
 
 
 
 
 //
-// API
+// API (burstem)
 //
 
 
@@ -95,9 +51,9 @@ on(Symbol.for('keyboard'), 'key press', myListener);
 
 // Dom utils
 var myElements = Dom.get('div');
-Dom.addClass(myElements, 'myClasse');
+Dom.addClass(myElements, 'class-name');
 // Same as
-Dom.addClass('div', 'myClasse');
+Dom.addClass('div', 'class-name');
 Dom.on(myElements, 'click', myListener);
 Dom.off(myElements, myListener);
 Dom.append(myElements, otherElement);
@@ -105,7 +61,6 @@ Dom.prepend(myElements, otherElement);
 Dom.remove(myElements);
 Dom.show(myElements);
 Dom.hide(myElements);
-Dom.addClass(myElements, 'class-name');
 Dom.hasClass(myElements, 'class-name');
 Dom.toggleClass(myElements, 'class-name');
 Dom.removeClass(myElements, 'class-name');
@@ -170,9 +125,6 @@ Tag.remove(thing, 'myTag');
 Tag.is(thing, 'myTag');
 on(thing, 'tagged', myListener);
 on(thing, 'untagged', myListener);
-// Broadcast an event to all tagged objects
-Tag.broadcast('myTag', 'thing happens', myListener);
-on(thing, 'thing happens', myListener);
 
 
 
@@ -237,7 +189,14 @@ on(queue, 'stop', myListener);
 
 
 
-// Drawing tools - should be detached from burst
+
+//
+// API - Outside of burst scope. Should be on separated libs
+//
+
+
+
+// Drawing tools (burst_draw/screen)
 var myScreen = Screen.add(element);
 Screen.clear(myScreen, params);
 Screen.drawImage(myScreen, image, params);
@@ -249,12 +208,65 @@ Screen.drawPath(myScreen, path, params);
 Screen.forEachPixel(myScreen, myIterator);
 Screen.toUrl(myScreen);
 
-// Separated helpers
+
+// Separated helpers (burst_geometry)
 Path, Rectangle, Arc, Polygon, Coord, Vector, Vector3
 
 
-
-// Style can be applied on renderers
+// Style can be applied on renderers (burst_draw/style)
 on(style, 'change', myListener);
 Style.set('identifier', params);
 Style.get('identifier');
+
+
+
+
+
+
+//
+// Experiments
+//
+
+// To save states you can use Symbol associated to Map or WeakMap
+var playerState = new WeakMap();
+const $pos = Symbol.for('position');
+playerState.set($pos, {x, y});
+
+// Get player position
+// Will return {x: 0, y: 1}
+playerState.get($pos);
+
+// Don't worry about memory while creating new objects this way
+// Old objects will be thrown to garbage collector instantly
+
+
+
+
+
+// var players = new WeakMap();
+
+// function add (data) {
+//     var {life} = data;
+
+//     var $player = Symbol();
+//     var data = new WeakMap();
+//     data.set(Symbol.for('life'), life);
+//     players.set($player, data);
+
+//     emit(Player, 'added', $player);
+
+//     return $player;
+// }
+
+// function takeDamages ($player, amount) {
+//     var data = players.get($player);
+//     var life = data.get(Symbol.for('life'));
+//     data.set(Symbol.for('life'), life -= amount);
+// }
+
+
+// var $player = Player.add({life: 100});
+// Player.takeDamages($player, 100);
+
+// var $life = Symbol.for('life');
+// var life = Player.getData($player, $life);
