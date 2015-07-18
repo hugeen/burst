@@ -1,5 +1,77 @@
+//
+// Concepts
+//
+
+
+// Stop using objects, they are fine, I've used them for years.
+// But they are complex, mutating and expanding over the time.
+// They are hard to maintain and track everything they can do.
+
+
+// Object literals allowed to store data.
+// To prevent mutation you can use destructuring
+var position = { x: 0, y: 1 };
+// You have now access to x and y;
+// Same as var x = data.x; var y = data.y;
+var {x, y} = data;
+
+// To save states you can use Symbol associated to Map or WeakMap
+var playerState = new WeakMap();
+const $pos = Symbol.for('position');
+playerState.set($pos, {x, y});
+
+// Get player position
+// Will return {x: 0, y: 1}
+playerState.get($pos);
+
+// Don't worry about memory while creating new objects this way
+// Old objects will be thrown to garbage collector instantly
+
+
+
+// Experiments
+
+// var players = new WeakMap();
+
+// function add (data) {
+//     var {life} = data;
+
+//     var $player = Symbol();
+//     var data = new WeakMap();
+//     data.set(Symbol.for('life'), life);
+//     players.set($player, data);
+
+//     emit(Player, 'added', $player);
+
+//     return $player;
+// }
+
+// function takeDamages ($player, amount) {
+//     var data = players.get($player);
+//     var life = data.get(Symbol.for('life'));
+//     data.set(Symbol.for('life'), life -= amount);
+// }
+
+
+// var $player = Player.add({life: 100});
+// Player.takeDamages($player, 100);
+
+// var $life = Symbol.for('life');
+// var life = Player.getData($player, $life);
+
+
+
+
+
+//
+// API
+//
+
+
 // Event bus
 on('my global event', myListener);
+// Same as
+on(Symbol.for('global'), 'my global event', myListener);
 off('my global event', myListener);
 emit('my global event', params);
 
@@ -9,7 +81,7 @@ off(something, 'my event', myListener);
 emit(something, 'my event', myListener);
 
 // Build-in events
-on(Keyboard, 'key pressed', myListener);
+on(Keyboard, 'key press', myListener);
 on(Device, 'tap', myListener);
 
 // String find the associated symbol
@@ -17,7 +89,7 @@ on('keyboard', 'key press', myListener);
 // Same as
 on(Keyboard, 'key press', myListener);
 // And
-on(Symbol.for('keyboa'), 'key pressed', myListener);
+on(Symbol.for('keyboard'), 'key press', myListener);
 
 
 
@@ -93,11 +165,14 @@ Time.now();
 
 
 // Tag
-Tag.add(myObject, 'myTag');
-Tag.remove(myObject, 'myTag');
-Tag.is(myObject, 'myTag');
-on(myObject, 'tagged', myListener);
-on(myObject, 'untagged', myListener);
+Tag.add(thing, 'myTag');
+Tag.remove(thing, 'myTag');
+Tag.is(thing, 'myTag');
+on(thing, 'tagged', myListener);
+on(thing, 'untagged', myListener);
+// Broadcast an event to all tagged objects
+Tag.broadcast('myTag', 'thing happens', myListener);
+on(thing, 'thing happens', myListener);
 
 
 
@@ -143,7 +218,7 @@ Media.getVolume(media);
 
 // Tween
 Tween.register('easeInOut', easeInOut);
-Tween.start(myObject, values, 'easeInOut');
+var tween = Tween.start(startValues, endValues, 'easeInOut');
 Tween.stop(tween);
 
 
@@ -162,7 +237,7 @@ on(queue, 'stop', myListener);
 
 
 
-// Canvas drawing tools
+// Drawing tools - should be detached from burst
 var myScreen = Screen.add(element);
 Screen.clear(myScreen, params);
 Screen.drawImage(myScreen, image, params);
