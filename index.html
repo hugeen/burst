@@ -1,83 +1,197 @@
-<!DOCTYPE html>
-<html lang="en-us">
+<!DOCTYPE HTML>
+<html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <title>burst by hugeen</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <title>Clouds</title>
+    <meta charset="utf-8">
+
+    <link href="reset.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
   </head>
   <body>
-    <section class="page-header">
-      <h1 class="project-name"><img src="logo.png?1" alt="Burst"></h1>
-      <h2 class="project-tagline">ES6 Toolbox</h2>
-      <a href="https://github.com/hugeen/burst" class="btn">View on GitHub</a>
-      <a href="https://github.com/hugeen/burst/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/hugeen/burst/tarball/master" class="btn">Download .tar.gz</a>
-    </section>
-
-    <section class="main-content">
-<h1>Simplicity &amp; Minimalism</h1>
-
-<p>Attempt to harmonize the different components of modern JavaScript environments (using <strong>ES6</strong>).</p>
-
-<p><strong>burst</strong> is a collection of libraries to build bigger things, such as applications or games.</p>
-
-<p>Each library is designed to be usable stand-alone or with few dependencies.</p>
-
-<ul>
-<li><a href="https://github.com/hugeen/burst/wiki/Features">Features</a></li>
-<li><a href="https://github.com/hugeen/burst/wiki/Todo">Todo</a></li>
-</ul>
-
-<h2>
-<a id="main-themes" class="anchor" href="#main-themes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Main themes</h2>
-
-<ul>
-<li>
-<strong>DOM</strong> (Manipulation, Traversing, Events, Utils)</li>
-<li>
-<strong>Timers</strong> (Request Animation Frame, Timeout, Interval)</li>
-<li>
-<strong>Data Transports</strong> (HTTP, WebSockets, WebRTC, DOM)</li>
-<li>
-<strong>Inputs</strong> (Mouse, Keyboard, Mobile, Gamepad)</li>
-<li>
-<strong>Storage</strong> (LocalStorage, IndexedDB)</li>
-<li>
-<strong>Rendering</strong> (HTML/CSS, Canvas2D, WebGL, SVG)</li>
-<li>
-<strong>Parallelization</strong> (WebWorker)</li>
-<li>
-<strong>Media</strong> (Img, Audio, Video)</li>
-<li>
-<strong>File Manipulation</strong> (File API)</li>
-<li>
-<strong>Device APIs</strong> (Ambient Light Sensor, Battery Status, Geolocation, Pointer Lock, Proximity, Device Orientation, Screen Orientation, Vibration)</li>
-</ul>
 
 
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/hugeen/burst">burst</a> is maintained by <a href="https://github.com/hugeen">hugeen</a>. <a href="https://gitter.im/hugeen/Burst?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Join the chat at https://gitter.im/hugeen/Burst"></a></span>
-        <span class="site-footer-credits">Powered by <a href="https://pages.github.com">GitHub Pages</a>. Theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
-      </footer>
+    <script type="text/javascript" src="js/three.min.js"></script>
+    <script type="text/javascript" src="js/Detector.js"></script>
 
-    </section>
+    <script id="vs" type="x-shader/x-vertex">
 
-            <script type="text/javascript">
-            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-          </script>
-          <script type="text/javascript">
-            try {
-              var pageTracker = _gat._getTracker("UA-40464648-2");
-            pageTracker._trackPageview();
-            } catch(err) {}
-          </script>
+      varying vec2 vUv;
 
+      void main() {
+
+        vUv = uv;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+
+      }
+
+    </script>
+
+    <script id="fs" type="x-shader/x-fragment">
+
+      uniform sampler2D map;
+
+      uniform vec3 fogColor;
+      uniform float fogNear;
+      uniform float fogFar;
+
+      varying vec2 vUv;
+
+      void main() {
+
+        float depth = gl_FragCoord.z / gl_FragCoord.w;
+        float fogFactor = smoothstep( fogNear, fogFar, depth );
+
+        gl_FragColor = texture2D( map, vUv );
+        gl_FragColor.w *= pow( gl_FragCoord.z, 20.0 );
+        gl_FragColor = mix( gl_FragColor, vec4( fogColor, gl_FragColor.w ), fogFactor );
+
+      }
+
+    </script>
+
+
+    <div id="hero_clouds"></div>
+    <div id="hero_logo">
+      <img src="burst.png">
+    </div>
+
+    <script type="text/javascript">
+      var count = 8000;
+
+      if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
+
+      var container;
+      var camera, scene, renderer;
+      var mesh, geometry, material;
+
+      var mouseX = 0, mouseY = 0;
+      var start_time = Date.now();
+
+      var windowHalfX = window.innerWidth / 2;
+      var windowHalfY = window.innerHeight / 2;
+
+      init();
+
+      function init() {
+
+        container = document.getElementById('hero_clouds');
+
+        // Bg gradient
+
+        var canvas = document.createElement( 'canvas' );
+        canvas.width = 32;
+        canvas.height = window.innerHeight;
+
+        var context = canvas.getContext( '2d' );
+
+        var gradient = context.createLinearGradient( 0, 0, 0, canvas.height );
+        gradient.addColorStop(0, "#851514");
+        gradient.addColorStop(0.17, "#840c03");
+        gradient.addColorStop(0.56, "#f6512b");
+        gradient.addColorStop(0.84, "#e9301a");
+        gradient.addColorStop(1, "#ff6745");
+
+        context.fillStyle = gradient;
+        context.fillRect(0, 0, canvas.width, canvas.height);
+
+        container.style.background = 'url(' + canvas.toDataURL('image/png') + ')';
+        container.style.backgroundSize = '32px 100%';
+
+        //
+
+        camera = new THREE.PerspectiveCamera( 30, window.innerWidth / window.innerHeight, 1, 3000 );
+        camera.position.z = 6000;
+
+        scene = new THREE.Scene();
+
+        geometry = new THREE.Geometry();
+
+        var texture = THREE.ImageUtils.loadTexture( 'cloud10.png', null, animate );
+        texture.magFilter = THREE.LinearMipMapLinearFilter;
+        texture.minFilter = THREE.LinearMipMapLinearFilter;
+
+        var fog = new THREE.Fog( 0xff6745, - 100, 3000 );
+
+        material = new THREE.ShaderMaterial( {
+
+          uniforms: {
+
+            "map": { type: "t", value: texture },
+            "fogColor" : { type: "c", value: fog.color },
+            "fogNear" : { type: "f", value: fog.near },
+            "fogFar" : { type: "f", value: fog.far },
+
+          },
+          vertexShader: document.getElementById( 'vs' ).textContent,
+          fragmentShader: document.getElementById( 'fs' ).textContent,
+          depthWrite: false,
+          depthTest: false,
+          transparent: true
+
+        } );
+
+        var plane = new THREE.Mesh( new THREE.PlaneGeometry( 64, 64 ) );
+
+
+
+        for ( var i = 0; i < count; i++ ) {
+
+          plane.position.x = Math.random() * 1000 - 500;
+          plane.position.y = - Math.random() * Math.random() * 200 - 15;
+          plane.position.z = i;
+          plane.rotation.z = Math.random() * Math.PI;
+          plane.scale.x = plane.scale.y = Math.random() * Math.random() * 1.5 + 0.5;
+
+          THREE.GeometryUtils.merge( geometry, plane );
+
+        }
+
+        mesh = new THREE.Mesh( geometry, material );
+        scene.add( mesh );
+
+        mesh = new THREE.Mesh( geometry, material );
+        mesh.position.z = - count;
+        scene.add( mesh );
+
+        renderer = new THREE.WebGLRenderer( { antialias: false } );
+        renderer.setSize( window.innerWidth, window.innerHeight );
+        container.appendChild( renderer.domElement );
+
+        document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+        window.addEventListener( 'resize', onWindowResize, false );
+
+      }
+
+      function onDocumentMouseMove( event ) {
+
+        mouseX = ( event.clientX - windowHalfX ) * 0.25;
+        mouseY = ( event.clientY - windowHalfY ) * 0.15;
+
+      }
+
+      function onWindowResize( event ) {
+
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+
+        renderer.setSize( window.innerWidth, window.innerHeight );
+
+      }
+
+      function animate() {
+
+        requestAnimationFrame( animate );
+
+        position = ( ( Date.now() - start_time ) * 0.05 ) % count;
+
+        camera.position.x += ( mouseX - camera.position.x ) * 0.005;
+        camera.position.y += ( - mouseY - camera.position.y ) * 0.005;
+        camera.position.z = - position + count;
+
+        renderer.render( scene, camera );
+
+      }
+
+    </script>
   </body>
 </html>
-

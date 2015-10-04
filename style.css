@@ -1,0 +1,38 @@
+/*.hero {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+
+
+}*/
+
+
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+#hero_clouds {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+}
+#hero_logo {
+	position: absolute;
+	display: block;
+	position: absolute;
+	top: 55%;
+	left: 50%;
+	margin-left: -135px;
+	margin-top: -182px;
+}
+
+#hero_logo img {
+
+}
